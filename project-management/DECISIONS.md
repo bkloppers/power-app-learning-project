@@ -35,3 +35,38 @@ Decision: Maintain one living solution design specification at `docs/solution-de
 Status: LOCKED
 Reason: The project requires a physical start-to-finish design record rather than relying on chat history.
 Date: 2026-08-26
+
+## DEC-007
+Decision: The application is a Microsoft Teams-hosted, multi-tool Power Apps Canvas App with one reusable application shell. Tool 01 is AI Prompt Capture, Submission and Verification; Tool 02 is AI Prompt Chatbot; future tools are added under the same shell.
+Status: LOCKED
+Reason: Approved foundation baseline establishes the application boundary and cumulative multi-tool architecture.
+Date: 2026-08-27
+Source: `project-management/approvals/APPROVAL-2026-08-27-FOUNDATION-BASELINE.md`
+
+## DEC-008
+Decision: Microsoft Lists / SharePoint Lists is the initial Tool 01 data platform. Prompt Submission, Peer Rating, and Formal Review records remain separate where appropriate.
+Status: LOCKED
+Reason: Approved foundation baseline fixes the initial data-platform direction and preserves scalable related-record design.
+Date: 2026-08-27
+Source: `project-management/approvals/APPROVAL-2026-08-27-FOUNDATION-BASELINE.md`
+
+## DEC-009
+Decision: Tool 01 uses submitter, peer-rater, verifier, and administrator role layers. Peer rating is optional and separate from formal verification. Formal completion requires at least two independent verifiers; verifiers may request changes but cannot reject; administrator retains rejection authority.
+Status: LOCKED
+Reason: Approved foundation baseline establishes the role and approval boundaries that later security and workflow phases must preserve.
+Date: 2026-08-27
+Source: `project-management/approvals/APPROVAL-2026-08-27-FOUNDATION-BASELINE.md`
+
+## DEC-010
+Decision: GitHub Issues are the operational gate and ticket system. Delivery follows the Process & Progress Framework and the Chat Session Ticket Capacity Model, including a maximum of 5 points and 5 tickets per session batch, same phase/gate/workstream, and one active ticket at a time.
+Status: LOCKED
+Reason: The approved governance baseline requires durable operational work tracking and controlled specialist handoffs.
+Date: 2026-08-27
+Source: `project-management/approvals/APPROVAL-2026-08-27-FOUNDATION-BASELINE.md`
+
+## DEC-011
+Decision: All Power Apps technical work follows the Future-First Power Apps Standard and must use the newest supported production-suitable capability at ticket execution time, with version-sensitive Microsoft guidance checked before implementation.
+Status: LOCKED
+Reason: The approved foundation baseline prohibits intentionally teaching or implementing retired, superseded, or unsupported patterns when a current production-suitable capability exists.
+Date: 2026-08-27
+Source: `project-management/POWER-APPS-FUTURE-FIRST-STANDARD.md`

@@ -33,12 +33,13 @@ Acceptance Criteria:
 ## Last Completed
 
 - Foundation baseline approved and merged to `main`.
-- End application direction, Tool 01, Tool 02, roles, workflow direction, Lists platform direction and cumulative roadmap approved.
-- TASK-001 requirements-capture dependency is satisfied by the approved baseline and supporting solution-design documents.
+- TASK-001 requirements-capture dependency satisfied.
+- PH01-G01-T01 / Issue #6 COMPLETE with reconciliation evidence.
+- PH01-G01-T02 / Issue #7 COMPLETE with authoritative record synchronization evidence.
 
 ## Exact Next Step
 
-Instantiate the PH01-G01 gate and its four required work/validation tickets as GitHub Issues from the prepared TASK-002 gate/ticket package. Execute PH01-G01-T01 through T04 in dependency order, record the formal gate decision, then evaluate PH02-G01 entry criteria. Do not start Power Apps implementation before that gate decision.
+Execute PH01-G01-T03 / Issue #8 in `07 - Testing and Validation`: validate roadmap traceability from the approved business/application baseline through PH02-PH20. If T03 passes, execute PH01-G01-T04 / Issue #9 formal gate review. Do not start Power Apps implementation before Gate #5 is formally passed and PH02 entry criteria are evaluated.
 
 ## Phase Status
 
@@ -63,32 +64,31 @@ Entry Criteria:
 - Naming inputs confirmed.
 - Future-First ALM freshness check completed.
 Exit Criteria:
-- Defined in `project-management/phases/PHASE-02.md` once merged.
+- Defined in `project-management/phases/PHASE-02.md`.
 
 ## Blockers
 
-- PH02 implementation is blocked until PH01-G01 is formally passed and PH02 gate-entry criteria are confirmed.
+- PH02 implementation remains blocked until PH01-G01 is formally passed and PH02 gate-entry criteria are confirmed.
 
 ## Open Issues
 
-- None from the original requirements-capture dependency. Any unresolved business rules remain assigned to their future design phase/tickets.
+- #8 - PH01-G01-T03 roadmap traceability validation.
+- #9 - PH01-G01-T04 formal Phase 01 gate review.
+- #5 - PH01-G01 gate decision remains NOT DECIDED until #8 and #9 complete.
 
 ## Locked Decisions
 
-- DEC-001 - GitHub is the durable source of truth for project state.
-- DEC-002 - One real Canvas app grows cumulatively through all learning phases.
-- DEC-003 - Every hierarchy level uses Learning Phase -> Lab -> Demonstration -> Understanding.
-- DEC-004 - Production-oriented best practices apply from the first phase.
-- DEC-005 - Existing NTT DATA design system and project standards govern the app.
-- DEC-006 - One living solution design specification is maintained.
+- DEC-001 through DEC-011 as recorded in `project-management/DECISIONS.md` remain governing.
 
 ## Change Log
 
 ### 2026-08-27
 - Reconciled stale pre-approval TASK-001 state against the approved foundation baseline.
-- Set TASK-002 as the active planning task.
-- Set PH01-G01 as the active gate.
-- Explicitly kept PH02 implementation NOT STARTED pending formal PH01 gate passage.
+- Set TASK-002 and PH01-G01 active.
+- Completed T01 architecture reconciliation evidence.
+- Completed T02 authoritative record synchronization.
+- Set T03 / Issue #8 as the exact next action.
+- Explicitly kept PH02 implementation NOT STARTED pending PH01 gate passage.
 
 ### 2026-08-26
 - Initialized formal project control.

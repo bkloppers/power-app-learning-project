@@ -122,7 +122,7 @@ Use this decision order:
 
 ## Brand Shell Baseline
 
-The initial application shell will eventually contain:
+The application shell is approved as a reusable multi-tool shell for a Microsoft Teams-hosted Canvas App. It will progressively contain:
 
 - sticky Header component;
 - responsive Sidebar component;
@@ -130,62 +130,53 @@ The initial application shell will eventually contain:
 - overlay host;
 - application-wide Light/Dark theme support;
 - approved NTT DATA logo variant switching;
-- responsive desktop/tablet/mobile behaviour;
-- standard error, loading, toast, and dialog patterns.
+- responsive Teams desktop/web behaviour;
+- standard error, loading, toast, and dialog patterns;
+- Tool 01 entry point;
+- Tool 02 as a confirmed future module under the same shell.
 
 The shell will not all be introduced in the first learning phase. Each part will be added when its hierarchy level becomes the active learning subject.
 
-## Proposed Repository Structure
+## Approved Application Baseline
 
-```text
-power-app-learning-project/
-├── README.md
-├── AGENTS.md
-├── docs/
-│   ├── solution-design/
-│   │   └── POWER-APPS-LEARNING-SOLUTION-DESIGN.md
-│   ├── standards/
-│   │   ├── naming/
-│   │   ├── variables/
-│   │   ├── responsive-layout/
-│   │   └── design-system/
-│   ├── architecture/
-│   ├── data-model/
-│   ├── security/
-│   ├── integrations/
-│   ├── testing/
-│   └── deployment/
-├── project-management/
-│   ├── AI-PROJECT-CONTINUITY-FLOW.md
-│   ├── PROJECT-CONTROL.md
-│   ├── DECISIONS.md
-│   ├── ISSUES.md
-│   └── phases/
-│       ├── PHASE-01.md
-│       ├── PHASE-02.md
-│       └── ...
-├── power-platform/
-│   ├── solutions/
-│   ├── canvas-app/
-│   ├── power-automate/
-│   ├── dataverse/
-│   └── environment-configuration/
-├── assets/
-│   ├── brand/
-│   ├── icons/
-│   └── screenshots/
-└── evidence/
-    ├── labs/
-    ├── demonstrations/
-    ├── tests/
-    └── release-validation/
-```
+The approved foundation baseline dated 2026-08-27 establishes:
 
-Folders are introduced when they gain real content; empty placeholder folders are not required in Git.
+- one Microsoft Teams-hosted, multi-tool Canvas App;
+- Tool 01 - AI Prompt Capture, Submission and Verification;
+- Tool 02 - AI Prompt Chatbot as a confirmed future capability in the same shell;
+- Submitter, Peer Rater, Verifier and Administrator role layers;
+- Microsoft Lists / SharePoint Lists as the initial Tool 01 data platform;
+- a six-step guided submission experience with a meaningful completion indicator;
+- separate Prompt Submission, Peer Rating and Formal Prompt Review records;
+- at least two independent formal verifiers;
+- verifiers may request changes but cannot reject;
+- administrators retain rejection authority;
+- optional pre-submission peer rating;
+- data-layer security as authoritative rather than UI visibility;
+- cumulative PH01-PH20 learning/build progression.
+
+## Current Status
+
+The end application and Phase 01 architecture boundary are defined sufficiently for Phase 01 gate validation. The project is no longer waiting for the application concept to be described.
+
+The current task is TASK-002 and the active gate is `PH01-G01 - Solution scope and process approved`. No Power Apps implementation phase is READY until PH01-G01 passes and the relevant phase-entry dependencies are confirmed.
+
+### Explicitly deferred future design decisions
+
+The following are intentionally not invented in Phase 01 and remain assigned to later design work:
+
+- exact numeric verification score threshold;
+- formal definition/evidence of successful testing;
+- remaining detailed verifier assignment/review semantics;
+- Admin Rejected restore/resubmit rule;
+- detailed notification rules;
+- detailed SharePoint permission implementation;
+- Teams mobile support requirement;
+- Tool 02 platform, knowledge, governance, DLP, audit and safety requirements.
 
 ## Design Document Structure
 
-As the end application is defined, this document will grow to include the following sections:
+As the solution develops, this living document will continue to include and/or link the following areas:
 
 1. Vision and business outcome.
 2. Users, roles, personas, and permissions.
@@ -214,26 +205,6 @@ As the end application is defined, this document will grow to include the follow
 25. Decision log references.
 26. Open issue references.
 27. Definition of done.
-
-## Current Status
-
-The solution architecture cannot yet be finalized because the end application and business process have not yet been described. This is intentionally recorded as a dependency rather than guessed.
-
-### Information still required
-
-The next design input is the end application concept, including:
-
-- business problem;
-- intended users and roles;
-- core process from beginning to end;
-- key records/data involved;
-- approvals or decisions;
-- integrations or external systems already known;
-- reporting or dashboard requirements;
-- mobile, tablet, desktop, and offline expectations;
-- security or confidentiality considerations.
-
-Once that information is supplied, the hierarchy learning phases will be mapped directly to the final application so every lab adds a real production-relevant capability.
 
 ## Governance
 

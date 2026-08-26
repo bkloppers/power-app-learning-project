@@ -2,7 +2,7 @@
 
 ## Status
 
-IN PROGRESS - approved foundation exists; formal PH01-G01 reconciliation and gate closure remain.
+IN PROGRESS - T01 and T02 complete; T03 validation is next.
 
 ## Objective
 
@@ -54,31 +54,24 @@ The learner must be able to explain why screens, controls, variables, forms, flo
 ### Required Tickets
 
 #### PH01-G01-T01 - DESIGN - Reconcile approved foundation against Phase 01 criteria
-Status: READY
+Status: COMPLETE
 Points: 2
 Workstream: `01 - Architecture and Solution Design`
 Dependencies: Approved foundation baseline and solution-design documents.
-Acceptance Criteria:
-- Phase 01 acceptance/exit criteria are mapped to approved artifacts.
-- No approved requirement is silently changed.
-- Any remaining unresolved rule is assigned to a future explicit design ticket.
 Evidence:
-- Reconciliation checklist with source links.
+- `project-management/evidence/PH01-G01-T01-FOUNDATION-RECONCILIATION.md`
 
 #### PH01-G01-T02 - DOC - Synchronize Phase 01, living design and Project Control
-Status: NOT STARTED
+Status: COMPLETE
 Points: 2
 Workstream: `00 - Project Manager`
 Dependencies: T01 complete.
-Acceptance Criteria:
-- Stale pre-approval requirements text is corrected.
-- Project Control identifies TASK-002 and PH01-G01 accurately.
-- Living design no longer claims the end application is undefined.
 Evidence:
-- Repository diff / PR review.
+- `project-management/evidence/PH01-G01-T02-SYNCHRONIZATION-EVIDENCE.md`
+- `project-management/evidence/PH01-G01-T02-REVIEW-NOTE.md`
 
 #### PH01-G01-T03 - VALIDATE - Validate roadmap traceability
-Status: NOT STARTED
+Status: READY
 Points: 3
 Workstream: `07 - Testing and Validation`
 Dependencies: T01 and T02 complete.

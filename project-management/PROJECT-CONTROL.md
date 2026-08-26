@@ -9,16 +9,27 @@ Last Updated: 2026-08-27
 
 ## Current Task
 
-Task ID: PH02 ENTRY VALIDATION
-Task: Validate Phase 02 gate-entry dependencies and determine whether the first implementation batch may be marked READY.
-Status: READY FOR VALIDATION
-Owner: Project Manager workstream
+Task ID: PH02 LEARNING START
+Task: Begin Phase 02 learning and execute the solution-foundation design sequence before creating Power Platform implementation assets.
+Status: READY
+Owner: Architecture and Solution Design workstream
 Dependencies:
-- PH01-G01 passed.
-- Development Power Platform environment identified and accessible.
-- Required maker/solution permissions confirmed.
-- Project naming inputs confirmed.
-- Current Future-First ALM freshness check completed.
+- PH01-G01 passed. SATISFIED.
+- Development Power Platform environment identified and accessible. SATISFIED: `Burt Kloppers's Environment`.
+- Required maker/solution permissions confirmed. SATISFIED: Solutions page accessible and New solution action visible.
+- Project naming inputs confirmed. SATISFIED under the selected Phase 02 naming specification.
+- Current Future-First ALM freshness check completed. SATISFIED 2026-08-27.
+
+## Selected Phase 02 Naming Inputs
+
+- Development environment: `Burt Kloppers's Environment`
+- Publisher display name: `NTT DATA Power Platform`
+- Publisher unique name: `NTTDataPowerPlatform`
+- Publisher prefix: `nttd`
+- Solution display name: `AI - Prompt Tools`
+- Solution unique name: `NTT_AI_PromptTools`
+
+These names are the selected project inputs for Phase 02 unless a later explicit decision changes them. The existing environment name is recorded as-is; this phase does not rename the tenant environment.
 
 ## Last Completed
 
@@ -31,12 +42,16 @@ Dependencies:
 - PH01-G01-T04 / Issue #9 COMPLETE.
 - Gate #5 / PH01-G01 PASSED on 2026-08-27.
 - Phase 01 COMPLETE.
+- PH02 entry validation COMPLETE on 2026-08-27.
+- Development environment/access and maker/solution UI capability confirmed by Project Owner.
+- Phase 02 naming inputs selected.
+- Future-First ALM freshness check completed against current Microsoft guidance.
 
 ## Exact Next Step
 
-Evaluate PH02-G01 entry criteria against actual environment/access/naming dependencies. Instantiate the PH02-G01 gate and tickets from `project-management/phases/PHASE-02.md` / `TASK-002-OPERATIONAL-DELIVERY-PLAN.md` as required. Perform the Future-First ALM freshness check before any version-sensitive implementation. Mark the first PH02 implementation batch READY only after every required entry dependency is confirmed.
+Begin the Phase 02 Learning Phase and Architecture work for `PH02-G01-T01 - Define solution foundation specification`. Do not create the publisher or solution until the learner has completed the T01 design/understanding step and the Future-First evidence is formally consumed by T02.
 
-Do not begin Power Apps implementation merely because PH01 passed.
+The PH02-G01 GitHub gate/tickets remain the operational tracking mechanism. If the connector cannot create Issues, their creation is a mechanical tracking action and does not invalidate the completed PH02 entry validation.
 
 ## Phase Status
 
@@ -46,27 +61,27 @@ Gate: PH01-G01 PASSED 2026-08-27.
 Evidence: `project-management/evidence/PH01-G01-T04-GATE-DECISION.md`.
 
 ### Phase 02 - Solution, Publisher and Environment Foundation
-Status: NOT STARTED - ENTRY VALIDATION REQUIRED
+Status: READY - ENTRY VALIDATION COMPLETE
 Entry Criteria:
 - PH01-G01 formally passed. SATISFIED.
-- Development environment access confirmed. NOT YET CONFIRMED IN PROJECT RECORD.
-- Required maker permissions confirmed. NOT YET CONFIRMED IN PROJECT RECORD.
-- Naming inputs confirmed. NOT YET CONFIRMED IN PROJECT RECORD.
-- Future-First ALM freshness check completed. NOT YET COMPLETED.
+- Development environment access confirmed. SATISFIED.
+- Required maker permissions confirmed. SATISFIED.
+- Naming inputs confirmed. SATISFIED.
+- Future-First ALM freshness check completed. SATISFIED.
 
-Implementation Authorization: NOT READY.
+Implementation Authorization: READY FOR PH02 LEARNING/DESIGN. Build ticket PH02-G01-T03 remains dependency-blocked until PH02-G01-T01 and T02 are complete.
 
 ## Blockers
 
-- PH02 implementation remains blocked until the remaining Phase 02 entry criteria above are confirmed.
+- No blocker prevents beginning Phase 02 learning/design.
+- Publisher/solution creation must wait for completion of the required T01/T02 dependency sequence.
 
 ## Open Issues / Next Operational Work
 
-- Instantiate/evaluate PH02-G01 operational gate and tickets.
-- Confirm Development environment and access.
-- Confirm maker/solution permissions.
-- Confirm environment/publisher/solution naming inputs.
-- Complete current Microsoft ALM freshness check.
+- Instantiate PH02-G01 gate and T01-T06 Issues when Issue creation capability is available/manual tracking is performed.
+- Execute PH02-G01-T01 solution-foundation design.
+- Formally attach/validate the dated ALM freshness evidence under PH02-G01-T02.
+- Continue to T03 only after T01/T02 dependencies are complete.
 
 ## Locked Decisions
 
@@ -79,8 +94,11 @@ Implementation Authorization: NOT READY.
 - Completed PH01-G01-T01 through T04 with durable evidence.
 - Recorded PH01-G01 PASS.
 - Marked Phase 01 COMPLETE.
-- Advanced Project Control to Phase 02 entry validation only.
-- Explicitly kept PH02 implementation NOT READY pending environment/access/naming/freshness dependencies.
+- Advanced Project Control to Phase 02 entry validation.
+- Confirmed `Burt Kloppers's Environment` is accessible and exposes Solutions / New solution.
+- Selected Phase 02 environment/publisher/solution naming inputs.
+- Completed the current Microsoft ALM freshness check.
+- Marked PH02 entry validation COMPLETE and Phase 02 learning/design READY.
 
 ### 2026-08-26
 - Initialized formal project control.

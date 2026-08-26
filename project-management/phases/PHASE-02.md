@@ -2,7 +2,7 @@
 
 ## Status
 
-NOT STARTED - first implementation phase, pending PH01-G01 passage and entry validation.
+READY - entry validation complete 2026-08-27. Learning/design may begin. Build work remains dependency-controlled by PH02-G01 tickets.
 
 ## Objective
 
@@ -18,12 +18,23 @@ The learner can explain the relationship between environment, custom publisher, 
 
 ## Prerequisites
 
-- `PH01-G01 - Solution scope and process approved` is formally passed.
-- Approved foundation baseline remains current.
-- Development Power Platform environment is identified and accessible.
-- Required maker/solution permissions are confirmed.
-- Project naming standard inputs needed for environment/publisher/solution names are available.
-- Current Microsoft documentation/release status for solutions, publishers, environment variables, connection references and deployment tooling has been checked under the Future-First Standard.
+- `PH01-G01 - Solution scope and process approved` is formally passed. SATISFIED.
+- Approved foundation baseline remains current. SATISFIED.
+- Development Power Platform environment is identified and accessible. SATISFIED: `Burt Kloppers's Environment`.
+- Required maker/solution permissions are confirmed. SATISFIED: Solutions page accessible and New solution action visible.
+- Project naming standard inputs needed for environment/publisher/solution names are available. SATISFIED.
+- Current Microsoft documentation/release status for solutions, publishers, environment variables, connection references and deployment tooling has been checked under the Future-First Standard. SATISFIED 2026-08-27; see `project-management/evidence/PH02-ENTRY-VALIDATION-AND-ALM-FRESHNESS.md`.
+
+## Selected Naming Inputs
+
+- Development environment: `Burt Kloppers's Environment`
+- Publisher display name: `NTT DATA Power Platform`
+- Publisher unique name: `NTTDataPowerPlatform`
+- Publisher prefix: `nttd`
+- Solution display name: `AI - Prompt Tools`
+- Solution unique name: `NTT_AI_PromptTools`
+
+The existing tenant environment name is recorded as-is and is not renamed by this phase.
 
 ## Lab
 
@@ -62,16 +73,16 @@ The learner must explain:
 
 ### Gate Entry Criteria
 
-- PH01-G01 passed.
-- Development environment and access confirmed.
-- Required naming inputs confirmed.
-- Future-first freshness check completed.
-- No unresolved issue blocks solution/publisher creation.
+- PH01-G01 passed. SATISFIED.
+- Development environment and access confirmed. SATISFIED.
+- Required naming inputs confirmed. SATISFIED.
+- Future-first freshness check completed. SATISFIED.
+- No unresolved issue blocks solution/publisher creation. SATISFIED for entry; T01/T02 remain mandatory pre-build dependencies.
 
 ### Required Tickets
 
 #### PH02-G01-T01 - DESIGN - Define solution foundation specification
-Status: NOT STARTED
+Status: READY
 Points: 2
 Workstream: `01 - Architecture and Solution Design`
 Dependencies: PH01-G01 passed; naming standards; approved application direction.
@@ -85,7 +96,7 @@ Evidence:
 - Reviewed solution-foundation specification linked from the ticket.
 
 #### PH02-G01-T02 - ALM - Perform Future-First ALM freshness check
-Status: NOT STARTED
+Status: READY FOR FORMAL TICKET VALIDATION
 Points: 1
 Workstream: `08 - Deployment and ALM`
 Dependencies: T01 may be drafted; current Microsoft documentation access.
@@ -96,7 +107,7 @@ Acceptance Criteria:
 - Any conflict with repository standards is recorded before build work.
 - Preview/planned features are clearly separated from production dependencies.
 Evidence:
-- Dated references/validation note in the ticket.
+- `project-management/evidence/PH02-ENTRY-VALIDATION-AND-ALM-FRESHNESS.md`.
 
 #### PH02-G01-T03 - BUILD - Create custom publisher and unmanaged development solution
 Status: NOT STARTED
@@ -157,8 +168,6 @@ Evidence:
 
 ## Proposed Session Batches
 
-These are provisional until tickets become READY.
-
 ### SES-PH02-G01-ARCH-01
 - PH02-G01-T01 - 2 points
 Total: 2
@@ -190,4 +199,4 @@ Total: 3
 
 ## Implementation Authorization
 
-This phase is **not READY** until PH01-G01 is formally passed and the Phase 02 Gate Entry Criteria above are confirmed.
+Phase 02 entry validation is complete. Learning/design is READY. Publisher/solution build work is authorized only after PH02-G01-T01 and T02 are complete and their operational ticket evidence is recorded.

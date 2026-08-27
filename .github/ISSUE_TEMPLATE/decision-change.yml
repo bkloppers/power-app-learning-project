@@ -1,0 +1,36 @@
+name: Decision / Change Request
+about: Propose a durable decision or change to a locked project rule
+labels: ["type:decision"]
+body:
+  - type: input
+    id: affected
+    attributes:
+      label: Affected Decision / Standard
+      placeholder: DEC-010 or project-management/GITHUB-OPERATIONAL-CONTROL-STANDARD.md
+    validations:
+      required: true
+  - type: textarea
+    id: request
+    attributes:
+      label: Requested Change
+    validations:
+      required: true
+  - type: textarea
+    id: reason
+    attributes:
+      label: Reason
+    validations:
+      required: true
+  - type: textarea
+    id: impact
+    attributes:
+      label: Impact
+      description: Identify affected phases, gates, tickets, architecture, evidence, or governance.
+    validations:
+      required: true
+  - type: textarea
+    id: validation
+    attributes:
+      label: Required Validation / Approval
+    validations:
+      required: true

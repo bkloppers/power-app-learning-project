@@ -27,4 +27,6 @@ jobs:
         run: python scripts/validate_repository.py
 
       - name: Test Agent Command Gateway
-        run: python -m unittest -v scripts/test_agent_command_gateway.py
+        run: |
+          python -m unittest -v scripts/test_agent_command_gateway.py
+          python -m unittest -v scripts/test_gateway_start_ticket_gate_conflict.py

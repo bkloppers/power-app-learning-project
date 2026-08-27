@@ -1,0 +1,20 @@
+name: Agent Command Intake
+
+on:
+  push:
+    branches:
+      - agent-command-gateway
+    paths:
+      - 'agent-commands/inbox/*.json'
+
+permissions:
+  contents: read
+
+jobs:
+  intake:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Record command intake
+        run: |
+          echo "Command candidate received from ${GITHUB_REF_NAME} at ${GITHUB_SHA}."
+          echo "The privileged executor on main will independently validate the commit and command."

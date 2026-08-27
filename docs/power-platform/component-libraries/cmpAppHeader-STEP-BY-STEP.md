@@ -36,37 +36,53 @@ The `Raise OnReset when value changes` option causes a change to the input prope
 
 ## UI-022 — `AppTitle` custom property completed
 
-Observed in Power Apps Studio with `cmpAppHeader` selected.
+Snapshot directly proves:
 
-### Snapshot directly proves
-
-- `DarkMode` remains present as a Boolean custom property.
-- `AppTitle` exists as a second custom property.
-- The `AppTitle` property editor shows:
-  - Display name: `AppTitle`
-  - Name: `AppTitle`
-  - Description: `Displays the application title in the header.`
-  - Property type: `Data`
-  - Property definition: `Input`
-  - Data type: `Text`
+- `AppTitle` exists in the component's Custom properties list.
+- Display name: `AppTitle`.
+- Name: `AppTitle`.
+- Description: `Displays the application title in the header.`
+- Property type: `Data`.
+- Property definition: `Input`.
+- Data type: `Text`.
 - `Raise OnReset when value changes` is unchecked.
-- The formula bar shows the default formula/value `"Application"`.
-- The component Properties pane shows `Allow customization` is currently On.
-
-### Microsoft-verified interpretation
-
-`AppTitle` is correctly modeled as a Data / Input / Text property because the consuming app supplies the displayed application title to the reusable component.
-
-Component-library guidance states that when `Allow customization` is On, a consuming app can edit the imported component, which creates a local copy and removes its association with the component library. Turning `Allow customization` Off prevents that local-edit path and keeps maintenance centralized in the component library.
+- Default formula is `"Application"`.
+- The component-level `Allow customization` switch was visible as On at the time of the snapshot.
 
 ### Validation/result
 
-`AppTitle` contract is complete.
+`AppTitle` contract is complete and ready for use by the component's internal controls.
 
-### Selected governance setting
+## User-confirmed state — Allow customization disabled
 
-For this centrally managed reusable component, set `Allow customization` to Off before adding further contract properties or child controls.
+After UI-022, the user disabled `cmpAppHeader -> Allow customization` and confirmed completion without another screenshot.
+
+Record type: USER-CONFIRMED / NOT SNAPSHOT-VERIFIED.
+
+Selected project state:
+
+- `Allow customization = Off`.
+- The reusable header remains centrally maintained by the component library.
+
+## User-confirmed state — `ShowBackButton` completed
+
+The user created and confirmed the following property without another screenshot:
+
+- Display name: `ShowBackButton`.
+- Name: `ShowBackButton`.
+- Description: `Controls whether the back button is shown in the header.`
+- Property type: `Data`.
+- Property definition: `Input`.
+- Data type: `Boolean`.
+- `Raise OnReset when value changes`: unchecked.
+- Default formula: `false`.
+
+Record type: USER-CONFIRMED / NOT SNAPSHOT-VERIFIED.
+
+### Validation/result
+
+The header now has the initial presentation contract needed for title, dark-mode state, and optional back-button visibility.
 
 ### Next verified step
 
-Turn `cmpAppHeader` -> `Allow customization` Off and verify the component remains selected with the custom properties intact.
+Create an `OnBack` Event property so the consuming app supplies the behavior that should run when the header's back button is selected. This keeps navigation logic outside the reusable component and avoids app-specific navigation dependencies inside the library.

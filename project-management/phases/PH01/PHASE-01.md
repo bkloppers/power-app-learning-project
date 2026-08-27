@@ -89,7 +89,7 @@ Resolution: Satisfied by the approved 2026-08-27 foundation baseline and support
 
 ### TASK-002 - Produce hierarchy learning map and operational phase/gate/ticket structure
 Status: COMPLETE
-Resolution: PH01-PH20 operational decomposition, dependencies, points, workstreams, acceptance criteria and evidence requirements are recorded in `project-management/TASK-002-OPERATIONAL-DELIVERY-PLAN.md`; PH01 gate/tickets were instantiated and executed.
+Resolution: TASK-002 produced the PH01-PH20 operational decomposition. The resulting cross-phase artifact is now maintained as the project-level `project-management/PROJECT-OPERATIONAL-DELIVERY-PLAN.md`; PH01 gate/tickets were instantiated and executed.
 
 ### TASK-003 - Approve initial solution architecture / Phase 01 gate closure
 Status: COMPLETE

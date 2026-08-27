@@ -1,14 +1,17 @@
-# TASK-002 - Operational Phase, Gate and Ticket Delivery Plan
+# Project Operational Phase, Gate and Ticket Delivery Plan
 
-Status: IN PROGRESS
+Status: ACTIVE PROJECT PLAN
 Source branch: `main`
 Foundation baseline: APPROVED 2026-08-27
+Origin: Produced by completed Phase 01 `TASK-002`; maintained from this point as a cross-phase project artifact, not as a task.
 
 ## Purpose
 
-Convert the approved `POWER-APPS-HIERARCHY-LEARNING-ROADMAP.md` into the operational delivery structure required by the Process & Progress Framework, Gate Tracking Model, Chat Session Ticket Capacity Model, and Future-First Power Apps Standard.
+Convert the approved `POWER-APPS-HIERARCHY-LEARNING-ROADMAP.md` into the operational delivery structure required by the Process & Progress Framework, Gate Tracking Model, Chat Session Ticket Capacity Model, Future-First Power Apps Standard, and Phase Folder Standard.
 
-This document does not authorize implementation by itself. A phase may begin implementation only when its gate entry criteria and ticket dependencies are satisfied and the relevant tickets are marked `READY`.
+This project-level plan spans PH01-PH20. It does not belong to a single phase and does not authorize implementation by itself. A phase may begin implementation only when its gate entry criteria and ticket dependencies are satisfied and the relevant tickets are marked `READY`.
+
+Phase-specific execution state, evidence, gate packages, approvals and handoffs belong in the canonical `project-management/phases/PHxx/` folder. Where this cross-phase baseline and an approved phase-specific record differ because of later validated project changes, the current phase-specific record and locked decisions govern execution.
 
 ## Governing rules
 
@@ -22,6 +25,7 @@ This document does not authorize implementation by itself. A phase may begin imp
 - Independent validation remains separate where practical.
 - Version-sensitive technical tickets require a current Microsoft-product freshness check before execution.
 - Missing dependencies become explicit dependency tickets; approved architecture is not redesigned to avoid them.
+- Every phase-specific artifact is stored under `project-management/phases/PHxx/` according to `project-management/PHASE-FOLDER-STANDARD.md`.
 
 ## Workstream codes
 
@@ -73,13 +77,15 @@ Entry: PH01-G01 passed; target Dev environment access confirmed; maker permissio
 
 Tickets:
 - `PH02-G01-T01 DESIGN` Define environment, publisher, solution, unique-name and prefix specification - 2 pts - ARCH.
-- `PH02-G01-T02 ALM` Verify current 2026 solution/publisher/pipeline capabilities and production-suitable ALM pattern - 1 pt - ALM.
-- `PH02-G01-T03 BUILD` Create custom publisher and unmanaged development solution - 2 pts - ALM.
+- `PH02-G01-T02 ALM` Verify current solution/publisher/pipeline capabilities and production-suitable ALM pattern - 1 pt - ALM.
+- `PH02-G01-T03 ALM` Validate the approved existing custom publisher and unmanaged development solution - 2 pts - ALM.
 - `PH02-G01-T04 BUILD` Establish initial environment-variable and connection-reference container strategy - 2 pts - ALM.
 - `PH02-G01-T05 TEST` Validate solution ownership, publisher metadata and deployable foundation - 2 pts - TEST.
 - `PH02-G01-T06 VALIDATE` Gate review - 3 pts - TEST.
 
 Evidence: screenshots/exports of publisher and solution metadata; naming checks; environment ownership; validation notes; current Microsoft guidance references.
+
+Current approved PH02 foundation is recorded in `project-management/phases/PH02/` and supersedes the original assumption that T03 would create a new publisher/solution.
 
 ---
 
@@ -409,26 +415,15 @@ No downstream phase becomes `READY` merely because its ticket plan exists.
 3. Tool 02 platform selection and detailed requirements - resolved in PH18 design tickets before build.
 4. Exact downstream deployment target/pipeline configuration - finalized in PH20, while PH02 establishes the solution-first foundation.
 
-# First implementation-ready sequence
+# Current execution state
 
-The first implementation phase is PH02, but it is **not yet formally READY**.
+This file is the cross-phase baseline, not the current-task tracker. Current execution state is authoritative in `project-management/PROJECT-CONTROL.md` and the active phase folder.
 
-Required sequence:
+As of 2026-08-27:
 
-1. Complete PH01-G01 reconciliation and validation tickets.
-2. Record PH01 gate decision as passed.
-3. Synchronize Project Control and close/supersede stale ISS-001 if the approved baseline satisfies its required resolution.
-4. Confirm PH02 environment access, maker permissions and naming inputs.
-5. Perform PH02 future-first freshness check.
-6. Mark eligible PH02 tickets `READY`.
-7. Create the first Session Batch only then.
-
-Proposed first PH02 Session Batch after readiness:
-
-`SES-PH02-G01-ALM-01`
-- `PH02-G01-T02` Verify current 2026 ALM capabilities - 1 point.
-- `PH02-G01-T03` Create custom publisher and unmanaged development solution - 2 points.
-- `PH02-G01-T04` Establish environment-variable/connection-reference container strategy - 2 points.
-Total: 5 points.
-
-This batch remains provisional until PH01-G01 passes and PH02 dependencies are confirmed.
+- PH01 is COMPLETE and PH01-G01 PASSED.
+- PH02 is active.
+- PH02-G01-T01 is COMPLETE.
+- PH02-G01-T02 is COMPLETE.
+- PH02-G01-T03 is READY and is validation-only against the approved existing `AI King Env` / `GCC AI Champions Power Platform` / `GCC AI Champions` foundation.
+- No duplicate publisher or development solution is to be created.

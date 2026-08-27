@@ -31,7 +31,9 @@ Before changing implementation or project state, read these files/resources in o
 6. `project-management/registers/DECISIONS.md`
 7. `project-management/registers/ISSUES.md`
 8. The active phase file at `project-management/phases/PHxx/PHASE-xx.md`.
-9. Only the technical, naming, variable, responsive-layout, design-system, architecture or governance documents relevant to the current task.
+9. `docs/standards/POWER-APPS-STUDIO-VERIFICATION-RULES.md` before any Power Apps lesson or implementation instruction.
+10. `docs/standards/POWER-APPS-2026-STUDIO-HOW-TO-GUIDE.md` before giving any Maker Portal or Studio click path.
+11. Only the additional technical, naming, variable, responsive-layout, design-system, architecture or governance documents relevant to the current task.
 
 For governance work, also read `project-management/governance/GITHUB-OPERATIONAL-CONTROL-STANDARD.md` and any other applicable governance standard. For cross-session continuity questions, read `project-management/control/AI-PROJECT-CONTINUITY-FLOW.md`.
 
@@ -85,6 +87,19 @@ For every technical task:
 9. Validate against the ticket's acceptance criteria and applicable project standards.
 10. Record durable evidence and synchronize GitHub operational state before considering work complete.
 
+## Mandatory August 2026 Power Apps Verification
+
+Before providing the user with any Power Apps lesson, click path, formula, component instruction, control setup, property configuration, Maker Portal instruction, Studio instruction or version-sensitive recommendation:
+
+1. Verify the guidance against current Microsoft Power Apps / Power Platform guidance applicable in August 2026 or later.
+2. Read `docs/standards/POWER-APPS-STUDIO-VERIFICATION-RULES.md`.
+3. Read the relevant section of `docs/standards/POWER-APPS-2026-STUDIO-HOW-TO-GUIDE.md`.
+4. Check whether the user has already supplied a snapshot that proves the current UI.
+5. Prefer the live observed project UI for the exact click path when it differs from stale remembered UI, while recording the discrepancy with current Microsoft guidance.
+6. Never rely on general model memory alone for a version-sensitive Power Apps instruction.
+
+Every Power Apps screenshot uploaded by the user must be treated as project evidence. Record its relevant contents in the active section of the How-To Guide before proceeding when repository access permits. Do not force the user to repeatedly supply screenshots to rediscover menus already recorded.
+
 ## Session Start Requirement
 
 At the start of project work, establish:
@@ -120,6 +135,8 @@ Record enough detail that another agent can continue in a new session without ne
 Agents working on the Power Apps implementation must preserve these project standards:
 
 - descriptive, predictable naming for screens, controls, variables, collections, data sources, flows, environment variables and connection references;
+- reusable-first architecture: coherent reusable visual/interaction patterns belong in the approved Component Library rather than being duplicated across apps;
+- responsive-first Canvas App creation using the current Responsive experience, not a Tablet-first or Phone-first baseline;
 - responsive, container-based Canvas App layouts rather than fixed-position screen designs;
 - structured screen roots and meaningful nested layout containers;
 - formulas and named formulas for calculated/reusable values where appropriate;

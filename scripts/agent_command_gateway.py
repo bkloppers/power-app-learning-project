@@ -402,6 +402,11 @@ def fetch_issue(client: GitHubClient, issue_number: int) -> dict[str, Any]:
     return issue
 
 
+def is_canonical_ticket_issue(issue: dict[str, Any]) -> bool:
+    body = issue.get("body") or ""
+    return re.search(r"(?m)^###\s+Ticket ID\s*\n`PH\d{2}-G\d{2}-T\d{2}`\s*$", body) is not None
+
+
 def start_ticket(client: GitHubClient, command: dict[str, Any]) -> dict[str, Any]:
     issue = fetch_issue(client, command["issueNumber"])
     assert_ticket_identity(issue, command["ticketId"])
@@ -411,7 +416,11 @@ def start_ticket(client: GitHubClient, command: dict[str, Any]) -> dict[str, Any
     gate_labels = [label["name"] for label in issue.get("labels", []) if label.get("name", "").startswith("gate:")]
     require(len(gate_labels) == 1, "Ticket must have exactly one gate label")
     active = list_issues(client, state="open", labels=f"{gate_labels[0]},status:in-progress")
-    conflicting = [item for item in active if item.get("number") != issue["number"]]
+    conflicting = [
+        item
+        for item in active
+        if item.get("number") != issue["number"] and is_canonical_ticket_issue(item)
+    ]
     require(not conflicting, f"Another ticket is already IN PROGRESS for {gate_labels[0]}")
     apply_status(client, issue, "IN PROGRESS", command["commandId"])
     return {"issueNumber": issue["number"], "targetBeforeStatus": before, "targetAfterStatus": "IN PROGRESS"}

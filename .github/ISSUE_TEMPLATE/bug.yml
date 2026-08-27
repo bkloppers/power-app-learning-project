@@ -1,5 +1,6 @@
 name: Bug
-about: Report a defect requiring tracked resolution
+description: Report a defect requiring tracked resolution
+title: "[BUG] "
 labels: ["type:bug"]
 body:
   - type: input

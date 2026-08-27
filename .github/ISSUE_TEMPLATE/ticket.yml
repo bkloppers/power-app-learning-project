@@ -1,6 +1,6 @@
 name: Ticket
-about: Create a phase/gate execution ticket
-labels: ["priority:normal"]
+description: Create a phase/gate execution ticket
+title: "[PHxx][Gxx][TYPE] "
 body:
   - type: input
     id: ticket_id

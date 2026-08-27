@@ -1,5 +1,6 @@
 name: Decision / Change Request
-about: Propose a durable decision or change to a locked project rule
+description: Propose a durable decision or change to a locked project rule
+title: "[DECISION] "
 labels: ["type:decision"]
 body:
   - type: input

@@ -1,5 +1,6 @@
 name: Gate
-about: Create a formal phase gate
+description: Create a formal phase gate
+title: "[GATE][PHxx-Gxx] "
 labels: ["type:gate"]
 body:
   - type: input

@@ -25,3 +25,6 @@ jobs:
         env:
           PR_BODY: ${{ github.event.pull_request.body || '' }}
         run: python scripts/validate_repository.py
+
+      - name: Test Agent Command Gateway
+        run: python -m unittest -v scripts/test_agent_command_gateway.py

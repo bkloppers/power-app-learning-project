@@ -2,7 +2,7 @@ from __future__ import annotations
 
 import unittest
 
-from agent_command_gateway import GatewayError, validate_command
+from scripts.agent_command_gateway import GatewayError, validate_command
 
 REPO = "bkloppers/power-app-learning-project"
 

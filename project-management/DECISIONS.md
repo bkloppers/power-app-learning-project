@@ -70,3 +70,10 @@ Status: LOCKED
 Reason: The approved foundation baseline prohibits intentionally teaching or implementing retired, superseded, or unsupported patterns when a current production-suitable capability exists.
 Date: 2026-08-27
 Source: `project-management/POWER-APPS-FUTURE-FIRST-STANDARD.md`
+
+## DEC-012
+Decision: GitHub Issues are the transactional source of truth for live gate/ticket workflow state; Pull Requests control repository changes; phase evidence proves completion; and `PROJECT-CONTROL.md` is a derived dashboard that must reflect rather than independently determine live Issue state.
+Status: LOCKED
+Reason: The GitHub Workflow Review identified split operational state between Markdown and live Issues. The approved GitHub Operational Control Model removes that ambiguity and makes the repository mechanics enforce the documented process.
+Date: 2026-08-27
+Source: `project-management/GITHUB-OPERATIONAL-CONTROL-STANDARD.md`

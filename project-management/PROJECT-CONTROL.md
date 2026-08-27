@@ -4,17 +4,38 @@ Project: Power App Learning Project
 Current Version: 0.1.0-design
 Current Phase: Phase 02 - Solution, Publisher and Environment Foundation
 Current Gate: PH02-G01 - Solution and ALM foundation valid
-Overall Status: IN PROGRESS
+Overall Status: IN PROGRESS - GOVERNANCE RECONCILIATION
 Last Updated: 2026-08-27
 
-## Current Task
+## Operational Control
 
-Task ID: PH02-G01-T03
-Task: Validate the existing custom publisher and unmanaged development solution against the approved PH02 foundation criteria.
-Status: READY
-Owner: `08 - Deployment and ALM`
+This file is a derived dashboard. Live gate/ticket workflow state is controlled by GitHub Issues under `project-management/GITHUB-OPERATIONAL-CONTROL-STANDARD.md` and DEC-012.
 
-## Phase 02 Foundation - VERIFIED AND APPROVED
+If this dashboard conflicts with the corresponding live GitHub Issues, execution stops until the discrepancy is reconciled.
+
+## Current Governance Action
+
+Scope: Adopt the GitHub Operational Control Model before continuing PH02-G01-T03 execution.
+Status: IN PROGRESS
+Branch: `governance/github-operational-control-model`
+
+Completed in this governance change:
+- PH01 Issues #5-#9 reconciled with completion/PASS comments and canonical evidence paths.
+- GitHub operational control standard created.
+- Gate, Ticket, Bug, and Decision/Change Request Issue forms created.
+- Pull Request template created.
+- Repository-integrity GitHub Actions workflow and validator created.
+- PH02-G01 live-Issue source package created under the canonical PH02 gate folder.
+- DEC-012 records Issues/PRs/evidence/Project-Control responsibility boundaries.
+
+Administrative GitHub operations still required before PH02-G01-T03 execution continues:
+- Create the PH02-G01 gate Issue and PH02-G01-T01 through T06 ticket Issues from `project-management/phases/PH02/gates/PH02-G01-GITHUB-ISSUE-PACKAGE.md`.
+- Apply the canonical phase/gate/type/status labels to those Issues.
+- Configure `main` branch protection/ruleset to require Pull Requests for ordinary repository changes and require the repository-integrity check once available.
+
+These administrative operations are not redesigns; they are required dependencies of the approved GitHub Operational Control Model.
+
+## PH02 Foundation - VERIFIED AND APPROVED
 
 - Development environment: `AI King Env`
 - Environment type: `Developer`
@@ -32,44 +53,23 @@ The Project Owner approved reuse of this existing governed foundation on 2026-08
 
 The provisional values `Burt Kloppers's Environment`, `NTT DATA Power Platform`, `nttd`, `AI - Prompt Tools`, and `NTT_AI_PromptTools` are superseded and must not be used.
 
-## Entry Validation
+## Phase 01 Operational State
 
-- PH01-G01 passed. SATISFIED.
-- Development environment identified and accessible. SATISFIED: `AI King Env`.
-- Required maker/solution access confirmed. SATISFIED.
-- Publisher and unmanaged development solution already exist. SATISFIED.
-- Naming/technical identity confirmed from existing objects. SATISFIED.
-- Current Future-First ALM freshness check completed. SATISFIED 2026-08-27.
+Phase 01: COMPLETE
+Gate: PH01-G01 PASSED 2026-08-27
+Gate Issue: #5 CLOSED / reconciled
+Ticket Issues: #6-#9 CLOSED / reconciled
+Canonical folder: `project-management/phases/PH01/`
 
-## Last Completed
+The original Issue bodies retain stale pre-execution status text, but reconciliation comments now record the completed outcomes and canonical evidence. Do not interpret the stale original body status as current state.
 
-- TASK-002 COMPLETE.
-- PH01-G01 PASSED and Phase 01 COMPLETE.
-- PH02 entry validation COMPLETE.
-- Existing PH02 environment/publisher/solution foundation verified and approved for reuse.
-- PH02-G01-T01 COMPLETE - solution foundation learning/design documented.
-- PH02-G01-T02 COMPLETE - dated Future-First ALM evidence formally consumed and validated.
-- PH02 Learning/Understanding COMPLETE; evidence recorded in `project-management/phases/PH02/evidence/PH02-LEARNING-UNDERSTANDING-EVIDENCE.md`.
+## Phase 02 Operational State
 
-## Exact Next Step
+Phase 02: IN PROGRESS
+Gate: PH02-G01 active by approved phase records; live gate Issue pending administrative instantiation.
+Canonical folder: `project-management/phases/PH02/`
 
-Execute `PH02-G01-T03` as validation of the existing `GCC AI Champions Power Platform` publisher, stable `aiking` prefix, and `GCC AI Champions` unmanaged development solution.
-
-T03 is validation-only. Do not create a publisher, solution, Canvas App, flow, environment variable, connection reference, or other application component unless a later PH02 ticket explicitly authorizes that creation.
-
-## Phase Status
-
-### Phase 01 - Solution Definition and Learning Architecture
-Status: COMPLETE
-Gate: PH01-G01 PASSED 2026-08-27.
-Canonical folder: `project-management/phases/PH01/`.
-
-### Phase 02 - Solution, Publisher and Environment Foundation
-Status: IN PROGRESS
-Gate: PH02-G01 active.
-Canonical folder: `project-management/phases/PH02/`.
-
-Ticket status:
+Approved ticket state to instantiate in GitHub Issues:
 - PH02-G01-T01: COMPLETE
 - PH02-G01-T02: COMPLETE
 - PH02-G01-T03: READY
@@ -77,27 +77,38 @@ Ticket status:
 - PH02-G01-T05: NOT STARTED
 - PH02-G01-T06: NOT STARTED
 
-Implementation Authorization: only the scoped T03 validation is currently authorized. Physical app/component creation remains dependency-controlled by later PH02 tickets.
+Live-Issue source package: `project-management/phases/PH02/gates/PH02-G01-GITHUB-ISSUE-PACKAGE.md`.
 
-## Blockers
+## Exact Next Step
 
-- No blocker prevents T03 validation.
-- Duplicate environment/publisher/solution creation is prohibited.
+Complete the GitHub-native PH02 Issue instantiation and `main` protection dependency, then execute `PH02-G01-T03` from its live ticket Issue on a ticket branch.
+
+T03 remains validation-only. Do not create a publisher, solution, Canvas App, flow, environment variable, connection reference, or other application component unless a later PH02 ticket explicitly authorizes that creation.
+
+## Implementation Authorization
+
+No PH02 implementation work should proceed while the live PH02 operational Issues are absent. Once instantiated, only PH02-G01-T03 validation is authorized. Physical application/configuration component creation remains dependency-controlled by later PH02 tickets.
+
+## Blockers / Dependencies
+
+- BLOCKING GOVERNANCE DEPENDENCY: PH02 live gate/ticket Issues must be instantiated before T03 execution.
+- ADMINISTRATIVE DEPENDENCY: protect `main` with a PR-required ruleset/branch-protection configuration.
+- Duplicate environment/publisher/solution creation remains prohibited.
 
 ## Locked Decisions
 
-- DEC-001 through DEC-011 remain governing.
+- DEC-001 through DEC-012 govern.
 - Approved 2026-08-27 PH02 correction: reuse `AI King Env` + `GCC AI Champions Power Platform` + `GCC AI Champions`; preserve publisher prefix `aiking`.
 - Phase-specific artifacts must comply with `project-management/PHASE-FOLDER-STANDARD.md`.
+- Live workflow state follows `project-management/GITHUB-OPERATIONAL-CONTROL-STANDARD.md`.
 
 ## Change Log
 
 ### 2026-08-27
 - PH01 completed and PH02 entry validation completed.
-- Corrected provisional PH02 environment/naming assumptions using verified maker-portal evidence.
-- Approved reuse of existing `AI King Env`, `GCC AI Champions Power Platform` publisher and `GCC AI Champions` unmanaged solution.
-- Completed PH02-G01-T01 learning/design.
-- Completed PH02-G01-T02 Future-First ALM validation.
-- Recorded PH02 Learning/Understanding as COMPLETE.
-- Activated PH02-G01-T03 as the exact next ticket, validation-only.
-- Adopted the mandatory canonical phase-folder structure and migrated existing PH01/PH02 phase-specific artifacts.
+- Verified and approved reuse of the existing PH02 environment/publisher/solution foundation.
+- Completed PH02-G01-T01 and T02 learning/validation scope.
+- Adopted the mandatory canonical phase-folder structure.
+- Adopted GitHub Operational Control Model after GitHub Workflow Review.
+- Reconciled closed PH01 Issues with explicit completion/PASS comments.
+- Paused PH02-G01-T03 execution until live PH02 gate/ticket Issues and repository protection are instantiated.

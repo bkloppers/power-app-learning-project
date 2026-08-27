@@ -8,17 +8,20 @@ This repository is the durable source of truth for the Power Apps project. Chat 
 
 ## Required Reading Order
 
-Before changing implementation or project state, read these files in order when they exist:
+Before changing implementation or project state, read these files/resources in order when they exist:
 
 1. `README.md`
 2. `AGENTS.md`
-3. `project-management/AI-PROJECT-CONTINUITY-FLOW.md`
-4. `project-management/PROJECT-CONTROL.md`
-5. `project-management/PHASE-FOLDER-STANDARD.md`
-6. `project-management/DECISIONS.md`
-7. `project-management/ISSUES.md`
-8. The active phase file at `project-management/phases/PHxx/PHASE-xx.md`
-9. Any dedicated technical, naming, variable, responsive-layout, design-system, or architecture document that applies to the task.
+3. `project-management/GITHUB-OPERATIONAL-CONTROL-STANDARD.md`
+4. `project-management/AI-PROJECT-CONTINUITY-FLOW.md`
+5. `project-management/PROJECT-CONTROL.md`
+6. Current gate GitHub Issue.
+7. Active/next ticket GitHub Issue.
+8. `project-management/PHASE-FOLDER-STANDARD.md`
+9. `project-management/DECISIONS.md`
+10. `project-management/ISSUES.md`
+11. The active phase file at `project-management/phases/PHxx/PHASE-xx.md`
+12. Any dedicated technical, naming, variable, responsive-layout, design-system, or architecture document that applies to the task.
 
 If one of the project-management files does not yet exist, do not invent its contents. Create it only when the task requires project tracking to begin or the user explicitly requests it.
 
@@ -28,12 +31,24 @@ When information conflicts, use this order:
 
 1. Explicit user instruction in the current session.
 2. Locked decisions in `project-management/DECISIONS.md`.
-3. Current state in `project-management/PROJECT-CONTROL.md`.
-4. Applicable project standards and design documentation.
-5. Prior chat or agent context.
-6. General model knowledge.
+3. Live GitHub gate/ticket Issue state for operational workflow status.
+4. `project-management/PROJECT-CONTROL.md` as the derived project snapshot.
+5. Applicable project standards and design documentation.
+6. Prior chat or agent context.
+7. General model knowledge.
 
-Do not silently override a higher-priority source.
+If live GitHub Issue state conflicts with `PROJECT-CONTROL.md`, stop execution and reconcile the discrepancy before advancing work. Do not silently override a higher-priority source.
+
+## GitHub Operational Control
+
+All agents must comply with `project-management/GITHUB-OPERATIONAL-CONTROL-STANDARD.md`.
+
+- GitHub Issues are the transactional source of truth for gate/ticket state.
+- Pull Requests are the controlled repository-change boundary.
+- Evidence proves completion.
+- `PROJECT-CONTROL.md` summarizes live state; it does not independently advance a ticket or gate.
+- A merged PR does not by itself complete a ticket or pass a gate.
+- Repository-changing ticket work uses one working branch per active ticket unless an approved governance change explicitly applies across phases.
 
 ## Phase Artifact Placement
 
@@ -47,7 +62,7 @@ When moving or creating a phase artifact, update all known repository references
 
 For every technical task:
 
-1. Determine the current phase and active task before proposing implementation work.
+1. Determine the current phase and active ticket from GitHub operational state before proposing implementation work.
 2. Check all dependencies first, including screens, controls, variables, connectors, functions, data sources, environments, and prior decisions.
 3. Recommend exactly one best-practice implementation unless the user explicitly asks for alternatives.
 4. If a required dependency is missing, state exactly what is missing and include its creation in the selected implementation sequence.
@@ -55,15 +70,16 @@ For every technical task:
 6. Respect locked decisions. A locked decision may only be replaced after explicit user approval.
 7. Do not silently advance to another project phase.
 8. Do not mark work complete because code, Power Fx, YAML, or configuration merely validates.
-9. Validate against the task's acceptance criteria and applicable project standards.
-10. Record durable project-state changes before considering project-management work complete.
+9. Validate against the ticket's acceptance criteria and applicable project standards.
+10. Record durable evidence and synchronize GitHub operational state before considering work complete.
 
 ## Session Start Requirement
 
 At the start of project work, establish:
 
 - current project phase;
-- active task and status;
+- current gate Issue;
+- active/next ticket Issue and status;
 - dependencies;
 - locked decisions relevant to the task;
 - open blockers and issues;
@@ -74,7 +90,7 @@ If those records exist in GitHub, use them rather than reconstructing state from
 
 ## Session End Requirement
 
-When the work changes project state, update the relevant project-management records with:
+When the work changes project state, update the relevant GitHub Issue/PR/evidence records and then synchronize `PROJECT-CONTROL.md` with:
 
 - completed work;
 - task status;
@@ -113,9 +129,11 @@ A decision marked `LOCKED` remains active until the user explicitly approves a r
 
 ## Issue Discipline
 
-Use stable IDs for tracked issues, for example `ISS-001`.
+Use stable IDs for durable project issues, for example `ISS-001`.
 
 Do not remove unresolved issues merely because the current task works around them. Close an issue only when its required resolution has been validated.
+
+Operational gate/ticket Issues use the canonical IDs defined by their phase/gate/ticket, for example `PH02-G01` and `PH02-G01-T03`.
 
 ## Completion Standard
 
@@ -123,11 +141,13 @@ Another agent opening this repository should be able to determine without prior 
 
 - what the project is;
 - which phase is active;
+- which gate Issue controls the phase;
+- which ticket Issue is active/next;
 - what is complete;
-- what is in progress;
 - what is blocked;
 - which decisions are locked;
 - what standards apply;
+- what evidence exists;
 - what must happen next.
 
-If the repository cannot answer those questions, project continuity is incomplete.
+If the repository and live GitHub operational records cannot answer those questions consistently, project continuity is incomplete.

@@ -2,7 +2,7 @@
 
 ## Status
 
-IN PROGRESS - PH02-G01-T01, T02 and T03 complete; T04 is IN PROGRESS.
+IN PROGRESS - PH02-G01-T01 through T05 are COMPLETE; PH02-G01-T06 is the exact next ticket and remains NOT STARTED pending one-time historical Issue normalization to the Gateway v1.1 ticket standard.
 
 ## Objective
 
@@ -14,7 +14,7 @@ Power Platform environment, publisher, solution, environment-variable and connec
 
 ## Learning Outcome
 
-COMPLETE for T01/T02 learning scope. The learner can explain the relationship between environment, custom publisher, unmanaged development solution, solution ownership, environment variables, connection references, and downstream managed deployment. Evidence: `project-management/phases/PH02/evidence/PH02-LEARNING-UNDERSTANDING-EVIDENCE.md`.
+COMPLETE for the PH02 learning scope. The learner can explain the relationship between environment, custom publisher, unmanaged development solution, solution ownership, environment variables, connection references, and downstream managed deployment. Evidence: `project-management/phases/PH02/evidence/PH02-LEARNING-UNDERSTANDING-EVIDENCE.md`.
 
 ## Prerequisites
 
@@ -42,27 +42,27 @@ The provisional values `Burt Kloppers's Environment`, `NTT DATA Power Platform`,
 
 ## Lab
 
-Validate and use the existing production-oriented development foundation:
+Validated and used the existing production-oriented development foundation:
 
-1. confirm the approved Developer environment;
-2. inspect and explain the existing custom publisher and stable prefix;
-3. validate the existing unmanaged development solution;
-4. confirm solution ownership for the future Canvas App and flows;
-5. establish the initial environment-variable and connection-reference strategy;
-6. record downstream deployment expectations without prematurely creating production assets.
+1. confirmed the approved Developer environment;
+2. inspected and explained the existing custom publisher and stable prefix;
+3. validated the existing unmanaged development solution;
+4. confirmed solution ownership for downstream Canvas App and flows;
+5. established the initial environment-variable and connection-reference strategy;
+6. recorded downstream deployment expectations without prematurely creating production assets.
 
 ## Demonstration
 
-Show:
+Evidence demonstrates:
 
 - the existing custom publisher and stable `aiking` prefix;
 - the existing `GCC AI Champions` unmanaged development solution;
-- where the future Canvas App, flows, environment variables and connection references will live;
+- the governed solution ownership of PH02 configuration components;
 - how the solution is intended to move downstream as a governed unit rather than as manually repaired standalone artifacts.
 
 ## Understanding
 
-The learner has completed the T01/T02 learning scope and understands:
+The learner understands:
 
 - why the existing custom publisher is retained before component creation;
 - why the publisher prefix must remain stable;
@@ -84,7 +84,8 @@ Evidence: `project-management/phases/PH02/evidence/PH02-LEARNING-UNDERSTANDING-E
 - Development environment and access confirmed. SATISFIED.
 - Existing foundation naming/technical identity confirmed. SATISFIED.
 - Future-first freshness check completed. SATISFIED.
-- No unresolved issue blocks T04 execution. SATISFIED.
+- Required configuration-container implementation and validation completed. SATISFIED.
+- Independent T05 validation completed. SATISFIED.
 
 ### Required Tickets
 
@@ -92,85 +93,72 @@ Evidence: `project-management/phases/PH02/evidence/PH02-LEARNING-UNDERSTANDING-E
 Status: COMPLETE
 Points: 2
 Workstream: `01 - Architecture and Solution Design`
-Dependencies: satisfied.
 Evidence:
-- `project-management/phases/PH02/evidence/PH02-G01-T01-SOLUTION-FOUNDATION-SPECIFICATION.md`.
-- `project-management/phases/PH02/evidence/PH02-LEARNING-UNDERSTANDING-EVIDENCE.md`.
+- `project-management/phases/PH02/evidence/PH02-G01-T01-SOLUTION-FOUNDATION-SPECIFICATION.md`
+- `project-management/phases/PH02/evidence/PH02-LEARNING-UNDERSTANDING-EVIDENCE.md`
 
 #### PH02-G01-T02 - ALM - Perform Future-First ALM freshness check
 Status: COMPLETE
 Points: 1
 Workstream: `08 - Deployment and ALM`
-Dependencies: satisfied.
 Evidence:
-- `project-management/phases/PH02/evidence/PH02-ENTRY-VALIDATION-AND-ALM-FRESHNESS.md`.
-- `project-management/phases/PH02/evidence/PH02-G01-T02-FUTURE-FIRST-ALM-VALIDATION.md`.
+- `project-management/phases/PH02/evidence/PH02-ENTRY-VALIDATION-AND-ALM-FRESHNESS.md`
+- `project-management/phases/PH02/evidence/PH02-G01-T02-FUTURE-FIRST-ALM-VALIDATION.md`
 
 #### PH02-G01-T03 - ALM - Validate existing publisher and unmanaged development solution
 Status: COMPLETE
 Points: 2
 Workstream: `08 - Deployment and ALM`
-Dependencies: T01 complete; T02 complete; Development environment access confirmed. SATISFIED.
-Acceptance Criteria:
-- Existing custom publisher is confirmed as `GCC AI Champions Power Platform`. SATISFIED.
-- Publisher unique name is confirmed as `GCC_AI_Champions_Power_Platform`. SATISFIED.
-- Stable publisher prefix is confirmed as `aiking`. SATISFIED.
-- Existing `GCC AI Champions` solution is confirmed as Unmanaged, version `1.0.0.0`. SATISFIED.
-- Existing foundation aligns with the approved PH02 approach. SATISFIED.
-- No duplicate publisher, solution, Canvas App, flow, environment variable, connection reference, or other implementation component was created by T03. SATISFIED.
+Acceptance Criteria: SATISFIED.
 Evidence:
-- `project-management/phases/PH02/evidence/PH02-EXISTING-FOUNDATION-VERIFICATION.md`.
-- `project-management/phases/PH02/evidence/PH02-G01-T03-VALIDATION-PLAN.md`.
-- `project-management/phases/PH02/evidence/PH02-G01-T03-VALIDATION-RECORD.md`.
-- `project-management/phases/PH02/evidence/screenshots/`.
+- `project-management/phases/PH02/evidence/PH02-EXISTING-FOUNDATION-VERIFICATION.md`
+- `project-management/phases/PH02/evidence/PH02-G01-T03-VALIDATION-PLAN.md`
+- `project-management/phases/PH02/evidence/PH02-G01-T03-VALIDATION-RECORD.md`
+- `project-management/phases/PH02/evidence/screenshots/`
 
 #### PH02-G01-T04 - BUILD - Establish configuration containers
-Status: IN PROGRESS
+Status: COMPLETE
 Points: 2
 Workstream: `08 - Deployment and ALM`
-Dependencies: T03 complete. SATISFIED.
 Selected implementation boundary:
-- Create one SharePoint data-source environment variable for the confirmed Tool 01 SharePoint site.
-- Create one SharePoint connection reference for future solution-aware Tool 01 cloud flows.
-- Defer SharePoint List environment variables until PH09 fixes the actual governed List identities.
-- Defer all other connector references until an approved downstream component requires them.
-Acceptance Criteria:
-- Initial environment-variable strategy is recorded in the solution.
-- Initial connection-reference strategy is recorded in the solution.
-- No unnecessary placeholder connection or variable is created without a defined future use.
-- Naming follows project standards.
+- one SharePoint data-source environment variable for the confirmed Tool 01 SharePoint site;
+- one SharePoint connection reference for future solution-aware Tool 01 cloud flows;
+- SharePoint List environment variables deferred until PH09 fixes actual governed List identities;
+- all other connector references deferred until an approved downstream component requires them.
+Acceptance Criteria: SATISFIED.
 Evidence:
-- `project-management/phases/PH02/evidence/PH02-G01-T04-CONFIGURATION-CONTAINER-PLAN.md`.
-- Solution component inventory and maker-portal screenshots/metadata when produced.
+- `project-management/phases/PH02/evidence/PH02-G01-T04-CONFIGURATION-CONTAINER-PLAN.md`
+- `project-management/phases/PH02/evidence/PH02-G01-T04-COMPONENT-INVENTORY.md`
+- `project-management/phases/PH02/evidence/PH02-G01-T04-VALIDATION-RECORD.md`
+- `project-management/phases/PH02/evidence/screenshots/`
 
 #### PH02-G01-T05 - TEST - Validate solution and publisher foundation
-Status: NOT STARTED
+Status: COMPLETE
 Points: 2
 Workstream: `07 - Testing and Validation`
-Dependencies: T03 and T04 complete.
-Acceptance Criteria:
-- Publisher prefix is confirmed stable and correct.
-- Solution ownership of configuration components is confirmed.
-- Required metadata/naming is correct.
-- No accidental default-solution dependency introduced by this phase is identified.
-- Evidence is sufficient for an independent reviewer to reproduce the checks.
+Acceptance Criteria: SATISFIED.
 Evidence:
-- Validation checklist and screenshots/exported metadata as appropriate.
+- `project-management/phases/PH02/evidence/PH02-G01-T05-VALIDATION-PLAN.md`
+- `project-management/phases/PH02/evidence/PH02-G01-T05-VALIDATION-RECORD.md`
+- `project-management/phases/PH02/evidence/screenshots/PH02-T05-SOLUTION-AND-CONFIGURATION-VALIDATION.png`
+- `project-management/phases/PH02/evidence/screenshots/PH02-T05-PUBLISHER-VALIDATION.png`
 
 #### PH02-G01-T06 - VALIDATE - Formal gate review
 Status: NOT STARTED
 Points: 3
 Workstream: `07 - Testing and Validation`
-Dependencies: T01-T05 complete; Lab, Demonstration and Understanding evidence available.
+Dependencies: T01-T05 COMPLETE; Lab, Demonstration and Understanding evidence available. SATISFIED.
+Pre-start normalization: Issue #18 predates Gateway v1.1 and must receive canonical `### Ticket ID` / `PH02-G01-T06`, then transition to `READY` before Gateway start.
 Acceptance Criteria:
 - All gate entry criteria were satisfied before implementation.
 - All mandatory tickets are complete.
 - Required evidence exists.
 - Learning outcome demonstrated.
 - No unresolved blocker violates the gate.
-- Project Control identifies PH03 as the exact next phase if gate passes.
+- Gate decision and date are recorded.
+- Project Control identifies PH03 entry evaluation as the exact next action if PASSED.
 Evidence:
-- Gate decision record with links to ticket evidence.
+- Formal gate decision record with links to ticket evidence.
 
 ## Session Batches
 
@@ -180,15 +168,13 @@ Evidence:
 ### SES-PH02-G01-ALM-01
 - PH02-G01-T02 - COMPLETE
 - PH02-G01-T03 - COMPLETE
-- PH02-G01-T04 - IN PROGRESS
-
-T04 is the single active ticket. T05 remains blocked until T04 completes.
+- PH02-G01-T04 - COMPLETE
 
 ### SES-PH02-G01-TEST-01
-- PH02-G01-T05 - NOT STARTED
+- PH02-G01-T05 - COMPLETE
 
 ### SES-PH02-G01-VALIDATE-01
-- PH02-G01-T06 - NOT STARTED
+- PH02-G01-T06 - NOT STARTED; exact next ticket.
 
 ## Exit Criteria
 
@@ -199,6 +185,12 @@ T04 is the single active ticket. T05 remains blocked until T04 completes.
 - Project Control synchronized.
 - PH03 entry criteria can be evaluated without guessing.
 
+## Exact Next Step
+
+Normalize Issue #18 to the current ticket standard and READY state, then use Gateway v1.1 to start PH02-G01-T06 and execute the formal gate review.
+
+PH03 is not authorized until PH02-G01 formally passes.
+
 ## Implementation Authorization
 
-T01, T02 and T03 are COMPLETE. T04 is IN PROGRESS and may create only the configuration components explicitly justified by its selected solution. No Canvas App, cloud flow, Microsoft List, Tool 02 object, or other application/data component is authorized by T04. T05 remains NOT STARTED.
+T01 through T05 are COMPLETE. T06 is validation-only and may not create a Canvas App, cloud flow, Microsoft List, Tool 02 object, or other Power Platform implementation component.

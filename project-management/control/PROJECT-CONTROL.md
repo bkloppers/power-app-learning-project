@@ -16,10 +16,10 @@ If this dashboard conflicts with the corresponding live GitHub Issues, execution
 ## Current Operational State
 
 Gate Issue: #12 - `[GATE][PH02-G01] Solution and ALM foundation valid`
-Gate Status: IN PROGRESS
-Current Ticket: PH02-G01-T05
-Current Ticket Issue: #17 - `[PH02][G01][TEST] Validate solution and publisher foundation`
-Ticket Status: IN PROGRESS
+Gate Status: IN PROGRESS / Gate Decision `NOT DECIDED`
+Current Ticket: PH02-G01-T06
+Current Ticket Issue: #18 - `[PH02][G01][VALIDATE] Formal gate review`
+Ticket Status: NOT STARTED - historical Issue normalization to canonical Gateway v1.1 identity and READY status is the immediate next transaction.
 Owner: `07 - Testing and Validation`
 
 ## PH02 Foundation - VERIFIED AND APPROVED
@@ -37,14 +37,14 @@ Owner: `07 - Testing and Validation`
 
 Phase 02: IN PROGRESS
 Gate: PH02-G01
-Gate Issue: #12 OPEN / `status:in-progress`
+Gate Issue: #12 OPEN / `status:in-progress` / Gate Decision `NOT DECIDED`
 
-- PH02-G01-T01: COMPLETE - Issue #13 CLOSED / `status:complete`
-- PH02-G01-T02: COMPLETE - Issue #14 CLOSED / `status:complete`
-- PH02-G01-T03: COMPLETE - Issue #15 CLOSED / `status:complete`
-- PH02-G01-T04: COMPLETE - Issue #16 CLOSED / `status:complete`; screenshots reconciled to `main` through PR #23
-- PH02-G01-T05: IN PROGRESS - Issue #17 OPEN / `status:in-progress`
-- PH02-G01-T06: NOT STARTED - Issue #18 OPEN / `status:not-started`
+- PH02-G01-T01: COMPLETE - Issue #13 CLOSED.
+- PH02-G01-T02: COMPLETE - Issue #14 CLOSED.
+- PH02-G01-T03: COMPLETE - Issue #15 CLOSED.
+- PH02-G01-T04: COMPLETE - Issue #16 CLOSED; configuration evidence reconciled to `main`.
+- PH02-G01-T05: COMPLETE - Issue #17 CLOSED / `status:complete`; independent validation evidence on `main`.
+- PH02-G01-T06: NOT STARTED - Issue #18 OPEN / `status:not-started`; requires one-time canonical Ticket ID normalization and READY transition before Gateway start.
 
 ## T04 Validated Configuration
 
@@ -59,42 +59,56 @@ Validated components inside `GCC AI Champions`:
 
 No Tool 01 Microsoft Lists exist yet. List creation remains deferred to PH09.
 
+## T05 Validation Outcome
+
+Issue #17 is COMPLETE. Independent validation confirmed:
+
+- stable publisher identity and `aiking` prefix;
+- `GCC AI Champions` as the governed unmanaged development solution;
+- T04 configuration components owned inside the governed solution;
+- required naming/metadata correctness;
+- no accidental PH02 default-solution-only dependency.
+
+Canonical evidence:
+
+- `project-management/phases/PH02/evidence/PH02-G01-T05-VALIDATION-PLAN.md`
+- `project-management/phases/PH02/evidence/PH02-G01-T05-VALIDATION-RECORD.md`
+- `project-management/phases/PH02/evidence/screenshots/PH02-T05-SOLUTION-AND-CONFIGURATION-VALIDATION.png`
+- `project-management/phases/PH02/evidence/screenshots/PH02-T05-PUBLISHER-VALIDATION.png`
+
 ## Exact Next Step
 
-Execute only PH02-G01-T05 / Issue #17 on branch `ph02-g01-t05-validate-solution-publisher-foundation`.
+Reconcile historical PH02-G01-T06 / Issue #18 to the current ticket standard by adding the canonical Ticket ID field and changing the live Issue status from `NOT STARTED` to `READY` with the matching `status:ready` label. Then use Gateway v1.1 to perform `READY -> IN PROGRESS` and execute the formal PH02-G01 gate review.
 
-Independently validate publisher identity/prefix, `GCC AI Champions` solution ownership, T04 configuration component naming/ownership, and absence of accidental default-solution-only dependency. Record reproducible validation evidence.
-
-Do not start PH02-G01-T06 until T05 is COMPLETE.
+Do not begin PH03 implementation. PH03 entry evaluation becomes the exact next action only if PH02-G01 is formally PASSED.
 
 ## Implementation Authorization
 
-T05 is validation-only. No new Power Platform component creation is authorized.
+T06 is validation-only. No new Power Platform application, data, automation or connector component creation is authorized.
 
 ## Blockers / Dependencies
 
+- T01 COMPLETE: SATISFIED.
+- T02 COMPLETE: SATISFIED.
 - T03 COMPLETE: SATISFIED.
 - T04 COMPLETE: SATISFIED.
-- T04 screenshot evidence on `main`: SATISFIED through PR #23.
-- Issue #17 live status: IN PROGRESS.
-- No known blocker prevents T05 execution.
+- T05 COMPLETE: SATISFIED.
+- Required PH02 learning/evidence set: AVAILABLE.
+- Historical Issue #18 canonical Ticket ID / READY normalization: REQUIRED BEFORE GATEWAY START.
+- No substantive PH02 foundation blocker is currently known.
 
 ## Locked Decisions
 
 - DEC-001 through DEC-012 govern.
 - Reuse `AI King Env` + `GCC AI Champions Power Platform` + `GCC AI Champions`; preserve publisher prefix `aiking`.
 - Microsoft Lists / SharePoint Lists remains the initial Tool 01 data platform.
-- T05 validates; it does not create implementation assets.
-
-## T05 Evidence
-
-- `project-management/phases/PH02/evidence/PH02-G01-T05-VALIDATION-PLAN.md`
-- Fresh maker-portal screenshots/metadata to be captured during validation.
+- GitHub Issues contain live work state; PRs control repository changes; evidence proves completion; Markdown is derived durable state.
+- Gateway v1.1 is the approved issue lifecycle transaction path after historical Issue #18 is normalized.
 
 ## Change Log
 
 ### 2026-08-27
-- Completed and reconciled PH02-G01-T04, including screenshot evidence through PR #23.
-- Started PH02-G01-T05 / Issue #17 as the single IN PROGRESS ticket.
-- Created the controlled T05 validation branch and validation plan.
-- T06 remains NOT STARTED; PH02-G01 remains IN PROGRESS / NOT DECIDED.
+- Reconciled Project Control to live T05 completion in Issue #17.
+- Identified PH02-G01-T06 / Issue #18 as the exact next ticket.
+- Recorded the one-time historical Issue normalization required before Gateway v1.1 can start T06.
+- PH02-G01 remains IN PROGRESS / NOT DECIDED; PH03 is not authorized.

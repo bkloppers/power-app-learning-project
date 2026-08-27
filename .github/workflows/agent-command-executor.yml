@@ -1,0 +1,40 @@
+name: Agent Command Executor
+
+on:
+  workflow_run:
+    workflows: ['Agent Command Intake']
+    types: [completed]
+
+permissions:
+  actions: read
+  contents: write
+  issues: write
+  pull-requests: read
+
+concurrency:
+  group: agent-command-gateway
+  cancel-in-progress: false
+
+jobs:
+  execute:
+    if: >-
+      github.event.workflow_run.conclusion == 'success' &&
+      github.event.workflow_run.head_branch == 'agent-command-gateway'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout trusted executor from main
+        uses: actions/checkout@v4
+        with:
+          ref: main
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Execute validated command
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GATEWAY_HEAD_SHA: ${{ github.event.workflow_run.head_sha }}
+          GATEWAY_HEAD_BRANCH: ${{ github.event.workflow_run.head_branch }}
+        run: python scripts/agent_command_gateway.py execute

@@ -49,7 +49,7 @@ The provisional values `Burt Kloppers's Environment`, `NTT DATA Power Platform`,
 - Existing PH02 environment/publisher/solution foundation verified and approved for reuse.
 - PH02-G01-T01 COMPLETE - solution foundation learning/design documented.
 - PH02-G01-T02 COMPLETE - dated Future-First ALM evidence formally consumed and validated.
-- PH02 Learning/Understanding COMPLETE; evidence recorded in `project-management/evidence/PH02-LEARNING-UNDERSTANDING-EVIDENCE.md`.
+- PH02 Learning/Understanding COMPLETE; evidence recorded in `project-management/phases/PH02/evidence/PH02-LEARNING-UNDERSTANDING-EVIDENCE.md`.
 
 ## Exact Next Step
 
@@ -62,10 +62,12 @@ T03 is validation-only. Do not create a publisher, solution, Canvas App, flow, e
 ### Phase 01 - Solution Definition and Learning Architecture
 Status: COMPLETE
 Gate: PH01-G01 PASSED 2026-08-27.
+Canonical folder: `project-management/phases/PH01/`.
 
 ### Phase 02 - Solution, Publisher and Environment Foundation
 Status: IN PROGRESS
 Gate: PH02-G01 active.
+Canonical folder: `project-management/phases/PH02/`.
 
 Ticket status:
 - PH02-G01-T01: COMPLETE
@@ -86,6 +88,7 @@ Implementation Authorization: only the scoped T03 validation is currently author
 
 - DEC-001 through DEC-011 remain governing.
 - Approved 2026-08-27 PH02 correction: reuse `AI King Env` + `GCC AI Champions Power Platform` + `GCC AI Champions`; preserve publisher prefix `aiking`.
+- Phase-specific artifacts must comply with `project-management/PHASE-FOLDER-STANDARD.md`.
 
 ## Change Log
 
@@ -97,3 +100,4 @@ Implementation Authorization: only the scoped T03 validation is currently author
 - Completed PH02-G01-T02 Future-First ALM validation.
 - Recorded PH02 Learning/Understanding as COMPLETE.
 - Activated PH02-G01-T03 as the exact next ticket, validation-only.
+- Adopted the mandatory canonical phase-folder structure and migrated existing PH01/PH02 phase-specific artifacts.

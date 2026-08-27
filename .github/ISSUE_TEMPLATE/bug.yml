@@ -1,0 +1,42 @@
+name: Bug
+about: Report a defect requiring tracked resolution
+labels: ["type:bug"]
+body:
+  - type: input
+    id: phase
+    attributes:
+      label: Phase / Gate / Ticket
+      placeholder: PH02 / PH02-G01 / PH02-G01-T03
+    validations:
+      required: true
+  - type: textarea
+    id: observed
+    attributes:
+      label: Observed Behaviour
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected Behaviour
+    validations:
+      required: true
+  - type: textarea
+    id: reproduce
+    attributes:
+      label: Reproduction Steps
+    validations:
+      required: true
+  - type: textarea
+    id: evidence
+    attributes:
+      label: Evidence
+      description: Include canonical evidence paths, screenshots, logs, Monitor traces, or checker results.
+    validations:
+      required: true
+  - type: textarea
+    id: impact
+    attributes:
+      label: Impact / Blocker Status
+    validations:
+      required: true

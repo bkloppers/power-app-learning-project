@@ -4,7 +4,7 @@ Project: Power App Learning Project
 Current Version: 0.1.0-design
 Current Phase: Phase 02 - Solution, Publisher and Environment Foundation
 Current Gate: PH02-G01 - Solution and ALM foundation valid
-Overall Status: IN PROGRESS - GOVERNANCE RECONCILIATION
+Overall Status: IN PROGRESS
 Last Updated: 2026-08-27
 
 ## Operational Control
@@ -13,27 +13,28 @@ This file is a derived dashboard. Live gate/ticket workflow state is controlled 
 
 If this dashboard conflicts with the corresponding live GitHub Issues, execution stops until the discrepancy is reconciled.
 
-## Current Governance Action
+## Current Operational State
 
-Scope: Adopt the GitHub Operational Control Model before continuing PH02-G01-T03 execution.
-Status: IN PROGRESS
-Branch: `governance/github-operational-control-model`
+Gate Issue: #12 - `[GATE][PH02-G01] Solution and ALM foundation valid`
+Gate Status: IN PROGRESS
+Current Ticket: PH02-G01-T03
+Current Ticket Issue: #15 - `[PH02][G01][ALM] Validate existing publisher and unmanaged development solution`
+Ticket Status: READY
+Owner: `08 - Deployment and ALM`
 
-Completed in this governance change:
+GitHub Operational Control Model setup is COMPLETE:
 - PH01 Issues #5-#9 reconciled with completion/PASS comments and canonical evidence paths.
-- GitHub operational control standard created.
-- Gate, Ticket, Bug, and Decision/Change Request Issue forms created.
-- Pull Request template created.
-- Repository-integrity GitHub Actions workflow and validator created.
-- PH02-G01 live-Issue source package created under the canonical PH02 gate folder.
-- DEC-012 records Issues/PRs/evidence/Project-Control responsibility boundaries.
+- GitHub operational control standard active.
+- Gate, Ticket, Bug, and Decision/Change Request Issue forms active.
+- Pull Request template active.
+- Repository-integrity GitHub Actions workflow and validator active.
+- PH02-G01 gate Issue #12 and ticket Issues #13-#18 instantiated.
+- Canonical phase/gate/type/status labels applied.
+- T01 Issue #13 and T02 Issue #14 closed as completed.
+- T03 Issue #15 is the single READY ticket.
+- `Main Branch Governance` ruleset is ACTIVE on `main`, requiring Pull Requests and the `Repository Integrity` status check.
 
-Administrative GitHub operations still required before PH02-G01-T03 execution continues:
-- Create the PH02-G01 gate Issue and PH02-G01-T01 through T06 ticket Issues from `project-management/phases/PH02/gates/PH02-G01-GITHUB-ISSUE-PACKAGE.md`.
-- Apply the canonical phase/gate/type/status labels to those Issues.
-- Configure `main` branch protection/ruleset to require Pull Requests for ordinary repository changes and require the repository-integrity check once available.
-
-These administrative operations are not redesigns; they are required dependencies of the approved GitHub Operational Control Model.
+No governance dependency blocks PH02-G01-T03 execution.
 
 ## PH02 Foundation - VERIFIED AND APPROVED
 
@@ -61,38 +62,39 @@ Gate Issue: #5 CLOSED / reconciled
 Ticket Issues: #6-#9 CLOSED / reconciled
 Canonical folder: `project-management/phases/PH01/`
 
-The original Issue bodies retain stale pre-execution status text, but reconciliation comments now record the completed outcomes and canonical evidence. Do not interpret the stale original body status as current state.
+The original PH01 Issue bodies retain stale pre-execution status text, but reconciliation comments record the completed outcomes and canonical evidence. Do not interpret the stale original body status as current state.
 
 ## Phase 02 Operational State
 
 Phase 02: IN PROGRESS
-Gate: PH02-G01 active by approved phase records; live gate Issue pending administrative instantiation.
+Gate: PH02-G01
+Gate Issue: #12 OPEN / `status:in-progress`
 Canonical folder: `project-management/phases/PH02/`
 
-Approved ticket state to instantiate in GitHub Issues:
-- PH02-G01-T01: COMPLETE
-- PH02-G01-T02: COMPLETE
-- PH02-G01-T03: READY
-- PH02-G01-T04: NOT STARTED
-- PH02-G01-T05: NOT STARTED
-- PH02-G01-T06: NOT STARTED
+Live ticket state:
+- PH02-G01-T01: COMPLETE - Issue #13 CLOSED / `status:complete`
+- PH02-G01-T02: COMPLETE - Issue #14 CLOSED / `status:complete`
+- PH02-G01-T03: READY - Issue #15 OPEN / `status:ready`
+- PH02-G01-T04: NOT STARTED - Issue #16 OPEN / `status:not-started`
+- PH02-G01-T05: NOT STARTED - Issue #17 OPEN / `status:not-started`
+- PH02-G01-T06: NOT STARTED - Issue #18 OPEN / `status:not-started`
 
-Live-Issue source package: `project-management/phases/PH02/gates/PH02-G01-GITHUB-ISSUE-PACKAGE.md`.
+Phase-owned gate source package: `project-management/phases/PH02/gates/PH02-G01-GITHUB-ISSUE-PACKAGE.md`.
 
 ## Exact Next Step
 
-Complete the GitHub-native PH02 Issue instantiation and `main` protection dependency, then execute `PH02-G01-T03` from its live ticket Issue on a ticket branch.
+Execute `PH02-G01-T03` from GitHub Issue #15 on ticket branch `ph02-g01-t03-validate-solution-foundation`.
 
-T03 remains validation-only. Do not create a publisher, solution, Canvas App, flow, environment variable, connection reference, or other application component unless a later PH02 ticket explicitly authorizes that creation.
+T03 is validation-only. Do not create a publisher, solution, Canvas App, flow, environment variable, connection reference, or other application component unless a later PH02 ticket explicitly authorizes that creation.
 
 ## Implementation Authorization
 
-No PH02 implementation work should proceed while the live PH02 operational Issues are absent. Once instantiated, only PH02-G01-T03 validation is authorized. Physical application/configuration component creation remains dependency-controlled by later PH02 tickets.
+Only PH02-G01-T03 validation is currently authorized. Physical application/configuration component creation remains dependency-controlled by later PH02 tickets.
 
 ## Blockers / Dependencies
 
-- BLOCKING GOVERNANCE DEPENDENCY: PH02 live gate/ticket Issues must be instantiated before T03 execution.
-- ADMINISTRATIVE DEPENDENCY: protect `main` with a PR-required ruleset/branch-protection configuration.
+- No governance blocker prevents PH02-G01-T03 execution.
+- T03 dependencies are satisfied by completed T01/T02, confirmed environment access, and existing foundation evidence.
 - Duplicate environment/publisher/solution creation remains prohibited.
 
 ## Locked Decisions
@@ -111,4 +113,7 @@ No PH02 implementation work should proceed while the live PH02 operational Issue
 - Adopted the mandatory canonical phase-folder structure.
 - Adopted GitHub Operational Control Model after GitHub Workflow Review.
 - Reconciled closed PH01 Issues with explicit completion/PASS comments.
-- Paused PH02-G01-T03 execution until live PH02 gate/ticket Issues and repository protection are instantiated.
+- Instantiated PH02-G01 live gate/ticket Issues #12-#18 and applied canonical labels.
+- Closed T01/T02 Issues as completed and established Issue #15 as the single READY ticket.
+- Activated `Main Branch Governance` ruleset with PR and repository-integrity requirements.
+- Removed completed governance dependencies from Project Control and restored PH02-G01-T03 as the exact next action.

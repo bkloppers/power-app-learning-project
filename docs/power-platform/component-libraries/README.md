@@ -50,6 +50,32 @@ Selected component properties pane showed:
 
 First reusable component was renamed to `cmpAppHeader`.
 
+### UI-004 — Settings > Updates baseline before component build
+
+Observed in `Burts Power App Components` with `cmpAppHeader` selected.
+
+Exact working path proved by snapshot:
+
+`Settings -> Updates -> New`
+
+Visible update features included:
+- Learn more rendering-features entry, currently Off
+- Modern controls and themes, currently Off
+- New analysis engine and User defined functions, currently On
+- Expanded media support for SaveData on Power Apps mobile apps
+
+The Studio description for `Modern controls and themes` states that enabling it provides the latest controls and themes and places modern controls in the Modern tab of the Insert pane.
+
+Current Microsoft guidance verified in August 2026 confirms the enablement path:
+
+`Settings -> Updates -> New -> Modern controls and themes -> On`
+
+This setting is a required project dependency before inserting controls into reusable components because this project uses the current modern-control/theme experience for new Power Apps UI.
+
+After enabling it, Studio refreshes/reloads the authoring experience. Re-check the component editor before continuing.
+
+Microsoft also documents that modern controls use the Fluent 2 design system and provide improved accessibility, performance and usability compared with classic controls. Modern control behavior/property names have continued to change during 2026, so exact control properties must still be verified before implementation.
+
 ## cmpAppHeader
 
 Purpose: reusable branded application header.
@@ -86,7 +112,8 @@ Current property being created:
 - Do not create hidden dependencies on app globals, app collections, app controls or app-specific data sources.
 - App-wide nonvisual configuration and reusable named formulas belong in the consuming app's formula layer unless a component-specific contract requires them.
 - Use the approved project branding sources; do not invent brand values.
+- For new reusable UI, enable and use the current Modern controls and themes experience unless current Microsoft guidance identifies a specific unsupported control/surface.
 
 ## Next verified step
 
-Complete the `DarkMode` Data/Input/Boolean property in `cmpAppHeader`, then document the resulting property panel before defining the rest of the header contract.
+Turn `Modern controls and themes` On under `Settings -> Updates -> New`, allow Studio to refresh, then verify the component editor has returned before resuming the `DarkMode` custom-property creation.

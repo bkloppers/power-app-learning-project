@@ -145,10 +145,30 @@ Snapshot directly proves:
 
 The user also supplied session-detail text showing Power Apps client/server version information. The version is relevant to the UI baseline; unique session, tenant, app, object, and correlation identifiers are not stored.
 
+## UI-020 — Component editor returned after modern-controls refresh
+
+Observed after enabling the supported `Settings -> Updates -> New -> Modern controls and themes` feature and allowing Studio to refresh.
+
+Snapshot directly proves:
+
+- Power Apps Studio returned to the Component Library editor.
+- The active library remains `Burts Power App Components`.
+- `Components` is selected in Tree view.
+- `cmpAppHeader` is selected.
+- The selected component still has no child controls yet.
+- The Properties pane still exposes `Custom properties` and `+ New custom property`.
+- Existing component size remains 640 x 640 in the editor.
+
+The snapshot proves the editor successfully returned after the setting change. It does not by itself display the Updates toggle state, so the enabled state remains based on the completed user action immediately preceding the refresh.
+
 ## Selected settings decision for current work
 
-For the `Burts Power App Components` library, make exactly one feature change now:
+The required settings dependency has now been completed:
 
 `Settings -> Updates -> New -> Modern controls and themes -> On`
 
-Leave Preview and Experimental settings unchanged. After Studio refreshes, return to `cmpAppHeader` and continue the supported custom-property contract.
+Leave Preview and Experimental settings unchanged.
+
+## Next verified step
+
+Resume the `cmpAppHeader` contract and create the `DarkMode` custom property as a Data property with Input direction and Boolean data type, then record the resulting property pane before inserting controls.

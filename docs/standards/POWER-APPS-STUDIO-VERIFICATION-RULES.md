@@ -1,80 +1,73 @@
-# Power Apps Studio Verification Rules
+# Power Platform Studio and Documentation Verification Rules
 
 Status: GOVERNING PROJECT RULE
 Baseline: August 2026
 
-## Rule 1 — Verify before teaching or instructing
+## Canonical documentation location
 
-Before providing any Power Apps lesson, click path, implementation step, formula, component instruction, property instruction, control setup, configuration instruction or version-sensitive recommendation, verify that it matches the latest current Microsoft Power Apps / Power Platform guidance applicable in August 2026 or later.
+All current step-by-step Power Platform documentation lives under:
 
-Do not rely on model memory alone for version-sensitive Power Apps guidance.
+`docs/power-platform/`
 
-## Rule 2 — Live observed UI is project evidence
+Before providing any lesson, click path, formula, component instruction, admin instruction, configuration step or version-sensitive recommendation:
 
-Every user-provided Power Apps screenshot is project evidence.
+1. Read `docs/power-platform/README-RULES.md`.
+2. Read `docs/power-platform/INDEX.md`.
+3. Read the active area's `README.md`.
+4. Verify the instruction against current Microsoft guidance applicable in August 2026 or later.
+5. Check whether a user snapshot already proves the current UI.
+6. Prefer the observed live project UI for the exact tenant click path when it differs from stale remembered UI, while recording the discrepancy.
+7. Never rely on model memory alone for version-sensitive Power Platform guidance.
 
-The agent must inspect it, record the relevant UI facts in `docs/standards/POWER-APPS-2026-STUDIO-HOW-TO-GUIDE.md`, and use those observations in future instructions.
+## Snapshot rule
 
-## Rule 3 — Record snapshots in the active section
+Every user-provided Power Platform screenshot is project evidence. Record it in the active area's guide, not in a detached screenshot dump.
 
-Do not maintain a detached screenshot dump. Record each snapshot in the guide section corresponding to the task currently being performed, including menu options, selected object, visible properties, working path, corrections, proven completion state and next validated step.
+Record at minimum:
+- snapshot ID;
+- date/session;
+- product area;
+- environment/resource;
+- exact screen/editor;
+- selected object;
+- visible menus/options/properties relevant to the step;
+- exact working path proved;
+- values/formulas visible or entered;
+- correction to earlier guidance if applicable;
+- proven result;
+- next verified step.
 
-## Rule 4 — Do not make the user rediscover the same UI
+Use `docs/power-platform/README-SNAPSHOT-TEMPLATE.md` as the recording format.
 
-Once a menu, panel, command or working click path is verified and recorded, use that recorded baseline. Do not ask the user for another screenshot merely to rediscover information already established unless there is evidence the UI changed or the current state is ambiguous.
+## No repeated rediscovery
 
-## Rule 5 — Correct stale instructions immediately
+Once a menu, path, option or product behavior is verified and recorded, use the documented baseline. Do not ask the user for another screenshot merely to rediscover the same UI unless there is evidence the product changed or the state is genuinely ambiguous.
 
-If a screenshot disproves prior guidance:
+## Correction rule
 
+If a snapshot disproves prior guidance:
 1. acknowledge the mismatch;
 2. stop using the stale path;
 3. verify current Microsoft guidance;
-4. update the How-To Guide in the same active section;
+4. record the observed UI and corrected sequence in the active area guide;
 5. issue one corrected best-practice sequence only.
 
-## Rule 6 — Reusable-first architecture
+## Architecture rules
 
-Before building app-specific UI, check whether the object or pattern should be reusable across apps.
-
-If a coherent visual or interaction pattern is reusable, build it in the approved Component Library and expose explicit component contracts through supported custom properties.
-
-Do not create hidden component dependencies on consuming-app globals, collections, controls or app-specific data sources.
-
-Do not turn arbitrary single controls into components merely to maximize component count. Reuse must represent a coherent visual or interaction unit.
-
-## Rule 7 — Responsive-first application baseline
-
-New Canvas Apps in this project must use the current Responsive app experience and responsive/container-driven composition. Do not introduce Tablet-first or Phone-first fixed-canvas guidance unless the user explicitly changes the project requirement.
-
-## Rule 8 — Branding must come from project sources
-
-Reusable components must use the approved project branding sources, including `DESIGN.md` and related project design references. Do not invent colors, typography, logo variants, spacing or brand behavior.
-
-## Rule 9 — Distinguish observed facts from inference
-
-The guide must clearly distinguish:
-
-- what the screenshot directly proves;
-- what Microsoft documentation confirms;
-- what the next implementation step is.
-
-Do not write inferred UI behavior as though it was observed.
-
-## Rule 10 — Update before proceeding
-
-When a new screenshot materially changes or expands the known Studio UI, update the How-To Guide before giving the next implementation instruction whenever repository access permits.
-
-If repository protection temporarily prevents the update, state that explicitly and do not pretend the guide is already synchronized.
+- Reusable-first: coherent reusable visual/interaction patterns belong in the approved Component Library.
+- Responsive-first: new Canvas Apps use the current Responsive experience and container-driven composition.
+- Branding: use approved project design sources; do not invent branding values.
+- Power Fx: document exact formulas where they are implemented and validated.
+- Security: UI visibility is not authorization.
 
 ## Required agent check
 
-Before answering a Power Apps implementation question, an agent must ask internally:
+Before answering a Power Platform implementation question, confirm internally:
+- current area;
+- current guide;
+- current August 2026-or-later Microsoft guidance;
+- existing snapshot evidence;
+- dependencies;
+- one selected best-practice sequence.
 
-1. Is this version-sensitive?
-2. Did I verify current August 2026-or-later Microsoft guidance?
-3. Has the user already shown this UI in a snapshot?
-4. What does the How-To Guide currently record?
-5. Does the instruction preserve the reusable-first, responsive-first and branding rules?
-
-If any required answer is missing, resolve it before giving the instruction.
+If any required element is missing, resolve it before instructing the user.

@@ -140,6 +140,14 @@ Repository automation should progressively enforce machine-checkable rules, begi
 
 Automation is a guardrail, not a substitute for human gate approval or domain validation.
 
+### GitHub Action Gateway
+
+When a connected AI agent needs an operational GitHub transaction that its connector does not expose directly, use the governed GitHub Action Gateway defined in `project-management/governance/GITHUB-ACTION-GATEWAY-STANDARD.md`.
+
+The gateway may execute only its documented allow-listed operations. It must not be used to bypass Pull Request protection on `main`, manufacture missing evidence, merge Pull Requests, or pass a formal gate without the separately required project authorization and evidence.
+
+The transport branch `agent-command-gateway` is not a normal working branch. It exists only for append-only command and result records under `agent-commands/`.
+
 ## Branch protection target
 
 `main` must be configured to require Pull Requests for ordinary changes and to prevent routine direct pushes. The required repository ruleset/branch-protection setting is an administrative GitHub configuration and must be kept aligned with this standard.

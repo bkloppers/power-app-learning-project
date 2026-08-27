@@ -18,6 +18,7 @@ def validate_required_structure() -> None:
         ROOT / "project-management" / "control" / "PROJECT-CONTROL.md",
         ROOT / "project-management" / "control" / "AI-PROJECT-CONTINUITY-FLOW.md",
         ROOT / "project-management" / "governance" / "GITHUB-OPERATIONAL-CONTROL-STANDARD.md",
+        ROOT / "project-management" / "governance" / "GITHUB-ACTION-GATEWAY-STANDARD.md",
         ROOT / "project-management" / "governance" / "PROCESS-AND-PROGRESS-FRAMEWORK.md",
         ROOT / "project-management" / "governance" / "GATE-TRACKING-MODEL.md",
         ROOT / "project-management" / "governance" / "CHAT-SESSION-TICKET-CAPACITY-MODEL.md",
@@ -27,6 +28,11 @@ def validate_required_structure() -> None:
         ROOT / "project-management" / "registers" / "ISSUES.md",
         ROOT / "project-management" / "registers" / "APPROVALS.md",
         ROOT / "docs" / "standards" / "POWER-APPS-FUTURE-FIRST-STANDARD.md",
+        ROOT / ".github" / "workflows" / "agent-command-intake.yml",
+        ROOT / ".github" / "workflows" / "agent-command-executor.yml",
+        ROOT / "agent-commands" / "README.md",
+        ROOT / "scripts" / "agent_command_gateway.py",
+        ROOT / "scripts" / "test_agent_command_gateway.py",
     ]
     for path in required_files:
         if not path.exists():
@@ -70,6 +76,24 @@ def validate_phase_structure() -> None:
     deprecated = ROOT / "project-management" / "evidence"
     if deprecated.exists():
         error("Deprecated shared project-management/evidence directory exists; phase evidence must live under project-management/phases/PHxx/evidence")
+
+
+def validate_gateway_structure() -> None:
+    gateway_readme = ROOT / "agent-commands" / "README.md"
+    if gateway_readme.exists():
+        text = gateway_readme.read_text(encoding="utf-8")
+        required_terms = ["agent-command-gateway", "agent-commands/inbox/", "agent-commands/results/"]
+        for term in required_terms:
+            if term not in text:
+                error(f"Agent Command Gateway transport README is missing required term: {term}")
+
+    executor = ROOT / ".github" / "workflows" / "agent-command-executor.yml"
+    if executor.exists():
+        text = executor.read_text(encoding="utf-8")
+        if "ref: main" not in text:
+            error("Agent Command Executor must check out trusted code from main")
+        if "workflow_run:" not in text:
+            error("Agent Command Executor must use workflow_run so privileged code is sourced from main")
 
 
 def validate_id_headings(path: Path, prefix: str) -> None:
@@ -121,6 +145,7 @@ def validate_pr_body() -> None:
 def main() -> int:
     validate_required_structure()
     validate_phase_structure()
+    validate_gateway_structure()
     validate_id_headings(ROOT / "project-management" / "registers" / "DECISIONS.md", "DEC")
     validate_id_headings(ROOT / "project-management" / "registers" / "ISSUES.md", "ISS")
     validate_pr_body()

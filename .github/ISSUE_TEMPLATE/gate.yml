@@ -1,0 +1,62 @@
+name: Gate
+about: Create a formal phase gate
+labels: ["type:gate"]
+body:
+  - type: input
+    id: gate_id
+    attributes:
+      label: Gate ID
+      placeholder: PH02-G01
+    validations:
+      required: true
+  - type: input
+    id: phase
+    attributes:
+      label: Phase
+      placeholder: Phase 02 - Solution, Publisher and Environment Foundation
+    validations:
+      required: true
+  - type: textarea
+    id: objective
+    attributes:
+      label: Objective
+    validations:
+      required: true
+  - type: textarea
+    id: entry
+    attributes:
+      label: Entry Criteria
+      description: One criterion per line.
+    validations:
+      required: true
+  - type: textarea
+    id: tickets
+    attributes:
+      label: Required Tickets
+      description: List the required ticket IDs.
+    validations:
+      required: true
+  - type: textarea
+    id: evidence
+    attributes:
+      label: Required Evidence
+    validations:
+      required: true
+  - type: textarea
+    id: acceptance
+    attributes:
+      label: Acceptance Criteria
+      description: Use Markdown checkboxes.
+    validations:
+      required: true
+  - type: dropdown
+    id: decision
+    attributes:
+      label: Gate Decision
+      options:
+        - NOT DECIDED
+        - PASSED
+        - FAILED
+      default: 0
+    validations:
+      required: true

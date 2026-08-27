@@ -14,7 +14,7 @@ Power Platform environment, publisher, solution, environment-variable and connec
 
 ## Learning Outcome
 
-COMPLETE for T01/T02 learning scope. The learner can explain the relationship between environment, custom publisher, unmanaged development solution, solution ownership, environment variables, connection references, and downstream managed deployment. Evidence: `project-management/evidence/PH02-LEARNING-UNDERSTANDING-EVIDENCE.md`.
+COMPLETE for T01/T02 learning scope. The learner can explain the relationship between environment, custom publisher, unmanaged development solution, solution ownership, environment variables, connection references, and downstream managed deployment. Evidence: `project-management/phases/PH02/evidence/PH02-LEARNING-UNDERSTANDING-EVIDENCE.md`.
 
 ## Prerequisites
 
@@ -72,7 +72,7 @@ The learner has completed the T01/T02 learning scope and understands:
 - why solution-first development avoids ALM debt;
 - why duplicate publisher/solution creation would be incorrect for this approved existing foundation.
 
-Evidence: `project-management/evidence/PH02-LEARNING-UNDERSTANDING-EVIDENCE.md`.
+Evidence: `project-management/phases/PH02/evidence/PH02-LEARNING-UNDERSTANDING-EVIDENCE.md`.
 
 ## Gate
 
@@ -94,8 +94,8 @@ Points: 2
 Workstream: `01 - Architecture and Solution Design`
 Dependencies: satisfied.
 Evidence:
-- PH02 solution-foundation design evidence committed on `main`.
-- `project-management/evidence/PH02-LEARNING-UNDERSTANDING-EVIDENCE.md`.
+- `project-management/phases/PH02/evidence/PH02-G01-T01-SOLUTION-FOUNDATION-SPECIFICATION.md`.
+- `project-management/phases/PH02/evidence/PH02-LEARNING-UNDERSTANDING-EVIDENCE.md`.
 
 #### PH02-G01-T02 - ALM - Perform Future-First ALM freshness check
 Status: COMPLETE
@@ -103,8 +103,8 @@ Points: 1
 Workstream: `08 - Deployment and ALM`
 Dependencies: satisfied.
 Evidence:
-- `project-management/evidence/PH02-ENTRY-VALIDATION-AND-ALM-FRESHNESS.md`.
-- Formal T02 validation evidence committed on `main`.
+- `project-management/phases/PH02/evidence/PH02-ENTRY-VALIDATION-AND-ALM-FRESHNESS.md`.
+- `project-management/phases/PH02/evidence/PH02-G01-T02-FUTURE-FIRST-ALM-VALIDATION.md`.
 
 #### PH02-G01-T03 - ALM - Validate existing publisher and unmanaged development solution
 Status: READY
@@ -118,9 +118,9 @@ Acceptance Criteria:
 - Existing foundation aligns with the approved PH02 approach.
 - No duplicate publisher, solution, Canvas App, flow or other implementation component is created as part of this ticket.
 Evidence:
-- Existing foundation verification metadata/screenshots.
-- Naming verification.
-- T03 validation record.
+- `project-management/phases/PH02/evidence/PH02-EXISTING-FOUNDATION-VERIFICATION.md`.
+- `project-management/phases/PH02/evidence/PH02-G01-T03-VALIDATION-PLAN.md`.
+- T03 validation record when completed.
 
 #### PH02-G01-T04 - BUILD - Establish configuration containers
 Status: NOT STARTED

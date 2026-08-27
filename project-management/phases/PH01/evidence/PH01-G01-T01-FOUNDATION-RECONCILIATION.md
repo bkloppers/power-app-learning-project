@@ -11,12 +11,12 @@ Map every Phase 01 requirement and exit criterion to an approved repository arti
 
 ## Governing Sources
 
-- [Foundation Baseline Approval](../../approvals/APPROVAL-2026-08-27-FOUNDATION-BASELINE.md)
-- [Phase 01](../../phases/PHASE-01.md)
-- [Power Apps Hierarchy Learning and Build Roadmap](../../../docs/solution-design/POWER-APPS-HIERARCHY-LEARNING-ROADMAP.md)
-- [Tool 01 - AI Prompt Capture, Submission and Verification](../../../docs/solution-design/TOOL-01-AI-PROMPT-SUBMISSION.md)
-- [Tool 01 - Workflow and State Model](../../../docs/solution-design/TOOL-01-WORKFLOW-STATE-MODEL.md)
-- [Tool 02 - AI Prompt Chatbot](../../../docs/solution-design/TOOL-02-AI-PROMPT-CHATBOT.md)
+- [Foundation Baseline Approval](../../../approvals/APPROVAL-2026-08-27-FOUNDATION-BASELINE.md)
+- [Phase 01](../PHASE-01.md)
+- [Power Apps Hierarchy Learning and Build Roadmap](../../../../docs/solution-design/POWER-APPS-HIERARCHY-LEARNING-ROADMAP.md)
+- [Tool 01 - AI Prompt Capture, Submission and Verification](../../../../docs/solution-design/TOOL-01-AI-PROMPT-SUBMISSION.md)
+- [Tool 01 - Workflow and State Model](../../../../docs/solution-design/TOOL-01-WORKFLOW-STATE-MODEL.md)
+- [Tool 02 - AI Prompt Chatbot](../../../../docs/solution-design/TOOL-02-AI-PROMPT-CHATBOT.md)
 
 ## Reconciliation Checklist
 

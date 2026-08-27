@@ -14,10 +14,11 @@ Before changing implementation or project state, read these files in order when 
 2. `AGENTS.md`
 3. `project-management/AI-PROJECT-CONTINUITY-FLOW.md`
 4. `project-management/PROJECT-CONTROL.md`
-5. `project-management/DECISIONS.md`
-6. `project-management/ISSUES.md`
-7. The active phase file under `project-management/phases/`
-8. Any dedicated technical, naming, variable, responsive-layout, design-system, or architecture document that applies to the task.
+5. `project-management/PHASE-FOLDER-STANDARD.md`
+6. `project-management/DECISIONS.md`
+7. `project-management/ISSUES.md`
+8. The active phase file at `project-management/phases/PHxx/PHASE-xx.md`
+9. Any dedicated technical, naming, variable, responsive-layout, design-system, or architecture document that applies to the task.
 
 If one of the project-management files does not yet exist, do not invent its contents. Create it only when the task requires project tracking to begin or the user explicitly requests it.
 
@@ -33,6 +34,14 @@ When information conflicts, use this order:
 6. General model knowledge.
 
 Do not silently override a higher-priority source.
+
+## Phase Artifact Placement
+
+Every phase-specific artifact must live inside its canonical phase folder under `project-management/phases/PHxx/` and comply with `project-management/PHASE-FOLDER-STANDARD.md`.
+
+Do not create phase-specific evidence, gate packages, screenshots, approvals, handoffs, or phase documents in shared project-management folders. Shared locations are reserved for artifacts that genuinely govern multiple phases or the whole project.
+
+When moving or creating a phase artifact, update all known repository references in the same change and do not leave duplicate compatibility copies behind.
 
 ## Required Agent Behaviour
 

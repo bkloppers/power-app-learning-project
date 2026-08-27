@@ -51,7 +51,7 @@ Result: COMPLETE.
 `PH01-G01 - Solution scope and process approved`
 
 Gate Decision: PASSED 2026-08-27.
-Evidence: `project-management/evidence/PH01/PH01-G01-T04-GATE-DECISION.md`.
+Evidence: `project-management/phases/PH01/evidence/PH01-G01-T04-GATE-DECISION.md`.
 
 ### Required Tickets
 
@@ -59,27 +59,27 @@ Evidence: `project-management/evidence/PH01/PH01-G01-T04-GATE-DECISION.md`.
 Status: COMPLETE
 Points: 2
 Workstream: `01 - Architecture and Solution Design`
-Evidence: `project-management/evidence/PH01/PH01-G01-T01-FOUNDATION-RECONCILIATION.md`
+Evidence: `project-management/phases/PH01/evidence/PH01-G01-T01-FOUNDATION-RECONCILIATION.md`
 
 #### PH01-G01-T02 - DOC - Synchronize Phase 01, living design and Project Control
 Status: COMPLETE
 Points: 2
 Workstream: `00 - Project Manager`
 Evidence:
-- `project-management/evidence/PH01/PH01-G01-T02-SYNCHRONIZATION-EVIDENCE.md`
-- `project-management/evidence/PH01/PH01-G01-T02-REVIEW-NOTE.md`
+- `project-management/phases/PH01/evidence/PH01-G01-T02-SYNCHRONIZATION-EVIDENCE.md`
+- `project-management/phases/PH01/evidence/PH01-G01-T02-REVIEW-NOTE.md`
 
 #### PH01-G01-T03 - VALIDATE - Validate roadmap traceability
 Status: COMPLETE
 Points: 3
 Workstream: `07 - Testing and Validation`
-Evidence: `project-management/evidence/PH01/PH01-G01-T03-TRACEABILITY-VALIDATION.md`
+Evidence: `project-management/phases/PH01/evidence/PH01-G01-T03-TRACEABILITY-VALIDATION.md`
 
 #### PH01-G01-T04 - VALIDATE - Formal Phase 01 gate review
 Status: COMPLETE
 Points: 3
 Workstream: `00 - Project Manager`
-Evidence: `project-management/evidence/PH01/PH01-G01-T04-GATE-DECISION.md`
+Evidence: `project-management/phases/PH01/evidence/PH01-G01-T04-GATE-DECISION.md`
 
 ## Tasks
 

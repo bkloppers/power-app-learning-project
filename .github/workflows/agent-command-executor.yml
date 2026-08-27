@@ -6,8 +6,7 @@ on:
     types: [completed]
 
 permissions:
-  contents: write
-  issues: write
+  contents: read
 
 concurrency:
   group: agent-command-gateway
@@ -32,9 +31,16 @@ jobs:
         with:
           python-version: '3.12'
 
+      - name: Create Gateway GitHub App token
+        id: gateway-app-token
+        uses: actions/create-github-app-token@bcd2ba49218906704ab6c1aa796996da409d3eb1
+        with:
+          client-id: ${{ vars.GATEWAY_APP_CLIENT_ID }}
+          private-key: ${{ secrets.GATEWAY_APP_PRIVATE_KEY }}
+
       - name: Execute validated command
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ steps.gateway-app-token.outputs.token }}
           GATEWAY_HEAD_SHA: ${{ github.event.workflow_run.head_sha }}
           GATEWAY_HEAD_BRANCH: ${{ github.event.workflow_run.head_branch }}
           GATEWAY_ACTOR: ${{ github.event.workflow_run.actor.login }}

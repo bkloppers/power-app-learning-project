@@ -88,6 +88,25 @@ class GitHubClient:
             detail = exc.read().decode("utf-8", errors="replace")
             raise GatewayError(f"GitHub API {method} {url} failed: {exc.code} {detail}") from exc
 
+    def paginate(self, path: str, params: dict[str, Any] | None = None) -> list[Any]:
+        """Return every item from a GitHub REST collection using page/per_page pagination."""
+        base_params = dict(params or {})
+        base_params.pop("page", None)
+        base_params["per_page"] = 100
+        items: list[Any] = []
+        page = 1
+        while True:
+            page_params = {**base_params, "page": page}
+            separator = "&" if "?" in path else "?"
+            result = self.request("GET", f"{path}{separator}{urllib.parse.urlencode(page_params)}")
+            if not isinstance(result, list):
+                raise GatewayError(f"Expected GitHub collection response for {path}")
+            items.extend(result)
+            if len(result) < 100:
+                break
+            page += 1
+        return items
+
     def get_content_text(self, path: str, ref: str) -> str:
         encoded_path = urllib.parse.quote(path, safe="/")
         result = self.request("GET", f"/contents/{encoded_path}?ref={urllib.parse.quote(ref, safe='')}")
@@ -235,11 +254,16 @@ def ensure_label(client: GitHubClient, label: str) -> None:
 
 
 def list_issues(client: GitHubClient, *, state: str = "all", labels: str | None = None) -> list[dict[str, Any]]:
-    params = {"state": state, "per_page": 100}
+    params: dict[str, Any] = {"state": state}
     if labels:
         params["labels"] = labels
-    result = client.request("GET", f"/issues?{urllib.parse.urlencode(params)}")
-    return [item for item in result if "pull_request" not in item]
+    result = client.paginate("/issues", params)
+    return [item for item in result if isinstance(item, dict) and "pull_request" not in item]
+
+
+def list_issue_comments(client: GitHubClient, issue_number: int) -> list[dict[str, Any]]:
+    result = client.paginate(f"/issues/{issue_number}/comments")
+    return [item for item in result if isinstance(item, dict)]
 
 
 def find_issue_by_exact_id(client: GitHubClient, item_id: str) -> list[dict[str, Any]]:
@@ -437,7 +461,7 @@ def recover_operation(client: GitHubClient, command: dict[str, Any]) -> dict[str
         if issue:
             return {"issueNumber": issue.get("number"), "url": issue.get("html_url"), "recovered": True}
     if operation == "add_issue_comment":
-        comments = client.request("GET", f"/issues/{command['issueNumber']}/comments?per_page=100")
+        comments = list_issue_comments(client, command["issueNumber"])
         matches = [item for item in comments if marker in (item.get("body") or "")]
         require(len(matches) <= 1, "Multiple comments contain the same gateway command marker")
         if matches:

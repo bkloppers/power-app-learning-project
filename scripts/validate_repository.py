@@ -9,6 +9,7 @@ ROOT = Path(__file__).resolve().parents[1]
 ERRORS: list[str] = []
 CHECKOUT_SHA = "11d5960a326750d5838078e36cf38b85af677262"
 SETUP_PYTHON_SHA = "a26af69be951a213d495a4c3e4e4022e16d87065"
+CREATE_APP_TOKEN_SHA = "bcd2ba49218906704ab6c1aa796996da409d3eb1"
 
 
 def error(message: str) -> None:
@@ -99,6 +100,10 @@ def validate_gateway_structure() -> None:
             "github.event.workflow_run.actor.login == github.repository_owner",
             f"actions/checkout@{CHECKOUT_SHA}",
             f"actions/setup-python@{SETUP_PYTHON_SHA}",
+            f"actions/create-github-app-token@{CREATE_APP_TOKEN_SHA}",
+            "GATEWAY_APP_CLIENT_ID",
+            "GATEWAY_APP_PRIVATE_KEY",
+            "steps.gateway-app-token.outputs.token",
             "GATEWAY_EXPECTED_ACTOR:",
             "GATEWAY_INTAKE_RUN_ID:",
             "GATEWAY_EXECUTOR_RUN_ID:",
@@ -110,6 +115,8 @@ def validate_gateway_structure() -> None:
         text = executor.read_text(encoding="utf-8")
         if "actions: read" in text or "pull-requests: read" in text:
             error("Agent Command Executor contains permissions not required by Gateway v1")
+        if re.search(r"(?m)^\s+contents:\s+write\s*$", text) or re.search(r"(?m)^\s+issues:\s+write\s*$", text):
+            error("Built-in Agent Command Executor GITHUB_TOKEN must not have write permission; use the dedicated Gateway GitHub App token")
 
     integrity = ROOT / ".github" / "workflows" / "repository-integrity.yml"
     require_text(
@@ -131,14 +138,42 @@ def validate_gateway_structure() -> None:
             "workflowActor",
             "executorMainSha",
             "targetAfterStatus",
+            "def paginate(",
+            "def list_issue_comments(",
+            "client.paginate(\"/issues\"",
+            "list_issue_comments(client",
         ],
         "Agent Command Gateway executor",
+    )
+
+    tests = ROOT / "scripts" / "test_agent_command_gateway.py"
+    require_text(
+        tests,
+        [
+            "test_issue_collection_paginates_past_100",
+            "test_duplicate_detection_finds_ticket_after_first_100",
+            "test_parent_gate_lookup_finds_gate_after_first_100",
+            "test_dependency_lookup_finds_completed_ticket_after_first_100",
+            "test_conflicting_ticket_detection_with_more_than_100_matching_issues",
+            "test_comment_recovery_finds_marker_after_first_100_comments",
+        ],
+        "Agent Command Gateway tests",
     )
 
     standard = ROOT / "project-management" / "governance" / "GITHUB-ACTION-GATEWAY-STANDARD.md"
     require_text(
         standard,
-        ["Version: 1.1", "Transport-branch protection", "Intrinsic idempotency", "Audit provenance", "queue: max"],
+        [
+            "Version: 1.1",
+            "Transport-branch protection",
+            "Intrinsic idempotency",
+            "Audit provenance",
+            "queue: max",
+            "Complete collection pagination",
+            "GATEWAY_APP_CLIENT_ID",
+            "GATEWAY_APP_PRIVATE_KEY",
+            "dedicated Gateway GitHub App",
+        ],
         "GitHub Action Gateway Standard",
     )
 

@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import re
 import urllib.parse
 import unittest
 
@@ -10,6 +11,8 @@ from scripts.agent_command_gateway import (
     complete_ticket,
     create_ticket,
     execute_operation,
+    list_issue_comments,
+    list_issues,
     start_ticket,
     validate_command,
     verify_command_commit,
@@ -46,6 +49,16 @@ def ticket_issue(number: int = 20, ticket_id: str = "PH03-G01-T01", status: str 
     }
 
 
+def filler_issue(number: int) -> dict:
+    return {
+        "number": number,
+        "state": "closed",
+        "title": f"Historical issue {number}",
+        "body": "Historical filler",
+        "labels": [{"name": "type:doc"}],
+    }
+
+
 class FakeClient:
     def __init__(self, issues=None, contents=None):
         self.issues = {item["number"]: item for item in (issues or [])}
@@ -58,6 +71,20 @@ class FakeClient:
 
     def content_exists(self, path, ref="main"):
         return path in self.contents
+
+    def paginate(self, path, params=None):
+        params = dict(params or {})
+        params["per_page"] = 100
+        page = 1
+        collected = []
+        while True:
+            query = urllib.parse.urlencode({**params, "page": page})
+            separator = "&" if "?" in path else "?"
+            result = self.request("GET", f"{path}{separator}{query}")
+            collected.extend(result)
+            if len(result) < 100:
+                return collected
+            page += 1
 
     def request(self, method, path, payload=None):
         if method == "GET" and path.startswith("/labels/"):
@@ -74,6 +101,8 @@ class FakeClient:
             query = urllib.parse.parse_qs(path.split("?", 1)[1])
             state = query.get("state", ["open"])[0]
             labels = set(query.get("labels", [""])[0].split(",")) - {""}
+            page = int(query.get("page", ["1"])[0])
+            per_page = int(query.get("per_page", ["30"])[0])
             result = []
             for item in self.issues.values():
                 if state != "all" and item["state"] != state:
@@ -82,19 +111,25 @@ class FakeClient:
                 if labels and not labels.issubset(names):
                     continue
                 result.append(item)
-            return result
+            start = (page - 1) * per_page
+            return result[start:start + per_page]
         if method == "POST" and path == "/issues":
             issue = {"number": self.next_issue, "state": "open", "html_url": f"https://example/{self.next_issue}", **payload}
             issue["labels"] = [{"name": x} for x in payload.get("labels", [])]
             self.issues[self.next_issue] = issue
             self.next_issue += 1
             return issue
-        match = __import__("re").match(r"/issues/(\d+)(?:/comments)?(?:\?.*)?$", path)
+        match = re.match(r"/issues/(\d+)(?:/comments)?(?:\?.*)?$", path)
         if match:
             number = int(match.group(1))
             if "/comments" in path:
                 if method == "GET":
-                    return self.comments.get(number, [])
+                    query = urllib.parse.parse_qs(path.split("?", 1)[1]) if "?" in path else {}
+                    page = int(query.get("page", ["1"])[0])
+                    per_page = int(query.get("per_page", ["30"])[0])
+                    items = self.comments.get(number, [])
+                    start = (page - 1) * per_page
+                    return items[start:start + per_page]
                 if method == "POST":
                     item = {"id": self.next_comment, "body": payload["body"]}
                     self.next_comment += 1
@@ -111,7 +146,7 @@ class FakeClient:
         raise AssertionError(f"Unexpected fake request: {method} {path}")
 
 
-def create_ticket_command(status="NOT STARTED"):
+def create_ticket_command(status="NOT STARTED", dependencies=None):
     return {
         "schemaVersion": 1,
         "commandId": "20260827-PH03-G01-T01",
@@ -121,7 +156,7 @@ def create_ticket_command(status="NOT STARTED"):
             "id": "PH03-G01-T01", "phase": "PH03", "gate": "PH03-G01",
             "type": "build", "status": status, "priority": "normal",
             "title": "Create governed application object", "points": 2,
-            "workstream": "02 - Application Foundation", "dependencies": ["No ticket dependency"],
+            "workstream": "02 - Application Foundation", "dependencies": dependencies or ["No ticket dependency"],
             "selectedSolution": "Create only the approved app object.",
             "acceptanceCriteria": ["App object exists."],
             "evidence": ["project-management/phases/PH03/evidence/test.md"],
@@ -158,8 +193,7 @@ class GatewayHardeningTests(unittest.TestCase):
             create_ticket(client, create_ticket_command())
 
     def test_start_ready_ticket(self):
-        issue = ticket_issue()
-        client = FakeClient([gate_issue(), issue])
+        client = FakeClient([gate_issue(), ticket_issue()])
         result = start_ticket(client, {"issueNumber": 20, "ticketId": "PH03-G01-T01", "commandId": "20260827-start-001"})
         self.assertEqual(result["targetAfterStatus"], "IN PROGRESS")
         self.assertIn("Gateway-Command-ID: 20260827-start-001", client.issues[20]["body"])
@@ -236,6 +270,49 @@ class GatewayHardeningTests(unittest.TestCase):
         command = {"schemaVersion": 1, "commandId": "20260827-run-shell", "operation": "run", "repository": REPO, "issueNumber": 1}
         with self.assertRaises(GatewayError):
             validate_command(command, REPO)
+
+    def test_issue_collection_paginates_past_100(self):
+        client = FakeClient([filler_issue(i) for i in range(1, 126)])
+        self.assertEqual(len(list_issues(client)), 125)
+
+    def test_duplicate_detection_finds_ticket_after_first_100(self):
+        issues = [filler_issue(i) for i in range(1, 111)] + [gate_issue(number=111), ticket_issue(number=112)]
+        client = FakeClient(issues)
+        with self.assertRaisesRegex(GatewayError, "Ticket already exists"):
+            create_ticket(client, create_ticket_command())
+
+    def test_parent_gate_lookup_finds_gate_after_first_100(self):
+        issues = [filler_issue(i) for i in range(1, 111)] + [gate_issue(number=111)]
+        client = FakeClient(issues)
+        created = create_ticket(client, create_ticket_command())
+        self.assertEqual(created["title"], "[PH03-G01-T01][BUILD] Create governed application object")
+
+    def test_dependency_lookup_finds_completed_ticket_after_first_100(self):
+        dependency = ticket_issue(number=111, ticket_id="PH02-G01-T01", status="COMPLETE")
+        dependency["state"] = "closed"
+        dependency["labels"] = [{"name": "phase:PH02"}, {"name": "gate:PH02-G01"}, {"name": "type:design"}, {"name": "status:complete"}]
+        issues = [filler_issue(i) for i in range(1, 101)] + [dependency, gate_issue(number=112)]
+        client = FakeClient(issues)
+        command = create_ticket_command(status="READY", dependencies=["PH02-G01-T01 complete"])
+        created = create_ticket(client, command)
+        self.assertEqual(created["state"], "open")
+
+    def test_conflicting_ticket_detection_with_more_than_100_matching_issues(self):
+        target = ticket_issue(number=500)
+        conflicts = [ticket_issue(number=600 + i, ticket_id=f"PH03-G01-T{(i % 98) + 2:02d}", status="IN PROGRESS") for i in range(101)]
+        client = FakeClient([gate_issue(), target, *conflicts])
+        with self.assertRaisesRegex(GatewayError, "Another ticket is already IN PROGRESS"):
+            start_ticket(client, {"issueNumber": 500, "ticketId": "PH03-G01-T01", "commandId": "20260827-start-many"})
+
+    def test_comment_recovery_finds_marker_after_first_100_comments(self):
+        client = FakeClient([gate_issue()])
+        command = {"schemaVersion": 1, "commandId": "20260827-comment-page2", "operation": "add_issue_comment", "repository": REPO, "issueNumber": 12, "comment": "smoke"}
+        client.comments[12] = [{"id": i, "body": f"comment {i}"} for i in range(1, 106)]
+        client.comments[12][104]["body"] = "already done\n\n<!-- Gateway-Command-ID: 20260827-comment-page2 -->"
+        result = execute_operation(client, command)
+        self.assertTrue(result["recovered"])
+        self.assertEqual(result["commentId"], 105)
+        self.assertEqual(len(list_issue_comments(client, 12)), 105)
 
 
 if __name__ == "__main__":

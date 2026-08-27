@@ -17,9 +17,9 @@ If this dashboard conflicts with the corresponding live GitHub Issues, execution
 
 Gate Issue: #12 - `[GATE][PH02-G01] Solution and ALM foundation valid`
 Gate Status: IN PROGRESS
-Current Ticket: PH02-G01-T03
-Current Ticket Issue: #15 - `[PH02][G01][ALM] Validate existing publisher and unmanaged development solution`
-Ticket Status: COMPLETE
+Current Ticket: PH02-G01-T04
+Current Ticket Issue: #16 - `[PH02][G01][BUILD] Establish configuration containers`
+Ticket Status: IN PROGRESS
 Owner: `08 - Deployment and ALM`
 
 GitHub Operational Control Model setup is COMPLETE:
@@ -30,11 +30,11 @@ GitHub Operational Control Model setup is COMPLETE:
 - Repository-integrity GitHub Actions workflow and validator active.
 - PH02-G01 gate Issue #12 and ticket Issues #13-#18 instantiated.
 - Canonical phase/gate/type/status labels applied.
-- T01 Issue #13 and T02 Issue #14 closed as completed.
-- T03 validation evidence is complete under the canonical PH02 evidence path.
+- T01 Issue #13, T02 Issue #14 and T03 Issue #15 are closed as completed.
+- T04 Issue #16 is the single IN PROGRESS ticket.
 - `Main Branch Governance` ruleset is ACTIVE on `main`, requiring Pull Requests and the `Repository Integrity` status check.
 
-No governance dependency blocks the recorded T03 validation result.
+No governance dependency blocks PH02-G01-T04 execution.
 
 ## PH02 Foundation - VERIFIED AND APPROVED
 
@@ -71,37 +71,55 @@ Gate: PH02-G01
 Gate Issue: #12 OPEN / `status:in-progress`
 Canonical folder: `project-management/phases/PH02/`
 
-Live/derived ticket state after T03 controlled completion:
+Live/derived ticket state:
 - PH02-G01-T01: COMPLETE - Issue #13 CLOSED / `status:complete`
 - PH02-G01-T02: COMPLETE - Issue #14 CLOSED / `status:complete`
-- PH02-G01-T03: COMPLETE - Issue #15 completion is tied to the controlled T03 PR and must be closed/reconciled when that PR merges.
-- PH02-G01-T04: NOT STARTED - Issue #16 remains NOT STARTED.
-- PH02-G01-T05: NOT STARTED - Issue #17 remains NOT STARTED.
-- PH02-G01-T06: NOT STARTED - Issue #18 remains NOT STARTED.
+- PH02-G01-T03: COMPLETE - Issue #15 CLOSED / `status:complete`
+- PH02-G01-T04: IN PROGRESS - Issue #16 OPEN / `status:in-progress`
+- PH02-G01-T05: NOT STARTED - Issue #17 OPEN / `status:not-started`
+- PH02-G01-T06: NOT STARTED - Issue #18 OPEN / `status:not-started`
 
 Phase-owned gate source package: `project-management/phases/PH02/gates/PH02-G01-GITHUB-ISSUE-PACKAGE.md`.
 
 ## Exact Next Step
 
-Complete only the PH02-G01-T03 operational closure: merge the controlled T03 Pull Request after `Repository Integrity` passes, ensure Issue #15 is closed/marked COMPLETE and its status metadata is reconciled, then stop.
+Execute only PH02-G01-T04 / Issue #16 on branch `ph02-g01-t04-establish-configuration-containers`.
 
-Do not start PH02-G01-T04 in this execution. Issue #16 remains NOT STARTED and requires separate authorization.
+Establish only configuration components with a confirmed downstream use inside `GCC AI Champions`. Do not create placeholder environment variables or connection references. Capture solution inventory and maker-portal evidence, validate all Issue #16 acceptance criteria, and use one controlled T04 Pull Request.
+
+Do not start PH02-G01-T05 in this execution.
 
 ## Implementation Authorization
 
-PH02-G01-T03 validation is complete. No T04 work or physical application/configuration component creation is authorized by this T03 execution.
+PH02-G01-T04 is authorized. T04 may create only the environment-variable and connection-reference structures justified by the approved application architecture and current Microsoft ALM guidance. Canvas App, flow, Microsoft List, and other application/data components remain controlled by later phases and are not authorized by T04.
+
+## T04 Selected Configuration Boundary
+
+Confirmed downstream dependency: Tool 01 uses Microsoft Lists / SharePoint Lists as its initial data platform.
+
+Authorized T04 configuration components:
+- one SharePoint **data source environment variable** for the Tool 01 SharePoint site;
+- one SharePoint **connection reference** for future solution-aware SharePoint cloud flows.
+
+Deferred because they would be placeholders at T04:
+- SharePoint List environment variables, until PH09 creates and fixes the actual Lists;
+- additional connector references, until an approved component requires each connector;
+- any Tool 02 configuration, until PH18 requirements/platform are approved.
 
 ## Blockers / Dependencies
 
-- No governance blocker prevents T03 completion.
-- T03 dependencies were satisfied by completed T01/T02, confirmed environment access, and existing foundation evidence.
-- Duplicate environment/publisher/solution creation remains prohibited.
-- T04 remains NOT STARTED and was not executed.
+- T04 dependency T03 COMPLETE: SATISFIED.
+- Approved solution/publisher foundation: SATISFIED.
+- Tool 01 SharePoint platform dependency: CONFIRMED.
+- Current Microsoft environment-variable/connection-reference guidance: CHECKED 2026-08-27.
+- Exact Tool 01 SharePoint site resolved from the existing source template location.
+- No durable cross-cutting issue blocks T04.
 
 ## Locked Decisions
 
 - DEC-001 through DEC-012 govern; canonical register: `project-management/registers/DECISIONS.md`.
-- Approved 2026-08-27 PH02 correction: reuse `AI King Env` + `GCC AI Champions Power Platform` + `GCC AI Champions`; preserve publisher prefix `aiking`.
+- Reuse `AI King Env` + `GCC AI Champions Power Platform` + `GCC AI Champions`; preserve publisher prefix `aiking`.
+- Microsoft Lists / SharePoint Lists is the initial Tool 01 data platform.
 - Phase-specific artifacts must comply with `project-management/governance/PHASE-FOLDER-STANDARD.md`.
 - Live workflow state follows `project-management/governance/GITHUB-OPERATIONAL-CONTROL-STANDARD.md`.
 
@@ -124,10 +142,9 @@ Validation result: PASS. Existing publisher `GCC AI Champions Power Platform`, u
 - Adopted GitHub Operational Control Model after GitHub Workflow Review.
 - Reconciled closed PH01 Issues with explicit completion/PASS comments.
 - Instantiated PH02-G01 live gate/ticket Issues #12-#18 and applied canonical labels.
-- Closed T01/T02 Issues as completed and established Issue #15 as the T03 ticket.
 - Activated `Main Branch Governance` ruleset with PR and repository-integrity requirements.
-- Reorganized shared project-management documents into `control/`, `governance/`, `planning/` and `registers/` without changing the active PH02 execution state.
-- Executed PH02-G01-T03 validation and recorded PASS evidence for the existing publisher and unmanaged development solution.
-- Confirmed all four PH02 source screenshots are stored at the canonical repository path.
-- Confirmed T03 created no duplicate or application/configuration components.
-- Kept PH02-G01-T04 NOT STARTED; the PH02-G01 gate remains IN PROGRESS and not passed.
+- Reorganized shared project-management documents into `control/`, `governance/`, `planning/` and `registers/`.
+- Executed PH02-G01-T03 validation, merged PR #21 and closed/reconciled Issue #15 as COMPLETE.
+- Removed stale pre-merge T03 closure instructions from Project Control.
+- Started PH02-G01-T04 / Issue #16 as the single IN PROGRESS ticket.
+- T05 remains NOT STARTED; PH02-G01 remains IN PROGRESS and NOT DECIDED.

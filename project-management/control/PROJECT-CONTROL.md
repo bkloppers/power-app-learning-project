@@ -9,7 +9,7 @@ Last Updated: 2026-08-27
 
 ## Operational Control
 
-This file is a derived dashboard. Live gate/ticket workflow state is controlled by GitHub Issues under `project-management/GITHUB-OPERATIONAL-CONTROL-STANDARD.md` and DEC-012.
+This file is a derived dashboard. Live gate/ticket workflow state is controlled by GitHub Issues under `project-management/governance/GITHUB-OPERATIONAL-CONTROL-STANDARD.md` and DEC-012.
 
 If this dashboard conflicts with the corresponding live GitHub Issues, execution stops until the discrepancy is reconciled.
 
@@ -99,10 +99,10 @@ Only PH02-G01-T03 validation is currently authorized. Physical application/confi
 
 ## Locked Decisions
 
-- DEC-001 through DEC-012 govern.
+- DEC-001 through DEC-012 govern; canonical register: `project-management/registers/DECISIONS.md`.
 - Approved 2026-08-27 PH02 correction: reuse `AI King Env` + `GCC AI Champions Power Platform` + `GCC AI Champions`; preserve publisher prefix `aiking`.
-- Phase-specific artifacts must comply with `project-management/PHASE-FOLDER-STANDARD.md`.
-- Live workflow state follows `project-management/GITHUB-OPERATIONAL-CONTROL-STANDARD.md`.
+- Phase-specific artifacts must comply with `project-management/governance/PHASE-FOLDER-STANDARD.md`.
+- Live workflow state follows `project-management/governance/GITHUB-OPERATIONAL-CONTROL-STANDARD.md`.
 
 ## Change Log
 
@@ -117,3 +117,4 @@ Only PH02-G01-T03 validation is currently authorized. Physical application/confi
 - Closed T01/T02 Issues as completed and established Issue #15 as the single READY ticket.
 - Activated `Main Branch Governance` ruleset with PR and repository-integrity requirements.
 - Removed completed governance dependencies from Project Control and restored PH02-G01-T03 as the exact next action.
+- Reorganized shared project-management documents into `control/`, `governance/`, `planning/` and `registers/` without changing the active PH02 execution state.

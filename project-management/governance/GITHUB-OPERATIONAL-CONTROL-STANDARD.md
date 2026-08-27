@@ -12,10 +12,10 @@ Make GitHub mechanics enforce the project process so that a new human or AI agen
 - GitHub Issues are the transactional source of truth for live gate and ticket workflow state.
 - Pull Requests are the controlled repository-change and review boundary.
 - Phase evidence proves completion and lives in the owning phase folder.
-- `project-management/PROJECT-CONTROL.md` is a derived project dashboard/snapshot; it must reflect live GitHub operational state and must not independently advance a ticket or gate.
+- `project-management/control/PROJECT-CONTROL.md` is a derived project dashboard/snapshot; it must reflect live GitHub operational state and must not independently advance a ticket or gate.
 - Phase documents define durable phase scope, learning, dependencies, acceptance criteria and historical outcomes; they do not replace live Issue state.
-- `project-management/DECISIONS.md` remains authoritative for locked durable decisions.
-- `project-management/ISSUES.md` remains authoritative for durable unresolved cross-cutting project issues.
+- `project-management/registers/DECISIONS.md` remains authoritative for locked durable decisions.
+- `project-management/registers/ISSUES.md` remains authoritative for durable unresolved cross-cutting project issues.
 
 ## Operational hierarchy
 
@@ -79,7 +79,7 @@ Repository-changing ticket work uses one branch per active ticket:
 
 `phxx-gxx-txx-short-purpose`
 
-Examples:
+Example:
 
 `ph02-g01-t03-validate-solution-foundation`
 
@@ -104,15 +104,15 @@ A merged PR does not by itself complete a ticket or pass a gate.
 
 ## Phase artifact rule
 
-All phase-owned durable artifacts follow `project-management/PHASE-FOLDER-STANDARD.md`.
+All phase-owned durable artifacts follow `project-management/governance/PHASE-FOLDER-STANDARD.md`.
 
 Live workflow status must not be duplicated into additional phase-specific tracking files merely to mirror GitHub Issues. Evidence, specifications, approvals and handoffs remain in the phase folder; live ticket/gate status remains in Issues.
 
 ## Project Control rule
 
-`PROJECT-CONTROL.md` is updated after operational state changes. It must name the current phase, gate, active/next ticket and blockers, but its values are derived from the corresponding GitHub Issues.
+`project-management/control/PROJECT-CONTROL.md` is updated after operational state changes. It must name the current phase, gate, active/next ticket and blockers, but its values are derived from the corresponding GitHub Issues.
 
-If `PROJECT-CONTROL.md` conflicts with the live operational Issues, stop execution, reconcile the conflict, and do not advance work until the discrepancy is resolved.
+If Project Control conflicts with the live operational Issues, stop execution, reconcile the conflict, and do not advance work until the discrepancy is resolved.
 
 ## Completion rule
 
@@ -135,7 +135,8 @@ Repository automation should progressively enforce machine-checkable rules, begi
 - required phase structure;
 - unique decision and issue IDs;
 - required PR metadata;
-- no phase-owned evidence under deprecated shared evidence paths.
+- no phase-owned evidence under deprecated shared evidence paths;
+- no use of deprecated pre-reorganization shared document paths.
 
 Automation is a guardrail, not a substitute for human gate approval or domain validation.
 
@@ -149,12 +150,11 @@ A new agent should establish state in this order:
 
 1. `README.md`
 2. `AGENTS.md`
-3. `project-management/GITHUB-OPERATIONAL-CONTROL-STANDARD.md`
-4. `project-management/PROJECT-CONTROL.md`
-5. current gate Issue
-6. active/next ticket Issue
-7. `project-management/DECISIONS.md`
-8. `project-management/ISSUES.md`
-9. active phase specification and relevant standards/evidence
+3. `project-management/control/PROJECT-CONTROL.md`
+4. current gate Issue
+5. active/next ticket Issue
+6. `project-management/registers/DECISIONS.md`
+7. `project-management/registers/ISSUES.md`
+8. active phase specification and relevant standards/evidence
 
-No agent may infer a different live workflow state from chat history when GitHub operational records exist.
+Read this governance standard when performing governance work or when `AGENTS.md` directs a governance check. No agent may infer a different live workflow state from chat history when GitHub operational records exist.

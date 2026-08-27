@@ -13,6 +13,45 @@ def error(message: str) -> None:
     ERRORS.append(message)
 
 
+def validate_required_structure() -> None:
+    required_files = [
+        ROOT / "project-management" / "control" / "PROJECT-CONTROL.md",
+        ROOT / "project-management" / "control" / "AI-PROJECT-CONTINUITY-FLOW.md",
+        ROOT / "project-management" / "governance" / "GITHUB-OPERATIONAL-CONTROL-STANDARD.md",
+        ROOT / "project-management" / "governance" / "PROCESS-AND-PROGRESS-FRAMEWORK.md",
+        ROOT / "project-management" / "governance" / "GATE-TRACKING-MODEL.md",
+        ROOT / "project-management" / "governance" / "CHAT-SESSION-TICKET-CAPACITY-MODEL.md",
+        ROOT / "project-management" / "governance" / "PHASE-FOLDER-STANDARD.md",
+        ROOT / "project-management" / "planning" / "PROJECT-OPERATIONAL-DELIVERY-PLAN.md",
+        ROOT / "project-management" / "registers" / "DECISIONS.md",
+        ROOT / "project-management" / "registers" / "ISSUES.md",
+        ROOT / "project-management" / "registers" / "APPROVALS.md",
+        ROOT / "docs" / "standards" / "POWER-APPS-FUTURE-FIRST-STANDARD.md",
+    ]
+    for path in required_files:
+        if not path.exists():
+            error(f"Missing canonical repository file: {path.relative_to(ROOT)}")
+
+    deprecated_files = [
+        "project-management/PROJECT-CONTROL.md",
+        "project-management/AI-PROJECT-CONTINUITY-FLOW.md",
+        "project-management/GITHUB-OPERATIONAL-CONTROL-STANDARD.md",
+        "project-management/PROCESS-AND-PROGRESS-FRAMEWORK.md",
+        "project-management/GATE-TRACKING-MODEL.md",
+        "project-management/CHAT-SESSION-TICKET-CAPACITY-MODEL.md",
+        "project-management/PHASE-FOLDER-STANDARD.md",
+        "project-management/PROJECT-OPERATIONAL-DELIVERY-PLAN.md",
+        "project-management/DECISIONS.md",
+        "project-management/ISSUES.md",
+        "project-management/APPROVALS.md",
+        "project-management/POWER-APPS-FUTURE-FIRST-STANDARD.md",
+    ]
+    for relative in deprecated_files:
+        path = ROOT / relative
+        if path.exists():
+            error(f"Deprecated pre-reorganization path still exists: {relative}")
+
+
 def validate_phase_structure() -> None:
     phases = ROOT / "project-management" / "phases"
     if not phases.exists():
@@ -80,9 +119,10 @@ def validate_pr_body() -> None:
 
 
 def main() -> int:
+    validate_required_structure()
     validate_phase_structure()
-    validate_id_headings(ROOT / "project-management" / "DECISIONS.md", "DEC")
-    validate_id_headings(ROOT / "project-management" / "ISSUES.md", "ISS")
+    validate_id_headings(ROOT / "project-management" / "registers" / "DECISIONS.md", "DEC")
+    validate_id_headings(ROOT / "project-management" / "registers" / "ISSUES.md", "ISS")
     validate_pr_body()
 
     if ERRORS:

@@ -7,7 +7,7 @@ Status: COMPLETE
 
 ## Dependency
 
-- PH01-G01-T01 complete with evidence at `project-management/evidence/PH01-G01-T01-FOUNDATION-RECONCILIATION.md`.
+- PH01-G01-T01 complete with evidence at `project-management/evidence/PH01/PH01-G01-T01-FOUNDATION-RECONCILIATION.md`.
 
 ## Synchronization Result
 

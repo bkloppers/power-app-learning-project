@@ -2,7 +2,7 @@
 
 ## Status
 
-IN PROGRESS - PH02-G01-T01, T02 and T03 complete; T04 remains NOT STARTED.
+IN PROGRESS - PH02-G01-T01, T02 and T03 complete; T04 is IN PROGRESS.
 
 ## Objective
 
@@ -84,7 +84,7 @@ Evidence: `project-management/phases/PH02/evidence/PH02-LEARNING-UNDERSTANDING-E
 - Development environment and access confirmed. SATISFIED.
 - Existing foundation naming/technical identity confirmed. SATISFIED.
 - Future-first freshness check completed. SATISFIED.
-- No unresolved issue blocks T03 validation. SATISFIED.
+- No unresolved issue blocks T04 execution. SATISFIED.
 
 ### Required Tickets
 
@@ -125,17 +125,23 @@ Evidence:
 - `project-management/phases/PH02/evidence/screenshots/`.
 
 #### PH02-G01-T04 - BUILD - Establish configuration containers
-Status: NOT STARTED
+Status: IN PROGRESS
 Points: 2
 Workstream: `08 - Deployment and ALM`
-Dependencies: T03 complete.
+Dependencies: T03 complete. SATISFIED.
+Selected implementation boundary:
+- Create one SharePoint data-source environment variable for the confirmed Tool 01 SharePoint site.
+- Create one SharePoint connection reference for future solution-aware Tool 01 cloud flows.
+- Defer SharePoint List environment variables until PH09 fixes the actual governed List identities.
+- Defer all other connector references until an approved downstream component requires them.
 Acceptance Criteria:
 - Initial environment-variable strategy is recorded in the solution.
 - Initial connection-reference strategy is recorded in the solution.
 - No unnecessary placeholder connection or variable is created without a defined future use.
 - Naming follows project standards.
 Evidence:
-- Solution component inventory and screenshots/metadata.
+- `project-management/phases/PH02/evidence/PH02-G01-T04-CONFIGURATION-CONTAINER-PLAN.md`.
+- Solution component inventory and maker-portal screenshots/metadata when produced.
 
 #### PH02-G01-T05 - TEST - Validate solution and publisher foundation
 Status: NOT STARTED
@@ -174,9 +180,9 @@ Evidence:
 ### SES-PH02-G01-ALM-01
 - PH02-G01-T02 - COMPLETE
 - PH02-G01-T03 - COMPLETE
-- PH02-G01-T04 - NOT STARTED
+- PH02-G01-T04 - IN PROGRESS
 
-T03 validation is complete. T04 remains NOT STARTED and was not executed as part of T03.
+T04 is the single active ticket. T05 remains blocked until T04 completes.
 
 ### SES-PH02-G01-TEST-01
 - PH02-G01-T05 - NOT STARTED
@@ -195,4 +201,4 @@ T03 validation is complete. T04 remains NOT STARTED and was not executed as part
 
 ## Implementation Authorization
 
-T01, T02 and T03 validation are COMPLETE. T04 remains NOT STARTED. This T03 execution does not authorize T04 or any Canvas App, flow, environment variable, connection reference, or other application/configuration component creation. Physical configuration/component creation remains dependency-controlled by later PH02 tickets and separate authorization.
+T01, T02 and T03 are COMPLETE. T04 is IN PROGRESS and may create only the configuration components explicitly justified by its selected solution. No Canvas App, cloud flow, Microsoft List, Tool 02 object, or other application/data component is authorized by T04. T05 remains NOT STARTED.

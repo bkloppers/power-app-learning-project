@@ -2,11 +2,11 @@
 
 ## Status
 
-READY - entry validation complete 2026-08-27. Learning/design may begin. Build work remains dependency-controlled by PH02-G01 tickets.
+IN PROGRESS - PH02-G01-T01 and T02 complete; T03 validation is READY.
 
 ## Objective
 
-Establish the governed Power Platform solution and ALM foundation before creating implementation assets that would otherwise become standalone or environment-bound artifacts.
+Establish and validate the governed Power Platform solution and ALM foundation before creating implementation assets that would otherwise become standalone or environment-bound artifacts.
 
 ## Hierarchy Level
 
@@ -14,36 +14,40 @@ Power Platform environment, publisher, solution, environment-variable and connec
 
 ## Learning Outcome
 
-The learner can explain the relationship between environment, custom publisher, unmanaged development solution, solution ownership, environment variables, connection references, and downstream managed deployment.
+COMPLETE for T01/T02 learning scope. The learner can explain the relationship between environment, custom publisher, unmanaged development solution, solution ownership, environment variables, connection references, and downstream managed deployment. Evidence: `project-management/evidence/PH02-LEARNING-UNDERSTANDING-EVIDENCE.md`.
 
 ## Prerequisites
 
-- `PH01-G01 - Solution scope and process approved` is formally passed. SATISFIED.
-- Approved foundation baseline remains current. SATISFIED.
-- Development Power Platform environment is identified and accessible. SATISFIED: `Burt Kloppers's Environment`.
-- Required maker/solution permissions are confirmed. SATISFIED: Solutions page accessible and New solution action visible.
-- Project naming standard inputs needed for environment/publisher/solution names are available. SATISFIED.
-- Current Microsoft documentation/release status for solutions, publishers, environment variables, connection references and deployment tooling has been checked under the Future-First Standard. SATISFIED 2026-08-27; see `project-management/evidence/PH02-ENTRY-VALIDATION-AND-ALM-FRESHNESS.md`.
+- `PH01-G01 - Solution scope and process approved` passed. SATISFIED.
+- Approved foundation baseline current. SATISFIED.
+- Development Power Platform environment identified and accessible. SATISFIED: `AI King Env`.
+- Required maker/solution permissions confirmed. SATISFIED.
+- Existing publisher and unmanaged solution verified. SATISFIED.
+- Current Microsoft ALM guidance checked under the Future-First Standard. SATISFIED 2026-08-27.
 
-## Selected Naming Inputs
+## Authoritative Existing Foundation
 
-- Development environment: `Burt Kloppers's Environment`
-- Publisher display name: `NTT DATA Power Platform`
-- Publisher unique name: `NTTDataPowerPlatform`
-- Publisher prefix: `nttd`
-- Solution display name: `AI - Prompt Tools`
-- Solution unique name: `NTT_AI_PromptTools`
+- Environment: `AI King Env`
+- Environment type: `Developer`
+- Publisher display name: `GCC AI Champions Power Platform`
+- Publisher unique name: `GCC_AI_Champions_Power_Platform`
+- Publisher prefix: `aiking`
+- Solution display name: `GCC AI Champions`
+- Solution type: `Unmanaged`
+- Solution version: `1.0.0.0`
 
-The existing tenant environment name is recorded as-is and is not renamed by this phase.
+Do not create a duplicate publisher or development solution.
+
+The provisional values `Burt Kloppers's Environment`, `NTT DATA Power Platform`, `nttd`, `AI - Prompt Tools`, and `NTT_AI_PromptTools` are superseded and prohibited.
 
 ## Lab
 
-Create the production-oriented development foundation:
+Validate and use the existing production-oriented development foundation:
 
-1. confirm the approved Development environment;
-2. define the custom publisher and stable prefix;
-3. create the unmanaged development solution;
-4. establish solution ownership for the future Canvas App and flows;
+1. confirm the approved Developer environment;
+2. inspect and explain the existing custom publisher and stable prefix;
+3. validate the existing unmanaged development solution;
+4. confirm solution ownership for the future Canvas App and flows;
 5. establish the initial environment-variable and connection-reference strategy;
 6. record downstream deployment expectations without prematurely creating production assets.
 
@@ -51,21 +55,24 @@ Create the production-oriented development foundation:
 
 Show:
 
-- the custom publisher and stable prefix;
-- the unmanaged development solution;
+- the existing custom publisher and stable `aiking` prefix;
+- the existing `GCC AI Champions` unmanaged development solution;
 - where the future Canvas App, flows, environment variables and connection references will live;
 - how the solution is intended to move downstream as a governed unit rather than as manually repaired standalone artifacts.
 
 ## Understanding
 
-The learner must explain:
+The learner has completed the T01/T02 learning scope and understands:
 
-- why a custom publisher is chosen before component creation;
+- why the existing custom publisher is retained before component creation;
 - why the publisher prefix must remain stable;
-- why implementation begins inside an unmanaged development solution;
+- why development uses an unmanaged solution;
 - why environment-specific values should not be hard-coded into the app;
-- why development artifacts and production deployment artifacts have different lifecycle states;
-- why creating an app first and adding governance later produces avoidable ALM debt.
+- the difference between environment variables and connection references;
+- why solution-first development avoids ALM debt;
+- why duplicate publisher/solution creation would be incorrect for this approved existing foundation.
+
+Evidence: `project-management/evidence/PH02-LEARNING-UNDERSTANDING-EVIDENCE.md`.
 
 ## Gate
 
@@ -75,54 +82,45 @@ The learner must explain:
 
 - PH01-G01 passed. SATISFIED.
 - Development environment and access confirmed. SATISFIED.
-- Required naming inputs confirmed. SATISFIED.
+- Existing foundation naming/technical identity confirmed. SATISFIED.
 - Future-first freshness check completed. SATISFIED.
-- No unresolved issue blocks solution/publisher creation. SATISFIED for entry; T01/T02 remain mandatory pre-build dependencies.
+- No unresolved issue blocks T03 validation. SATISFIED.
 
 ### Required Tickets
 
 #### PH02-G01-T01 - DESIGN - Define solution foundation specification
-Status: READY
+Status: COMPLETE
 Points: 2
 Workstream: `01 - Architecture and Solution Design`
-Dependencies: PH01-G01 passed; naming standards; approved application direction.
-Acceptance Criteria:
-- Development environment naming is documented.
-- Publisher display name, unique name and stable prefix are documented.
-- Solution display/unique name is documented.
-- Ownership of future Canvas App, flows, environment variables and connection references is explicit.
-- No environment-specific secrets or mutable deployment values are proposed as hard-coded app constants.
+Dependencies: satisfied.
 Evidence:
-- Reviewed solution-foundation specification linked from the ticket.
+- PH02 solution-foundation design evidence committed on `main`.
+- `project-management/evidence/PH02-LEARNING-UNDERSTANDING-EVIDENCE.md`.
 
 #### PH02-G01-T02 - ALM - Perform Future-First ALM freshness check
-Status: READY FOR FORMAL TICKET VALIDATION
+Status: COMPLETE
 Points: 1
 Workstream: `08 - Deployment and ALM`
-Dependencies: T01 may be drafted; current Microsoft documentation access.
-Acceptance Criteria:
-- Current generally available guidance for solutions and custom publishers checked.
-- Current environment-variable and connection-reference guidance checked.
-- Current deployment/pipeline direction checked.
-- Any conflict with repository standards is recorded before build work.
-- Preview/planned features are clearly separated from production dependencies.
+Dependencies: satisfied.
 Evidence:
 - `project-management/evidence/PH02-ENTRY-VALIDATION-AND-ALM-FRESHNESS.md`.
+- Formal T02 validation evidence committed on `main`.
 
-#### PH02-G01-T03 - BUILD - Create custom publisher and unmanaged development solution
-Status: NOT STARTED
+#### PH02-G01-T03 - ALM - Validate existing publisher and unmanaged development solution
+Status: READY
 Points: 2
 Workstream: `08 - Deployment and ALM`
-Dependencies: T01 complete; T02 complete; Development environment access confirmed.
+Dependencies: T01 complete; T02 complete; Development environment access confirmed. SATISFIED.
 Acceptance Criteria:
-- Custom publisher exists with the approved stable prefix.
-- Unmanaged development solution exists using the approved naming standard.
-- Preferred/working solution configuration is aligned with the approved approach where applicable.
-- No implementation component is created outside the approved solution as part of this ticket.
+- Existing custom publisher is confirmed as `GCC AI Champions Power Platform`.
+- Stable publisher prefix is confirmed as `aiking`.
+- Existing `GCC AI Champions` solution is confirmed as Unmanaged, version `1.0.0.0`.
+- Existing foundation aligns with the approved PH02 approach.
+- No duplicate publisher, solution, Canvas App, flow or other implementation component is created as part of this ticket.
 Evidence:
-- Publisher screenshot/metadata.
-- Solution screenshot/metadata.
+- Existing foundation verification metadata/screenshots.
 - Naming verification.
+- T03 validation record.
 
 #### PH02-G01-T04 - BUILD - Establish configuration containers
 Status: NOT STARTED
@@ -144,7 +142,7 @@ Workstream: `07 - Testing and Validation`
 Dependencies: T03 and T04 complete.
 Acceptance Criteria:
 - Publisher prefix is confirmed stable and correct.
-- Solution ownership of created configuration components is confirmed.
+- Solution ownership of configuration components is confirmed.
 - Required metadata/naming is correct.
 - No accidental default-solution dependency introduced by this phase is identified.
 - Evidence is sufficient for an independent reviewer to reproduce the checks.
@@ -166,37 +164,33 @@ Acceptance Criteria:
 Evidence:
 - Gate decision record with links to ticket evidence.
 
-## Proposed Session Batches
+## Session Batches
 
 ### SES-PH02-G01-ARCH-01
-- PH02-G01-T01 - 2 points
-Total: 2
+- PH02-G01-T01 - COMPLETE
 
 ### SES-PH02-G01-ALM-01
-- PH02-G01-T02 - 1 point
-- PH02-G01-T03 - 2 points
-- PH02-G01-T04 - 2 points
-Total: 5
+- PH02-G01-T02 - COMPLETE
+- PH02-G01-T03 - READY
+- PH02-G01-T04 - NOT STARTED
 
-T03 may activate only after T02 reaches its required handoff state and all T03 dependencies are confirmed.
+T03 is the exact next ticket. T04 remains blocked until T03 completes.
 
 ### SES-PH02-G01-TEST-01
-- PH02-G01-T05 - 2 points
-Total: 2
+- PH02-G01-T05 - NOT STARTED
 
 ### SES-PH02-G01-VALIDATE-01
-- PH02-G01-T06 - 3 points
-Total: 3
+- PH02-G01-T06 - NOT STARTED
 
 ## Exit Criteria
 
 - PH02-G01 formally passed.
-- Development solution and custom publisher are validated.
-- Environment-variable/connection-reference strategy is established at the level required for the next phase.
-- Design/learning evidence is recorded.
-- Project Control is synchronized.
+- Existing development solution and custom publisher validated.
+- Environment-variable/connection-reference strategy established at the level required for the next phase.
+- Design/learning evidence recorded.
+- Project Control synchronized.
 - PH03 entry criteria can be evaluated without guessing.
 
 ## Implementation Authorization
 
-Phase 02 entry validation is complete. Learning/design is READY. Publisher/solution build work is authorized only after PH02-G01-T01 and T02 are complete and their operational ticket evidence is recorded.
+T01 and T02 are COMPLETE. T03 validation is READY. No Canvas App or application component creation is authorized by T03. Physical configuration/component creation remains dependency-controlled by later PH02 tickets.

@@ -9,10 +9,10 @@ Last Updated: 2026-08-27
 
 ## Current Task
 
-Task ID: PH02 LEARNING START
-Task: Begin Phase 02 learning using the verified existing Power Platform environment, publisher and unmanaged development solution.
+Task ID: PH02-G01-T03
+Task: Validate the existing custom publisher and unmanaged development solution against the approved PH02 foundation criteria.
 Status: READY
-Owner: Architecture and Solution Design workstream
+Owner: `08 - Deployment and ALM`
 
 ## Phase 02 Foundation - VERIFIED AND APPROVED
 
@@ -28,9 +28,9 @@ Owner: Architecture and Solution Design workstream
 - Publisher prefix: `aiking`
 - Choice value prefix: `38815`
 
-The Project Owner approved reuse of this existing governed foundation on 2026-08-27. Do not create a second publisher or a second development solution for this application family.
+The Project Owner approved reuse of this existing governed foundation on 2026-08-27. Do not create a second publisher or second development solution for this application family.
 
-The provisional values `Burt Kloppers's Environment`, `NTT DATA Power Platform`, `nttd`, `AI - Prompt Tools`, and `NTT_AI_PromptTools` are superseded and must not be used for PH02 implementation.
+The provisional values `Burt Kloppers's Environment`, `NTT DATA Power Platform`, `nttd`, `AI - Prompt Tools`, and `NTT_AI_PromptTools` are superseded and must not be used.
 
 ## Entry Validation
 
@@ -43,36 +43,44 @@ The provisional values `Burt Kloppers's Environment`, `NTT DATA Power Platform`,
 
 ## Last Completed
 
-- Foundation baseline approved and merged to `main`.
 - TASK-002 COMPLETE.
-- PH01-G01 PASSED.
-- Phase 01 COMPLETE.
+- PH01-G01 PASSED and Phase 01 COMPLETE.
 - PH02 entry validation COMPLETE.
-- Existing PH02 environment/publisher/solution foundation verified from maker-portal screenshots and approved for reuse.
-- Future-First ALM freshness check completed.
+- Existing PH02 environment/publisher/solution foundation verified and approved for reuse.
+- PH02-G01-T01 COMPLETE - solution foundation learning/design documented.
+- PH02-G01-T02 COMPLETE - dated Future-First ALM evidence formally consumed and validated.
+- PH02 Learning/Understanding COMPLETE; evidence recorded in `project-management/evidence/PH02-LEARNING-UNDERSTANDING-EVIDENCE.md`.
 
 ## Exact Next Step
 
-Execute the Phase 02 Learning Phase against the existing foundation. PH02-G01-T01 must document and explain the verified environment, publisher, prefix and unmanaged solution. PH02-G01-T02 must formally consume the dated ALM freshness evidence.
+Execute `PH02-G01-T03` as validation of the existing `GCC AI Champions Power Platform` publisher, stable `aiking` prefix, and `GCC AI Champions` unmanaged development solution.
 
-PH02-G01-T03 is no longer a creation task. It must validate the existing custom publisher and unmanaged development solution against the approved PH02 acceptance criteria and record evidence. No duplicate publisher or solution is to be created.
+T03 is validation-only. Do not create a publisher, solution, Canvas App, flow, environment variable, connection reference, or other application component unless a later PH02 ticket explicitly authorizes that creation.
 
 ## Phase Status
 
 ### Phase 01 - Solution Definition and Learning Architecture
 Status: COMPLETE
 Gate: PH01-G01 PASSED 2026-08-27.
-Evidence: `project-management/evidence/PH01-G01-T04-GATE-DECISION.md`.
 
 ### Phase 02 - Solution, Publisher and Environment Foundation
-Status: READY - VERIFIED EXISTING FOUNDATION APPROVED
+Status: IN PROGRESS
+Gate: PH02-G01 active.
 
-Implementation Authorization: READY FOR PH02 LEARNING/DESIGN. Physical app/component creation remains dependency-controlled by PH02 tickets.
+Ticket status:
+- PH02-G01-T01: COMPLETE
+- PH02-G01-T02: COMPLETE
+- PH02-G01-T03: READY
+- PH02-G01-T04: NOT STARTED
+- PH02-G01-T05: NOT STARTED
+- PH02-G01-T06: NOT STARTED
+
+Implementation Authorization: only the scoped T03 validation is currently authorized. Physical app/component creation remains dependency-controlled by later PH02 tickets.
 
 ## Blockers
 
-- No blocker prevents Phase 02 learning/design.
-- Do not create duplicate environment/publisher/solution foundation objects.
+- No blocker prevents T03 validation.
+- Duplicate environment/publisher/solution creation is prohibited.
 
 ## Locked Decisions
 
@@ -83,6 +91,9 @@ Implementation Authorization: READY FOR PH02 LEARNING/DESIGN. Physical app/compo
 
 ### 2026-08-27
 - PH01 completed and PH02 entry validation completed.
-- Corrected provisional PH02 environment/naming assumptions using verified maker-portal screenshots.
+- Corrected provisional PH02 environment/naming assumptions using verified maker-portal evidence.
 - Approved reuse of existing `AI King Env`, `GCC AI Champions Power Platform` publisher and `GCC AI Champions` unmanaged solution.
-- Explicitly prohibited creation of duplicate publisher/solution objects.
+- Completed PH02-G01-T01 learning/design.
+- Completed PH02-G01-T02 Future-First ALM validation.
+- Recorded PH02 Learning/Understanding as COMPLETE.
+- Activated PH02-G01-T03 as the exact next ticket, validation-only.

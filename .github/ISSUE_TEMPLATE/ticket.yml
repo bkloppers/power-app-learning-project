@@ -1,0 +1,83 @@
+name: Ticket
+about: Create a phase/gate execution ticket
+labels: ["priority:normal"]
+body:
+  - type: input
+    id: ticket_id
+    attributes:
+      label: Ticket ID
+      placeholder: PH02-G01-T03
+    validations:
+      required: true
+  - type: input
+    id: phase_gate
+    attributes:
+      label: Phase / Gate
+      placeholder: PH02 / PH02-G01
+    validations:
+      required: true
+  - type: dropdown
+    id: workstream
+    attributes:
+      label: Workstream / Type
+      options:
+        - DESIGN
+        - DOC
+        - BUILD
+        - DATA
+        - SECURITY
+        - AUTOMATION
+        - AI
+        - TEST
+        - ALM
+        - VALIDATE
+    validations:
+      required: true
+  - type: textarea
+    id: dependencies
+    attributes:
+      label: Dependencies
+      description: State each required dependency and its current status.
+    validations:
+      required: true
+  - type: textarea
+    id: solution
+    attributes:
+      label: Selected Solution
+      description: Exactly one selected solution. Do not list alternatives.
+    validations:
+      required: true
+  - type: textarea
+    id: acceptance
+    attributes:
+      label: Acceptance Criteria
+      description: Use Markdown checkboxes.
+    validations:
+      required: true
+  - type: textarea
+    id: evidence
+    attributes:
+      label: Required Evidence
+    validations:
+      required: true
+  - type: input
+    id: points
+    attributes:
+      label: Points
+      placeholder: 1, 2, 3, or 5
+    validations:
+      required: true
+  - type: dropdown
+    id: status
+    attributes:
+      label: Status
+      options:
+        - NOT STARTED
+        - READY
+        - IN PROGRESS
+        - BLOCKED
+        - VALIDATION
+        - COMPLETE
+      default: 0
+    validations:
+      required: true

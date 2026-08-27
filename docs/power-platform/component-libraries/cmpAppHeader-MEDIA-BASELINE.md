@@ -29,4 +29,33 @@ Microsoft-verified behavior:
 - Component-library media is defined at library level and is available to components in the library.
 - An Image control can reference a local media resource by its media name.
 
-Next step: bind `imgHeaderLogo.Image` to the two approved SVG resources using `cmpAppHeader.DarkMode`.
+## UI-024 — Incorrect media filename reference rejected
+
+Observed in `imgHeaderLogo.Image` after entering an `If()` formula that referenced the uploaded SVG filenames including the `.svg` extension.
+
+Snapshot directly proves:
+
+- `imgHeaderLogo` is inside `conHeaderBrandRow` -> `conHeaderRootRow` -> `cmpAppHeader`.
+- The formula parser reports: `The function 'If' has some invalid arguments.`
+- The media arguments with `.svg` extensions are underlined as invalid.
+
+Correction:
+
+Microsoft's current multimedia guidance states that the Image property should reference the uploaded image file name **without its extension**. Therefore the Power Apps media resource identifiers for the two selected SVG files are:
+
+- `GlobalLogo_NTTDATA_White_SVG`
+- `GlobalLogo_NTTDATA_FutureBlue_SVG`
+
+Correct formula:
+
+```powerfx
+If(
+    cmpAppHeader.DarkMode,
+    GlobalLogo_NTTDATA_White_SVG,
+    GlobalLogo_NTTDATA_FutureBlue_SVG
+)
+```
+
+This supersedes the earlier formula that included `.svg` in the references.
+
+Next step: enter the corrected formula and verify the parser error clears and the expected logo renders.

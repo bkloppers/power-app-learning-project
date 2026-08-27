@@ -31,9 +31,11 @@ workflow_run
 Agent Command Executor
 (trusted code from main)
         |
+        +--> mint short-lived dedicated Gateway GitHub App token
         +--> verify authorized originating actor
         +--> verify single-file append-only command commit
         +--> validate schema/repository/operation
+        +--> paginate complete Issue/comment collections
         +--> validate semantic workflow state
         +--> execute one allow-listed GitHub transaction
         +--> recover by commandId if mutation already occurred
@@ -57,32 +59,45 @@ The privileged executor may run only when:
 
 `agent-command-gateway` must have a dedicated ruleset that:
 
-- restricts updates to the approved command-submission identity and GitHub Actions integration required for result commits;
+- restricts updates to the exact approved command-submission user and the dedicated Gateway GitHub App;
 - blocks deletion;
 - blocks force pushes/non-fast-forward updates;
 - does not require Pull Requests, because command and result records are direct append-only transport commits;
-- grants no broad administrator bypass.
+- grants no broad repository-role or administrator bypass.
 
 The executor's actor check is mandatory defense in depth and must remain even when the branch ruleset is active.
 
-## Permissions
+## Authentication and permissions
 
 The intake workflow uses only `contents: read`.
 
-Gateway v1 executor uses only:
+The executor workflow's built-in `GITHUB_TOKEN` remains read-only. Before executing a command, the workflow creates a short-lived installation token from the dedicated Gateway GitHub App.
 
-- `contents: write` for append-only result records on the transport branch and read access to evidence on `main`;
-- `issues: write` for the allow-listed Issue operations.
+The Gateway GitHub App must be installed only on this repository and granted only:
 
-No PAT is stored in ChatGPT or the repository. The executor uses the repository-scoped GitHub Actions `GITHUB_TOKEN`.
+- Repository metadata: read (implicit);
+- Contents: read and write;
+- Issues: read and write.
+
+The App token is used by the Python executor for all Gateway GitHub API reads/writes, including append-only result commits. The App private key is stored only as the repository Actions secret `GATEWAY_APP_PRIVATE_KEY`; the App client ID is stored as the repository Actions variable `GATEWAY_APP_CLIENT_ID`.
+
+No PAT is stored in ChatGPT or the repository.
 
 ## Dependency integrity
 
-Third-party/first-party Actions used by the gateway and Repository Integrity workflows must be pinned to reviewed full commit SHAs rather than mutable major-version tags.
+Third-party/first-party Actions used by the gateway and Repository Integrity workflows must be pinned to reviewed full commit SHAs rather than mutable major-version tags. The GitHub App token action is pinned to the reviewed immutable v3.2.0 commit SHA.
 
 ## Queue integrity
 
 The executor uses one concurrency group with `cancel-in-progress: false` and `queue: max`. Commands must not be silently replaced while pending. State-transition validation remains authoritative because queued execution order is not itself a project-state guarantee.
+
+## Complete collection pagination
+
+All Issue and Issue-comment collection lookups used for authorization, duplicate detection, dependency checks, conflict checks, and idempotent recovery must paginate until the complete GitHub REST collection has been read.
+
+A single `per_page=100` response is never sufficient evidence that an Issue, gate, ticket, dependency, conflicting active ticket, or prior command marker does not exist.
+
+The executor must use one reusable pagination implementation for collection reads. Tests must prove correct behavior with more than 100 Issues and more than 100 comments.
 
 ## Version 1 allow-list
 
@@ -118,11 +133,11 @@ Every generated ticket must persist its immutable identifier in both the title a
 - phase/gate labels agree with the ticket;
 - a READY ticket's referenced ticket/gate dependencies are satisfied.
 
-Syntactically valid input is not sufficient authorization.
+All searches supporting these decisions must use complete collection pagination. Syntactically valid input is not sufficient authorization.
 
 ## Lifecycle controls
 
-`start_ticket` permits only `READY -> IN PROGRESS` and rejects the transition if another open ticket in the same gate is already IN PROGRESS.
+`start_ticket` permits only `READY -> IN PROGRESS` and rejects the transition if another open ticket in the same gate is already IN PROGRESS. Conflict detection must inspect the complete matching Issue collection.
 
 `complete_ticket` permits only `IN PROGRESS` or `VALIDATION -> COMPLETE`. It requires:
 
@@ -139,7 +154,7 @@ Only then may the executor set COMPLETE and close the Issue.
 
 Result-file existence is not the only replay control. Every mutating operation uses `commandId` as an idempotency marker on the affected GitHub object.
 
-Before mutation the executor checks whether that marker already exists. If the GitHub mutation succeeded previously but result recording failed, the executor reconstructs a successful result instead of duplicating the transaction.
+Before mutation the executor checks whether that marker already exists. Issue-comment marker recovery must inspect the complete comment collection. If the GitHub mutation succeeded previously but result recording failed, the executor reconstructs a successful result instead of duplicating the transaction.
 
 This applies to created gates, created tickets, lifecycle body transitions, and Issue comments.
 
@@ -170,6 +185,11 @@ The gateway is not a shortcut around Pull Request governance. Repository source,
 
 ## Validation requirement
 
-Repository Integrity must execute the Gateway unit/security tests. The suite must cover validation, canonical identity, duplicate/parent checks, lifecycle transitions, wrong-phase/undeclared/missing evidence, multi-file/modified/merge command rejection, wrong branch, and idempotent recovery.
+Repository Integrity must execute the Gateway unit/security tests. The suite must cover validation, canonical identity, duplicate/parent checks, lifecycle transitions, wrong-phase/undeclared/missing evidence, multi-file/modified/merge command rejection, wrong branch, idempotent recovery, and pagination with more than 100 Issues/comments.
 
-The gateway must not be used routinely for lifecycle operations until the hardening PR is merged, the transport-branch ruleset is active, Repository Integrity passes, and a post-hardening lifecycle smoke test succeeds.
+Gateway v1.1 is production-ready only when:
+
+1. the dedicated Gateway GitHub App is installed and its Actions variable/secret are configured;
+2. the transport ruleset restricts updates to the approved command-submission user and Gateway GitHub App only;
+3. Repository Integrity passes with pagination regression tests;
+4. a final non-destructive smoke test succeeds through the GitHub App-authenticated executor.

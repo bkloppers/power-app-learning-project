@@ -105,6 +105,25 @@ Current property being created:
 - Intended data type: Boolean
 - Default formula: `true`
 
+### UI-025 — NTT DATA navbar visual reference baseline
+
+Four user-supplied reference screenshots from the NTT DATA Brand Portal / Basecoat navbar examples establish the target visual pattern for `cmpAppHeader`.
+
+Directly observed recurring traits:
+- Smart Navy / very dark navy horizontal navbar surface.
+- White horizontal NTT DATA logo in the branded dark-header examples.
+- Thin vertical divider immediately after the logo when modifier/application text is present.
+- Compact modifier text such as `Brand Portal`; it is visually subordinate to the logo and not styled as a large page heading.
+- White navigation/utility text and icons on the dark bar.
+- Thin Future Blue rule along the bottom edge of the navbar.
+- Square, flush application-shell treatment: no card-style rounded corners or floating shadow on the navbar itself.
+- Examples vary in surrounding utility/navigation content, but the left brand lockup is consistent.
+
+Project decision derived from these references:
+- `cmpAppHeader` should visually follow the dark branded navbar pattern rather than use a large generic 18–26 pt application-title treatment next to the logo.
+- The app/modifier title should be compact and separated from the logo with a thin vertical divider.
+- The current header implementation remains container-based and responsive; visual fidelity must not reintroduce fixed X/Y layout.
+
 ## Reusable-first rules
 
 - Build coherent reusable visual/interaction patterns here rather than duplicating them in individual apps.
@@ -116,4 +135,4 @@ Current property being created:
 
 ## Next verified step
 
-Turn `Modern controls and themes` On under `Settings -> Updates -> New`, allow Studio to refresh, then verify the component editor has returned before resuming the `DarkMode` custom-property creation.
+Continue `cmpAppHeader` from the UI-025 navbar visual baseline: make the title/modifier compact, add the logo divider, and apply the dark branded navbar surface and Future Blue bottom rule while retaining responsive containers.

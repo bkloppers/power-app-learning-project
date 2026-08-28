@@ -93,6 +93,7 @@ See:
 - `ICONOGRAPHY-IMPLEMENTATION-NOTES.md`
 - `ICONOGRAPHY-MODULE-SOURCES.md`
 - `ICONOGRAPHY-SOURCE-INDEX.md`
+- `ICON-SIZING-EVIDENCE.md`
 
 Selected project rule:
 
@@ -128,6 +129,40 @@ Selected architecture:
 
 Those controls must be implemented brand-correct from the start using the verified Basecoat module approach.
 
+## UI-028 to UI-030 — NTT DATA icon sizing evidence
+
+Three user-supplied Brand Portal screenshots now establish exact sizing constraints. Full record: `ICON-SIZING-EVIDENCE.md`.
+
+### Main navigation icons
+
+- Maximum glyph container: `30 x 30 px`.
+- Additional clearspace: `15 px` around the icon.
+- Main-navigation item includes a one-word label.
+- Main-navigation icons are discarded at mobile breakpoints.
+
+### Toolbar / utility icons
+
+- Maximum glyph size: `24 x 24 px`.
+- If accompanied by text, icon and label are vertically aligned.
+- Space before accompanying text: `10 px`.
+
+### General clearspace rule
+
+- Clearspace = `50%` of icon height.
+- A `24 px` icon therefore requires `12 px` clearspace.
+- A 24 px toolbar/utility glyph maps to a nominal `48 x 48 px` control/touch footprint when the clearspace is represented on all sides.
+
+### Header impact
+
+Back and hamburger/menu are header utility controls, not the documented main-navigation icon pattern. Selected baseline for those controls is therefore:
+
+- Basecoat Icons-module glyph;
+- maximum glyph `24 x 24 px`;
+- nominal interactive/control footprint `48 x 48 px`;
+- final placement still governed by the Site Header module.
+
+This supersedes the previously planned `40 x 40` shell-icon control size.
+
 ## Reusable-first rules
 
 - Build coherent reusable visual/interaction patterns here rather than duplicating them in individual apps.
@@ -137,4 +172,4 @@ Those controls must be implemented brand-correct from the start using the verifi
 
 ## Next verified step
 
-Resolve the exact Basecoat Site Header and Logos-module rules before further visual tuning of `cmpAppHeader`. Then translate those verified rules to the current responsive Power Apps structure. Do not add the hamburger or finalize the back glyph until their Basecoat Icons-module rendering is also verified.
+Replace the current back-button visual implementation with the brand-correct Basecoat Icons-module glyph using the verified maximum 24 px glyph / nominal 48 px control footprint. Preserve `OnSelect = cmpAppHeader.OnBack()`. Do not add the hamburger until the back control is brand-correct and the exact Site Header placement rule has been verified.

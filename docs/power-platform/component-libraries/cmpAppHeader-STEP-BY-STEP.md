@@ -112,39 +112,41 @@ Current selected spacing:
 - `PaddingLeft = 16`
 - `PaddingRight = 16`
 
-This spacing was selected after the official logo clearspace reference was supplied.
+Exact brand spacing remains pending Site Header and Logos-module verification.
 
 ## Back button
 
-Latest YAML confirms `btnHeaderBack`:
+Latest YAML confirms behavior:
 
 ```powerfx
 Visible = cmpAppHeader.ShowBackButton
 OnSelect = cmpAppHeader.OnBack()
 ```
 
-and:
+Current implementation state previously used:
 
 - `Width = 40`
 - `Height = 40`
-- transparent appearance
+- transparent Modern Button
 - icon-only layout
+- current icon string `"ArrowLeft"`
 - AccessibleLabel `"Back"`
 - Tooltip `"Back"`
-- current icon string `"ArrowLeft"`
 
 Because `ShowBackButton` defaults to false, the button is intentionally absent from normal component screenshots until the property is set true.
 
-### Iconography correction
+### Brand-first correction
 
-The current `"ArrowLeft"` icon is a Power Apps Fluent glyph and is not yet marked BRAND-FINAL.
+The Fluent `"ArrowLeft"` glyph is SUPERSEDED / NOT APPROVED. Back must use the verified Basecoat Icons-module glyph from the first completed implementation.
 
-Verified NTT DATA project iconography guidance distinguishes:
+UI-029 and UI-030 further supersede the 40 x 40 shell-icon sizing:
 
-- brand-facing/content-facing icons -> NTT DATA Brand Icons SVG library;
-- generic UI/interaction glyphs -> Basecoat-prescribed Font Awesome glyphs.
+- toolbar/utility glyph maximum = `24 x 24 px`;
+- general clearspace = 50% of glyph height;
+- 24 px glyph -> 12 px clearspace;
+- nominal interactive/control footprint = `48 x 48 px`.
 
-Back, hamburger/menu, previous and next are generic shell/navigation glyphs. See `ICONOGRAPHY-DECISION.md`.
+No Power Apps change has yet been made from this sizing correction.
 
 ## Logo
 
@@ -158,8 +160,6 @@ If(
 )
 ```
 
-The earlier formula using media filenames with `.svg` was incorrect and is superseded.
-
 Official NTT DATA references supplied by the user establish:
 
 - digital application minimum = 140 px wide;
@@ -169,7 +169,7 @@ Official NTT DATA references supplied by the user establish:
 - white on Smart Navy for dark presentation;
 - Future Blue on white for light presentation.
 
-Current selected logo:
+Current implementation:
 
 ```powerfx
 Width = 140
@@ -190,35 +190,15 @@ LayoutMinWidth = 1
 LayoutMinHeight = 32
 ```
 
-Fill:
-
-```powerfx
-If(
-    cmpAppHeader.DarkMode,
-    RGBA(255, 255, 255, 0.75),
-    RGBA(7, 15, 38, 0.75)
-)
-```
-
-### Verified stretch correction
-
-A Studio screenshot showed the divider still filling the 72 px header despite `Height = 32`.
-
-Cause: the divider itself inherited cross-axis Stretch from its parent layout.
-
 Verified fix:
 
 `conHeaderDivider -> Align in container = Center`
 
-After this change the divider rendered 1 px by 32 px, vertically centered.
-
-Do not confuse this with `LayoutAlignItems`: that property controls children inside the divider container, not the divider's position inside its parent.
+This prevents auto-layout stretch. Exact branded divider dimensions/color/spacing are governed by the Basecoat Logos module and are not final until that module is verified.
 
 ## App title
 
-The NTT navbar reference establishes compact modifier text rather than a large page-heading treatment.
-
-Current selected title intent:
+Current implementation intent:
 
 ```powerfx
 Text = cmpAppHeader.AppTitle
@@ -229,9 +209,7 @@ Wrap = false
 VerticalAlign = VerticalAlign.Middle
 ```
 
-Arial is the environment-supported substitution. The earlier `Font.'Noto Sans'` instruction is superseded because Power Apps Studio rejected it in this environment.
-
-Title color should follow dark/light presentation.
+Exact branded heading typography/spacing is governed by the Logos module.
 
 ## User region
 
@@ -259,9 +237,7 @@ User-supplied NTT DATA examples show:
 - Previous action on left side of footer/navigation bar;
 - Next action on right side of footer/navigation bar.
 
-User explicitly confirmed no changes were made after this design discussion.
-
-Therefore current truth is:
+Current truth:
 
 - no `ShowMenuButton` property;
 - no `OnMenu` event;
@@ -270,11 +246,51 @@ Therefore current truth is:
 - no footer/page-navigation component;
 - no Previous/Next events or inputs.
 
-Selected architecture for later implementation:
+Selected architecture:
 
 - hamburger/menu trigger belongs to `cmpAppHeader`;
 - sequential Previous/Next belongs to a separate reusable page-navigation/footer component.
 
+## UI-028 — Main navigation icons
+
+User-supplied NTT DATA Brand Portal screenshot establishes:
+
+- main-navigation icons fit within `30 x 30 px`;
+- neither dimension should exceed the 30 px container;
+- additional clearspace = `15 px` around the icon;
+- a one-word label accompanies the main-navigation icon;
+- main-navigation icons are discarded at mobile breakpoints.
+
+This rule is for the main-navigation pattern and is not automatically applied to header utility controls.
+
+## UI-029 — Toolbar icons
+
+User-supplied NTT DATA Brand Portal screenshot establishes:
+
+- tool/utility-bar icon maximum = `24 x 24 px`;
+- icon and accompanying label are vertically aligned;
+- `10 px` space before accompanying text.
+
+Back and hamburger/menu are treated as header utility controls unless the Site Header module proves a more specific rule.
+
+## UI-030 — General icon size and clearspace
+
+User-supplied NTT DATA Brand Portal screenshot establishes:
+
+- clearspace = 50% of icon height;
+- explicit example: 24 px icon -> 12 px clearspace;
+- icon generally should not exceed related-content font size, except main navigation or special contextual use.
+
+Selected header-utility baseline:
+
+```text
+Glyph maximum: 24 x 24 px
+Clearspace: 12 px around glyph
+Nominal control/touch footprint: 48 x 48 px
+```
+
+Full evidence record: `ICON-SIZING-EVIDENCE.md`.
+
 ## Next verified step
 
-Do not alter the component for menu/footer yet. First verify the Power Apps-compatible rendering method for the Basecoat-prescribed generic UI glyphs. Then implement the hamburger in the header and Previous/Next in a separate reusable footer/page-navigation component using that verified glyph method.
+Correct `btnHeaderBack` before adding any new shell icon: replace the Fluent visual with the verified Basecoat Icons-module glyph and size the utility control to the 24 px glyph / nominal 48 px footprint rule, while preserving `Visible = cmpAppHeader.ShowBackButton` and `OnSelect = cmpAppHeader.OnBack()`. Final placement remains subject to the Site Header module.

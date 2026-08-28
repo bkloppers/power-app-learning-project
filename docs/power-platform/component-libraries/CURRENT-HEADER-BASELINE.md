@@ -37,6 +37,27 @@ cmpAppHeader
 
 No hamburger/menu control has been added. No footer/page-navigation component has been created.
 
+## Site Header module authority
+
+The user supplied the authoritative Basecoat Site Header module sources:
+
+- `https://basecoat.nttdata.com/css-modules/site-header.html`
+- `https://basecoat.nttdata.com/5/css/module.site-header.min.css`
+
+This establishes `site-header` as the governing module for the overall application-header shell. See `SITE-HEADER-MODULE-SOURCE.md`.
+
+The current web environment could not retrieve the module, so the exact shell CSS is not yet available. Therefore current shell-level values are implementation state, not brand-final values, including:
+
+- `cmpAppHeader.Height = 72`;
+- root/brand-row padding;
+- horizontal gaps;
+- background/border treatment;
+- bottom Future Blue rule implementation;
+- utility region placement;
+- mobile/tablet hamburger placement and visibility behavior.
+
+Do not tune those values further by eye. Verify the Site Header module first.
+
 ## Root header
 
 `conHeaderRootRow` is a horizontal auto-layout container sized to its component parent.
@@ -73,6 +94,8 @@ Current spacing:
 - `PaddingLeft = 16`
 - `PaddingRight = 16`
 
+These layout mechanics remain valid responsive behavior, but the exact branded spacing values are pending Site Header/Logos module verification.
+
 ## Back button — behavior retained, visual implementation superseded
 
 The behavior contract remains correct:
@@ -84,13 +107,22 @@ OnSelect = cmpAppHeader.OnBack()
 
 The current Modern Button was previously configured with `Icon = "ArrowLeft"`.
 
-That Fluent glyph is now SUPERSEDED / NOT APPROVED. Project rule is brand-correct from first implementation, not temporary Fluent followed by later brand replacement.
+That Fluent glyph is SUPERSEDED / NOT APPROVED. Before `btnHeaderBack` is considered complete, its visual glyph must use the verified Basecoat Icons-module implementation suitable for Power Apps.
 
-Before `btnHeaderBack` is considered complete, its visual glyph must be replaced with the verified Basecoat Icons-module implementation suitable for Power Apps.
+## Logo + divider + application heading lockup
 
-## Logo
+The user supplied the Basecoat Logos module as the authoritative source for this complete lockup:
 
-Current logo formula:
+- `https://basecoat.nttdata.com/css-modules/logos.html`
+- `https://basecoat.nttdata.com/5/css/module.logos.min.css`
+
+Therefore `imgHeaderLogo`, `conHeaderDivider`, and `lblHeaderAppTitle` must be treated as one branded pattern rather than independently tuned controls.
+
+Current values remain recorded implementation state but are not brand-final until checked against the Logos module.
+
+### Logo
+
+Current formula:
 
 ```powerfx
 If(
@@ -100,7 +132,7 @@ If(
 )
 ```
 
-Selected current sizing:
+Current sizing:
 
 - `Width = 140`
 - `Height = 38.5`
@@ -108,9 +140,7 @@ Selected current sizing:
 - `AccessibleLabel = "NTT DATA"`
 - no border
 
-Brand evidence establishes the 140 px normal digital minimum, horizontal orientation, the approximately 3.64:1 ratio, and the dark/light logo variants.
-
-## Divider
+### Divider
 
 Current divider:
 
@@ -120,27 +150,23 @@ Current divider:
 - theme-aware Fill
 - rounded 1 px corners
 - no shadow
-
-Verified layout correction:
-
 - `Align in container = Center`
 
-This prevents the divider from stretching to the full 72 px header height.
+The center alignment is a verified Power Apps layout fix preventing stretch. The exact branded divider height/thickness/color/spacing remains pending Logos-module verification.
 
-## App title
+### App title
 
-Current intent:
+Current intent/state:
 
-- compact modifier/application text
 - `Text = cmpAppHeader.AppTitle`
 - Arial environment-supported substitute
 - size 12
 - no wrapping
-- compact fixed height rather than full header height
+- compact fixed height
 - flexible horizontal width
 - theme-aware white/Smart-Navy text
 
-The earlier `Font = Font.'Noto Sans'` instruction is superseded because Studio rejected it in this environment.
+The earlier `Font = Font.'Noto Sans'` instruction is superseded because Studio rejected it in this environment. Exact branded typography and spacing remain pending Logos-module verification.
 
 ## User region
 
@@ -159,18 +185,16 @@ Current Avatar:
 - `Name = cmpAppHeader.UserDisplayName`
 - `Image = cmpAppHeader.UserPhoto`
 
-## Brand-first iconography dependency
+Utility-region sizing/spacing is not brand-final until Site Header module verification.
 
-NTT DATA/Basecoat source ownership:
+## Brand-first source hierarchy
 
-- brand/content illustrations -> NTT DATA Brand Icons library
-- back/previous/next/hamburger and similar UI glyphs -> Basecoat Icons module
-- Close/X -> Basecoat Close module
+For this shell:
 
-No new menu, footer or close control may be implemented using a temporary Fluent approximation.
+1. Basecoat Site Header module -> overall header shell.
+2. Basecoat Logos module -> logo/divider/application heading lockup.
+3. Basecoat Icons module -> back/hamburger/previous/next and generic UI glyphs.
+4. Basecoat Close module -> dedicated Close/X control.
+5. NTT DATA Brand Icons library -> content-facing illustrative icons.
 
-Required sequence:
-
-`verify Basecoat glyph/rendering -> implement brand-correct control -> validate in Power Apps`
-
-See `ICONOGRAPHY-DECISION.md` and `ICONOGRAPHY-IMPLEMENTATION-NOTES.md`.
+No shell visual is considered final when its authoritative Basecoat module has not yet been verified.

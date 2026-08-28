@@ -73,6 +73,18 @@ cmpAppHeader
 
 No hamburger/menu control has been added. No footer/page-navigation component has been created.
 
+## Basecoat header source hierarchy
+
+Authoritative module ownership for the header is now:
+
+1. `site-header` — overall header shell structure, spacing, presentation and header behavior. See `SITE-HEADER-MODULE-SOURCE.md`.
+2. `logos` — NTT DATA logo + divider + modifier/application heading lockup. See `LOGOS-MODULE-SOURCE.md`.
+3. `icons` — back, previous, next, hamburger/menu and similar generic UI glyphs.
+4. `close` — dedicated Close/X control.
+5. NTT DATA Brand Icons library — brand/content illustrative icons.
+
+The current header shell dimensions, padding, spacing, accent-border treatment and utility placement are not considered brand-final until checked against the Site Header module. The logo-divider-heading values are not considered brand-final until checked against the Logos module.
+
 ## Brand-first iconography rule
 
 See:
@@ -125,4 +137,4 @@ Those controls must be implemented brand-correct from the start using the verifi
 
 ## Next verified step
 
-Do not add more shell-icon controls until the exact Basecoat glyph rendering method for Power Apps is verified. Then replace the current Fluent back glyph first, validate it, and only then continue with the hamburger/menu control.
+Resolve the exact Basecoat Site Header and Logos-module rules before further visual tuning of `cmpAppHeader`. Then translate those verified rules to the current responsive Power Apps structure. Do not add the hamburger or finalize the back glyph until their Basecoat Icons-module rendering is also verified.

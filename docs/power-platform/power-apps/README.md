@@ -36,6 +36,41 @@ This snapshot also proved that Component Library creation is not exposed in this
 
 The project requires the current Responsive blank-app experience. Before the exact click path is used in the build, verify the current August 2026-or-later Maker Portal UI and record the working sequence here from the observed UI.
 
+## NTT DATA icon-source policy for Power Apps
+
+Brand-source evidence recorded in the project distinguishes two icon systems:
+
+1. NTT DATA Brand Icons SVG library
+   - use first for brand-facing/content-facing illustrative icons when a matching approved asset exists;
+   - verified assets use a consistent NTT DATA stroke style and Future Blue default treatment.
+
+2. Basecoat generic UI glyphs
+   - Basecoat explicitly prescribes Font Awesome for generic UI/interaction glyphs;
+   - applies to shell/navigation chrome such as back arrows, hamburger/menu, previous/next arrows, carets, checks and similar controls.
+
+Power Apps translation rule:
+
+- do not treat a Fluent/Power Apps built-in icon as automatically equivalent to the NTT/Basecoat glyph;
+- verify the Power Apps-compatible rendering/asset method before calling a generic shell glyph brand-final;
+- do not use emoji as UI icons;
+- accessibility remains mandatory regardless of icon source: interactive icon controls need an accessible name/label and appropriate tooltip where supported.
+
+Component-specific details are recorded under `../component-libraries/ICONOGRAPHY-DECISION.md`.
+
+## Shell architecture decision
+
+NTT DATA reference screenshots establish:
+
+- hamburger/menu trigger belongs in the application header;
+- on tablet/mobile the menu opens the sidebar/drawer pattern;
+- sequential Previous/Next navigation is a footer/page-navigation concern, not the header's primary navigation responsibility.
+
+Selected reusable architecture:
+
+- `cmpAppHeader` owns the menu trigger contract;
+- a separate reusable page-navigation/footer component will own Previous/Next navigation;
+- these controls are not yet implemented and must wait for the verified generic-glyph rendering method.
+
 ## Documentation pattern for future Power Apps steps
 
 For every screen/control/property build step record:

@@ -1,11 +1,9 @@
 # Iconography Implementation Notes
 
-Status: ACTIVE / SOURCE-REFINED / IMPLEMENTATION-PENDING
+Status: ACTIVE / BRAND-FIRST / IMPLEMENTATION-PENDING
 Baseline: 2026-08-28
 
-This note refines `ICONOGRAPHY-DECISION.md` and `CURRENT-HEADER-BASELINE.md` with the exact Basecoat module split supplied by the user.
-
-## Exact module split
+## Exact Basecoat module split
 
 Close/X controls use the dedicated Close module:
 
@@ -17,20 +15,44 @@ Other button/application-shell icons use the Icons module:
 - documentation: `https://basecoat.nttdata.com/css-modules/icons.html`
 - CSS: `https://basecoat.nttdata.com/5/css/module.icons.min.css`
 
-This supersedes any interpretation that the Close/X control should be treated as just another icon from the general Icons module.
+Digital iconography reference:
+
+- `https://basecoat.nttdata.com/components.iconography.html#glyphs`
+
+## Brand-first implementation rule
+
+Do not implement temporary Fluent approximations for shell icons.
+
+If the correct Basecoat glyph cannot yet be rendered in Power Apps with verified fidelity, stop that control at the dependency boundary and resolve the rendering method first.
+
+Approved sequence:
+
+`verify brand source -> implement brand-correct glyph -> validate component`
+
+Disallowed sequence:
+
+`insert Fluent approximation -> call it temporary -> replace later`
 
 ## Current header impact
 
-No Power Apps controls or component properties have changed as a result of this source refinement.
+`btnHeaderBack` currently contains a Modern Button with `Icon = "ArrowLeft"` from an earlier instruction.
 
-- `btnHeaderBack` still exists with the current Fluent `Icon = "ArrowLeft"` implementation.
-- It remains NOT BRAND-FINAL until the corresponding Basecoat Icons-module glyph is verified.
-- No hamburger/menu control has been added.
-- No `ShowMenuButton` or `OnMenu` custom property has been added.
-- `conHeaderUserRow` remains unchanged.
+That visual glyph is SUPERSEDED / NOT APPROVED and must be replaced before the back control is considered complete.
 
-When a sidebar/drawer close control is built, its visual source must be the dedicated Basecoat Close module rather than the general Icons module.
+The behavior remains correct:
+
+```powerfx
+OnSelect = cmpAppHeader.OnBack()
+```
+
+No hamburger/menu control has been added.
+No `ShowMenuButton` or `OnMenu` property has been added.
+No footer/page-navigation component has been created.
+
+When those controls are implemented, they must use the verified Basecoat module approach from the start.
 
 ## Verification boundary
 
-The supplied source URLs were attempted through the current web environment on 2026-08-28 but could not be fetched. Therefore this note records the exact user-supplied source locations and the module ownership they establish, without inventing selectors, glyph codes, class names, pseudo-elements, sizing or stroke details not retrieved from those resources.
+The supplied Basecoat URLs were attempted through the current web environment on 2026-08-28 but could not be fetched. Therefore no selectors, class names, Unicode values, pseudo-elements, exact glyph codes, sizing or stroke rules are invented here.
+
+Those details remain a hard dependency before implementation proceeds.

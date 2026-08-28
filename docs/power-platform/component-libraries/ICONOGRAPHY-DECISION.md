@@ -1,72 +1,72 @@
 # Component Library Iconography Decision
 
-Status: ACTIVE / BRAND-SOURCE-VERIFIED / IMPLEMENTATION-PENDING
+Status: ACTIVE / BRAND-FIRST / IMPLEMENTATION-PENDING
 Baseline: 2026-08-28
 
 ## Source basis
 
-User supplied the NTT DATA Brand Portal Digital Iconography page:
+NTT DATA Brand Portal sources supplied by the user:
 
-`https://basecoat.nttdata.com/components.iconography.html#glyphs`
+- Digital Iconography: `https://basecoat.nttdata.com/components.iconography.html#glyphs`
+- Close module: `https://basecoat.nttdata.com/css-modules/close.html`
+- Close CSS: `https://basecoat.nttdata.com/5/css/module.close.min.css`
+- Icons module: `https://basecoat.nttdata.com/css-modules/icons.html`
+- Icons CSS: `https://basecoat.nttdata.com/5/css/module.icons.min.css`
 
-The live page could not be fetched from the current tool environment on 2026-08-28. The project corpus already contains a verified 2026-08-23 capture of the same NTT DATA Brand Portal iconography guidance and the Basecoat distribution guidance. That verified project source is therefore the basis of this decision.
+The project corpus also contains a verified 2026-08-23 capture of the NTT DATA iconography and Basecoat guidance.
 
-## Brand iconography rule
+## Brand-first rule
 
-The NTT DATA system contains two distinct icon sources with different purposes:
+All reusable UI components must be implemented with the approved NTT DATA/Basecoat visual language from the first working version.
+
+There is no temporary-Fluent-then-brand-later phase for shell controls.
+
+If the exact brand-correct glyph or rendering method has not yet been verified for Power Apps, stop that control's implementation at the dependency boundary and verify the brand source first. Do not insert a Fluent approximation merely to keep building.
+
+## Icon source ownership
 
 1. NTT DATA Brand Icons library
-   - 418 verified SVG assets.
-   - 72x72 viewBox.
-   - line/stroke style with rounded caps and joins.
-   - Future Blue is the native/default stroke color.
-   - intended first for brand-facing/content-facing illustrative icons.
+   - Primary source for brand-facing/content-facing illustrative icons.
+   - Verified library contains 418 SVG assets with the documented NTT DATA stroke system.
 
-2. Basecoat generic UI glyphs
-   - Font Awesome is explicitly prescribed by Basecoat for generic UI/interaction glyphs.
-   - appropriate examples include arrows, carets, checks and other application-shell chrome.
-   - these glyphs coexist with the Brand Icons library; they do not replace it.
+2. Basecoat Icons module
+   - Source for generic UI/application-shell glyphs such as back, previous, next, hamburger/menu, carets, checks and related interaction chrome.
+   - Power Apps Fluent glyphs are not presumed equivalent.
 
-## Selected project rule
+3. Basecoat Close module
+   - Dedicated source for Close/X controls.
+   - Close/X is not treated as just another general icon.
 
-For Power Apps:
+## Current cmpAppHeader correction
 
-- Brand-facing/content-facing icons must use the verified NTT DATA Brand Icons library when a matching asset exists.
-- Generic application-shell controls such as hamburger/menu, previous/next arrows, back arrows, carets and similar utility controls are generic UI glyphs and therefore follow the Basecoat generic-glyph rule rather than the 418-icon brand-illustration rule.
-- Do not assume a Power Apps Fluent icon is automatically equivalent to the NTT/Basecoat glyph. The exact Power Apps rendering/asset mapping must be verified before calling the control brand-final.
-- Do not use emoji as UI icons.
+`btnHeaderBack` currently exists with a Modern Button and `Icon = "ArrowLeft"` from an earlier instruction.
 
-## Current cmpAppHeader impact
+That visual implementation is now explicitly marked SUPERSEDED / NOT APPROVED because it violates the brand-first rule.
 
-The current component already contains `btnHeaderBack` with `Icon = "ArrowLeft"` in a Modern Button. This remains the current Power Apps implementation state, but its icon glyph is not yet marked BRAND-FINAL because the current Modern Button icon is Fluent rather than a verified Basecoat/Font Awesome glyph.
+The behavior contract remains correct:
 
-Do not redesign or remove the back-event contract. `btnHeaderBack.OnSelect = cmpAppHeader.OnBack()` remains correct and independent of the eventual visual glyph source.
+```powerfx
+btnHeaderBack.OnSelect = cmpAppHeader.OnBack()
+```
 
-## Hamburger/menu reference
+The control must not be considered complete until its visual glyph is replaced with a verified Basecoat Icons-module implementation suitable for Power Apps.
 
-User-supplied NTT DATA navbar screenshots show a hamburger/menu glyph at the far right of the navbar. Project design guidance also records the header hamburger as the trigger that toggles the sidebar/drawer.
+Do not add the hamburger/menu control until its Basecoat Icons-module implementation is verified.
 
-The user explicitly confirmed that no hamburger/menu changes have yet been made to `cmpAppHeader`.
+Do not build a sidebar Close/X control until its Basecoat Close-module implementation is verified.
 
-Therefore:
+## Footer previous/next
 
-- no `ShowMenuButton` property has been added;
-- no `OnMenu` event has been added;
-- no menu button has been inserted;
-- no user-row width change has been made for a menu button.
+Sequential Previous/Next navigation belongs in a separate reusable page-navigation/footer component, not in `cmpAppHeader`.
 
-These remain planned, not implemented.
+Its previous/next glyphs must also use the verified Basecoat Icons-module approach from first implementation.
 
-## Footer previous/next reference
+## Prohibited pattern
 
-User-supplied reference screenshot shows Previous navigation on the left and Next navigation on the right in a footer/navigation bar.
+Do not use this project pattern:
 
-Selected architecture:
+`temporary Fluent icon -> later replace with brand icon`
 
-- sequential Previous/Next navigation belongs in a separate reusable page-navigation/footer component, not in `cmpAppHeader`;
-- no footer/navigation component has yet been created;
-- no Previous/Next properties or events have yet been added.
+Use this pattern instead:
 
-## Next dependency
-
-Before adding the hamburger or page-navigation component, verify the exact Power Apps-compatible rendering method that best preserves the Basecoat generic glyph appearance while retaining accessibility, theming and reusable-component behavior. Do not substitute a Fluent glyph and call it brand-final without that verification.
+`verify NTT/Basecoat source -> implement brand-correct control -> validate in Power Apps`
